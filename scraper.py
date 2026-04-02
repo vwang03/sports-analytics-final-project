@@ -2,6 +2,7 @@ from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup
 import csv
 import json
+import re
 import sys
 
 URL = "https://gotuftsjumbos.com/sports/mens-basketball/stats/2025-26/emerson-college/boxscore/15814#play-by-play"
@@ -52,7 +53,13 @@ def _is_sub(text: str) -> bool:
     return "SUB IN" in up or "SUB OUT" in up
 
 
-def _parse_event(play: str, time: str, score_update: str) -> dict:
+def _extract_score(s: str) -> int | None:
+    """Parse score strings like '2(+2)' or '14' into an integer."""
+    m = re.match(r"(\d+)", s.strip())
+    return int(m.group(1)) if m else None
+
+
+def _parse_event(play: str, time: str) -> dict:
     """
     Parse 'EVENT TYPE by PLAYER,NAME(details)' into a structured event dict.
     """
@@ -67,8 +74,6 @@ def _parse_event(play: str, time: str, score_update: str) -> dict:
     event: dict = {"type": event_type.strip(), "time": time}
     if player:
         event["player"] = player
-    if score_update:
-        event["score_update"] = score_update
     return event
 
 
@@ -87,17 +92,23 @@ def _build_possessions(flat: list[dict]) -> list[dict]:
 
     A new possession begins whenever the acting team switches sides.
     Each possession contains the team indicator, period, start/end times
-    (clock counting down, so start_time >= end_time), and a list of events.
-    Substitution rows are ignored.
+    (clock counting down, so start_time >= end_time), current scores for both
+    teams, and a list of events. Substitution rows are ignored.
 
     start_time is assigned at possession-creation time:
       - First possession of a period → period clock start (20:00 / 10:00 / 05:00).
       - All other possessions → end_time of the previous possession, since one
         possession begins the instant the previous one ends. If the previous
         possession had no timed events, its start_time is used as the handoff.
+
+    home_score / away_score reflect the score at the END of the possession.
+    Both score columns from the table are parsed on every scoring row so the
+    tracker stays accurate for both teams simultaneously.
     """
     possessions: list[dict] = []
     current: dict | None = None
+    home_score = 0
+    away_score = 0
 
     for row in flat:
         home = row.get("home_play", "").strip()
@@ -108,6 +119,19 @@ def _build_possessions(flat: list[dict]) -> list[dict]:
         if not home and not away:
             continue
 
+        # Update the running score from whichever score columns are populated.
+        # Both columns are present on scoring plays (scoring team shows "N(+M)",
+        # the other team shows their current total as a plain number).
+        for col, side in [("home_score", "home"), ("away_score", "away")]:
+            val = row.get(col, "").strip()
+            if val:
+                parsed = _extract_score(val)
+                if parsed is not None:
+                    if side == "home":
+                        home_score = parsed
+                    else:
+                        away_score = parsed
+
         if home and away:
             # Both columns populated in the same row (rare); skip subs, take first non-sub
             candidates = [(t, txt) for t, txt in [("away", away), ("home", home)]
@@ -115,19 +139,16 @@ def _build_possessions(flat: list[dict]) -> list[dict]:
             if not candidates:
                 continue
             team, play_text = candidates[0]
-            score_update = row.get(f"{team}_score", "")
         elif home:
             if _is_sub(home):
                 continue
             team, play_text = "home", home
-            score_update = row.get("home_score", "")
         else:
             if _is_sub(away):
                 continue
             team, play_text = "away", away
-            score_update = row.get("away_score", "")
 
-        event = _parse_event(play_text, time, score_update)
+        event = _parse_event(play_text, time)
 
         # A foul committed by the non-possessing team does not transfer possession;
         # attach it to the ongoing possession rather than starting a new one.
@@ -154,8 +175,14 @@ def _build_possessions(flat: list[dict]) -> list[dict]:
                     "period": period,
                     "start_time": new_start,
                     "end_time": None,
+                    "home_score": home_score,
+                    "away_score": away_score,
                     "events": [],
                 }
+
+        # Keep scores on the possession up to date as events happen within it
+        current["home_score"] = home_score
+        current["away_score"] = away_score
 
         if time != "--":
             current["end_time"] = time

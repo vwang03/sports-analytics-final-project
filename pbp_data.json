@@ -4,12 +4,13 @@
     "period": "1st Half",
     "start_time": "20:00",
     "end_time": "19:40",
+    "home_score": 0,
+    "away_score": 2,
     "events": [
       {
         "type": "GOOD LAYUP",
         "time": "19:40",
-        "player": "RUIZ,GULLERMO GASSET",
-        "score_update": "2(+2)"
+        "player": "RUIZ,GULLERMO GASSET"
       },
       {
         "type": "ASSIST",
@@ -23,6 +24,8 @@
     "period": "1st Half",
     "start_time": "19:40",
     "end_time": "19:26",
+    "home_score": 0,
+    "away_score": 2,
     "events": [
       {
         "type": "MISS JUMPER",
@@ -36,6 +39,8 @@
     "period": "1st Half",
     "start_time": "19:26",
     "end_time": "19:13",
+    "home_score": 0,
+    "away_score": 2,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -54,6 +59,8 @@
     "period": "1st Half",
     "start_time": "19:13",
     "end_time": "18:49",
+    "home_score": 2,
+    "away_score": 2,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -63,8 +70,7 @@
       {
         "type": "GOOD LAYUP",
         "time": "18:49",
-        "player": "BERNSTEIN,JOSHUA",
-        "score_update": "2"
+        "player": "BERNSTEIN,JOSHUA"
       },
       {
         "type": "ASSIST",
@@ -78,6 +84,8 @@
     "period": "1st Half",
     "start_time": "18:49",
     "end_time": "18:33",
+    "home_score": 2,
+    "away_score": 2,
     "events": [
       {
         "type": "MISS 3PTR",
@@ -91,6 +99,8 @@
     "period": "1st Half",
     "start_time": "18:33",
     "end_time": "18:17",
+    "home_score": 4,
+    "away_score": 2,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -105,8 +115,7 @@
       {
         "type": "GOOD LAYUP",
         "time": "18:17",
-        "player": "GYIMESI,SCOTT",
-        "score_update": "4(+2)"
+        "player": "GYIMESI,SCOTT"
       },
       {
         "type": "ASSIST",
@@ -120,6 +129,8 @@
     "period": "1st Half",
     "start_time": "18:17",
     "end_time": "17:31",
+    "home_score": 4,
+    "away_score": 2,
     "events": [
       {
         "type": "MISS LAYUP",
@@ -143,6 +154,8 @@
     "period": "1st Half",
     "start_time": "17:31",
     "end_time": "17:18",
+    "home_score": 7,
+    "away_score": 2,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -152,8 +165,7 @@
       {
         "type": "GOOD 3PTR",
         "time": "17:18",
-        "player": "WATT,ZION",
-        "score_update": "7(+5)"
+        "player": "WATT,ZION"
       },
       {
         "type": "ASSIST",
@@ -167,6 +179,8 @@
     "period": "1st Half",
     "start_time": "17:18",
     "end_time": "16:48",
+    "home_score": 7,
+    "away_score": 2,
     "events": [
       {
         "type": "MISS JUMPER",
@@ -180,6 +194,8 @@
     "period": "1st Half",
     "start_time": "16:48",
     "end_time": "16:17",
+    "home_score": 9,
+    "away_score": 2,
     "events": [
       {
         "type": "BLOCK",
@@ -214,8 +230,7 @@
       {
         "type": "GOOD JUMPER",
         "time": "16:17",
-        "player": "BERNSTEIN,JOSHUA",
-        "score_update": "9(+7)"
+        "player": "BERNSTEIN,JOSHUA"
       },
       {
         "type": "ASSIST",
@@ -229,6 +244,8 @@
     "period": "1st Half",
     "start_time": "16:17",
     "end_time": "16:08",
+    "home_score": 9,
+    "away_score": 2,
     "events": [
       {
         "type": "TURNOVER",
@@ -242,6 +259,8 @@
     "period": "1st Half",
     "start_time": "16:08",
     "end_time": "15:58",
+    "home_score": 9,
+    "away_score": 2,
     "events": [
       {
         "type": "STEAL",
@@ -270,6 +289,8 @@
     "period": "1st Half",
     "start_time": "15:58",
     "end_time": "15:52",
+    "home_score": 9,
+    "away_score": 2,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -288,6 +309,8 @@
     "period": "1st Half",
     "start_time": "15:52",
     "end_time": "15:35",
+    "home_score": 9,
+    "away_score": 2,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -306,6 +329,8 @@
     "period": "1st Half",
     "start_time": "15:35",
     "end_time": "15:07",
+    "home_score": 9,
+    "away_score": 3,
     "events": [
       {
         "type": "STEAL",
@@ -330,8 +355,7 @@
       {
         "type": "GOOD FT",
         "time": "15:07",
-        "player": "HELMHOLD,LINUS",
-        "score_update": "3"
+        "player": "HELMHOLD,LINUS"
       }
     ]
   },
@@ -340,12 +364,13 @@
     "period": "1st Half",
     "start_time": "15:07",
     "end_time": "14:55",
+    "home_score": 12,
+    "away_score": 3,
     "events": [
       {
         "type": "GOOD 3PTR",
         "time": "14:55",
-        "player": "REILLY,DYLAN",
-        "score_update": "12(+9)"
+        "player": "REILLY,DYLAN"
       },
       {
         "type": "ASSIST",
@@ -359,12 +384,13 @@
     "period": "1st Half",
     "start_time": "14:55",
     "end_time": "14:25",
+    "home_score": 12,
+    "away_score": 6,
     "events": [
       {
         "type": "GOOD 3PTR",
         "time": "14:25",
-        "player": "LUESSENHOP,OTTO",
-        "score_update": "6"
+        "player": "LUESSENHOP,OTTO"
       },
       {
         "type": "ASSIST",
@@ -378,12 +404,13 @@
     "period": "1st Half",
     "start_time": "14:25",
     "end_time": "13:43",
+    "home_score": 14,
+    "away_score": 6,
     "events": [
       {
         "type": "GOOD JUMPER",
         "time": "14:06",
-        "player": "WATT,ZION",
-        "score_update": "14(+8)"
+        "player": "WATT,ZION"
       },
       {
         "type": "FOUL",
@@ -397,6 +424,8 @@
     "period": "1st Half",
     "start_time": "13:43",
     "end_time": "13:43",
+    "home_score": 14,
+    "away_score": 7,
     "events": [
       {
         "type": "MISS FT",
@@ -411,8 +440,7 @@
       {
         "type": "GOOD FT",
         "time": "13:43",
-        "player": "GRAMLICH,HANK",
-        "score_update": "7"
+        "player": "GRAMLICH,HANK"
       }
     ]
   },
@@ -421,12 +449,13 @@
     "period": "1st Half",
     "start_time": "13:43",
     "end_time": "13:27",
+    "home_score": 17,
+    "away_score": 7,
     "events": [
       {
         "type": "GOOD 3PTR",
         "time": "13:27",
-        "player": "WOOTEN,SIDNEY",
-        "score_update": "17(+10)"
+        "player": "WOOTEN,SIDNEY"
       },
       {
         "type": "ASSIST",
@@ -440,6 +469,8 @@
     "period": "1st Half",
     "start_time": "13:27",
     "end_time": "13:06",
+    "home_score": 17,
+    "away_score": 7,
     "events": [
       {
         "type": "MISS 3PTR",
@@ -453,6 +484,8 @@
     "period": "1st Half",
     "start_time": "13:06",
     "end_time": "12:53",
+    "home_score": 17,
+    "away_score": 7,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -471,6 +504,8 @@
     "period": "1st Half",
     "start_time": "12:53",
     "end_time": "12:38",
+    "home_score": 17,
+    "away_score": 7,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -489,6 +524,8 @@
     "period": "1st Half",
     "start_time": "12:38",
     "end_time": "12:32",
+    "home_score": 17,
+    "away_score": 7,
     "events": [
       {
         "type": "STEAL",
@@ -507,6 +544,8 @@
     "period": "1st Half",
     "start_time": "12:32",
     "end_time": "12:18",
+    "home_score": 17,
+    "away_score": 7,
     "events": [
       {
         "type": "STEAL",
@@ -530,6 +569,8 @@
     "period": "1st Half",
     "start_time": "12:18",
     "end_time": "12:08",
+    "home_score": 17,
+    "away_score": 7,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -548,6 +589,8 @@
     "period": "1st Half",
     "start_time": "12:08",
     "end_time": "11:45",
+    "home_score": 17,
+    "away_score": 7,
     "events": [
       {
         "type": "BLOCK",
@@ -581,6 +624,8 @@
     "period": "1st Half",
     "start_time": "11:45",
     "end_time": "11:27",
+    "home_score": 17,
+    "away_score": 7,
     "events": [
       {
         "type": "BLOCK",
@@ -604,6 +649,8 @@
     "period": "1st Half",
     "start_time": "11:27",
     "end_time": "11:02",
+    "home_score": 17,
+    "away_score": 7,
     "events": [
       {
         "type": "MISS JUMPER",
@@ -617,6 +664,8 @@
     "period": "1st Half",
     "start_time": "11:02",
     "end_time": "10:48",
+    "home_score": 17,
+    "away_score": 7,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -635,6 +684,8 @@
     "period": "1st Half",
     "start_time": "10:48",
     "end_time": "10:32",
+    "home_score": 17,
+    "away_score": 7,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -658,6 +709,8 @@
     "period": "1st Half",
     "start_time": "10:32",
     "end_time": "10:18",
+    "home_score": 19,
+    "away_score": 7,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -667,8 +720,7 @@
       {
         "type": "GOOD LAYUP",
         "time": "10:18",
-        "player": "BERNSTEIN,JOSHUA",
-        "score_update": "19(+12)"
+        "player": "BERNSTEIN,JOSHUA"
       },
       {
         "type": "ASSIST",
@@ -682,6 +734,8 @@
     "period": "1st Half",
     "start_time": "10:18",
     "end_time": "09:56",
+    "home_score": 19,
+    "away_score": 7,
     "events": [
       {
         "type": "MISS JUMPER",
@@ -695,6 +749,8 @@
     "period": "1st Half",
     "start_time": "09:56",
     "end_time": "09:32",
+    "home_score": 19,
+    "away_score": 7,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -713,6 +769,8 @@
     "period": "1st Half",
     "start_time": "09:32",
     "end_time": "09:12",
+    "home_score": 19,
+    "away_score": 7,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -731,6 +789,8 @@
     "period": "1st Half",
     "start_time": "09:12",
     "end_time": "08:45",
+    "home_score": 21,
+    "away_score": 7,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -750,8 +810,7 @@
       {
         "type": "GOOD JUMPER",
         "time": "08:48",
-        "player": "LINSTRA,GRIFFIN",
-        "score_update": "21(+14)"
+        "player": "LINSTRA,GRIFFIN"
       },
       {
         "type": "TIMEOUT TEAM",
@@ -765,6 +824,8 @@
     "period": "1st Half",
     "start_time": "08:45",
     "end_time": "08:29",
+    "home_score": 21,
+    "away_score": 7,
     "events": [
       {
         "type": "MISS 3PTR",
@@ -778,6 +839,8 @@
     "period": "1st Half",
     "start_time": "08:29",
     "end_time": "08:03",
+    "home_score": 23,
+    "away_score": 7,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -787,8 +850,7 @@
       {
         "type": "GOOD LAYUP",
         "time": "08:03",
-        "player": "BERNSTEIN,JOSHUA",
-        "score_update": "23(+16)"
+        "player": "BERNSTEIN,JOSHUA"
       }
     ]
   },
@@ -797,6 +859,8 @@
     "period": "1st Half",
     "start_time": "08:03",
     "end_time": "07:48",
+    "home_score": 23,
+    "away_score": 7,
     "events": [
       {
         "type": "TURNOVER",
@@ -810,12 +874,13 @@
     "period": "1st Half",
     "start_time": "07:48",
     "end_time": "07:27",
+    "home_score": 25,
+    "away_score": 7,
     "events": [
       {
         "type": "GOOD LAYUP",
         "time": "07:27",
-        "player": "BERNSTEIN,JOSHUA",
-        "score_update": "25(+18)"
+        "player": "BERNSTEIN,JOSHUA"
       },
       {
         "type": "ASSIST",
@@ -829,6 +894,8 @@
     "period": "1st Half",
     "start_time": "07:27",
     "end_time": "07:11",
+    "home_score": 25,
+    "away_score": 7,
     "events": [
       {
         "type": "TURNOVER",
@@ -842,6 +909,8 @@
     "period": "1st Half",
     "start_time": "07:11",
     "end_time": "07:07",
+    "home_score": 25,
+    "away_score": 7,
     "events": [
       {
         "type": "STEAL",
@@ -860,6 +929,8 @@
     "period": "1st Half",
     "start_time": "07:07",
     "end_time": "07:06",
+    "home_score": 25,
+    "away_score": 9,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -874,14 +945,12 @@
       {
         "type": "GOOD FT",
         "time": "07:06",
-        "player": "MCNAMARA,BRENDAN",
-        "score_update": "8"
+        "player": "MCNAMARA,BRENDAN"
       },
       {
         "type": "GOOD FT",
         "time": "07:06",
-        "player": "MCNAMARA,BRENDAN",
-        "score_update": "9"
+        "player": "MCNAMARA,BRENDAN"
       }
     ]
   },
@@ -890,6 +959,8 @@
     "period": "1st Half",
     "start_time": "07:06",
     "end_time": "06:52",
+    "home_score": 27,
+    "away_score": 9,
     "events": [
       {
         "type": "MISS LAYUP",
@@ -909,14 +980,12 @@
       {
         "type": "GOOD FT",
         "time": "06:52",
-        "player": "GYIMESI,SCOTT",
-        "score_update": "26(+17)"
+        "player": "GYIMESI,SCOTT"
       },
       {
         "type": "GOOD FT",
         "time": "06:52",
-        "player": "GYIMESI,SCOTT",
-        "score_update": "27(+18)"
+        "player": "GYIMESI,SCOTT"
       }
     ]
   },
@@ -925,6 +994,8 @@
     "period": "1st Half",
     "start_time": "06:52",
     "end_time": "06:31",
+    "home_score": 27,
+    "away_score": 9,
     "events": [
       {
         "type": "MISS 3PTR",
@@ -938,6 +1009,8 @@
     "period": "1st Half",
     "start_time": "06:31",
     "end_time": "06:09",
+    "home_score": 27,
+    "away_score": 9,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -956,6 +1029,8 @@
     "period": "1st Half",
     "start_time": "06:09",
     "end_time": "05:47",
+    "home_score": 27,
+    "away_score": 9,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -974,6 +1049,8 @@
     "period": "1st Half",
     "start_time": "05:47",
     "end_time": "05:36",
+    "home_score": 27,
+    "away_score": 9,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -992,6 +1069,8 @@
     "period": "1st Half",
     "start_time": "05:36",
     "end_time": "05:18",
+    "home_score": 27,
+    "away_score": 9,
     "events": [
       {
         "type": "TURNOVER",
@@ -1005,6 +1084,8 @@
     "period": "1st Half",
     "start_time": "05:18",
     "end_time": "05:12",
+    "home_score": 27,
+    "away_score": 9,
     "events": [
       {
         "type": "STEAL",
@@ -1023,6 +1104,8 @@
     "period": "1st Half",
     "start_time": "05:12",
     "end_time": "05:12",
+    "home_score": 27,
+    "away_score": 9,
     "events": [
       {
         "type": "TIMEOUT TEAM",
@@ -1036,18 +1119,18 @@
     "period": "1st Half",
     "start_time": "05:12",
     "end_time": "05:12",
+    "home_score": 29,
+    "away_score": 9,
     "events": [
       {
         "type": "GOOD FT",
         "time": "05:12",
-        "player": "LINSTRA,GRIFFIN",
-        "score_update": "28(+19)"
+        "player": "LINSTRA,GRIFFIN"
       },
       {
         "type": "GOOD FT",
         "time": "05:12",
-        "player": "LINSTRA,GRIFFIN",
-        "score_update": "29(+20)"
+        "player": "LINSTRA,GRIFFIN"
       }
     ]
   },
@@ -1056,12 +1139,13 @@
     "period": "1st Half",
     "start_time": "05:12",
     "end_time": "05:00",
+    "home_score": 29,
+    "away_score": 11,
     "events": [
       {
         "type": "GOOD JUMPER",
         "time": "05:00",
-        "player": "LUESSENHOP,OTTO",
-        "score_update": "11"
+        "player": "LUESSENHOP,OTTO"
       },
       {
         "type": "ASSIST",
@@ -1075,12 +1159,13 @@
     "period": "1st Half",
     "start_time": "05:00",
     "end_time": "04:47",
+    "home_score": 32,
+    "away_score": 11,
     "events": [
       {
         "type": "GOOD 3PTR",
         "time": "04:47",
-        "player": "REILLY,DYLAN",
-        "score_update": "32(+21)"
+        "player": "REILLY,DYLAN"
       },
       {
         "type": "ASSIST",
@@ -1094,6 +1179,8 @@
     "period": "1st Half",
     "start_time": "04:47",
     "end_time": "04:30",
+    "home_score": 32,
+    "away_score": 11,
     "events": [
       {
         "type": "MISS 3PTR",
@@ -1107,6 +1194,8 @@
     "period": "1st Half",
     "start_time": "04:30",
     "end_time": "04:09",
+    "home_score": 32,
+    "away_score": 11,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -1125,6 +1214,8 @@
     "period": "1st Half",
     "start_time": "04:09",
     "end_time": "03:54",
+    "home_score": 32,
+    "away_score": 11,
     "events": [
       {
         "type": "BLOCK",
@@ -1148,6 +1239,8 @@
     "period": "1st Half",
     "start_time": "03:54",
     "end_time": "03:34",
+    "home_score": 35,
+    "away_score": 11,
     "events": [
       {
         "type": "STEAL",
@@ -1162,8 +1255,7 @@
       {
         "type": "GOOD 3PTR",
         "time": "03:34",
-        "player": "REILLY,DYLAN",
-        "score_update": "35(+24)"
+        "player": "REILLY,DYLAN"
       },
       {
         "type": "ASSIST",
@@ -1177,6 +1269,8 @@
     "period": "1st Half",
     "start_time": "03:34",
     "end_time": "03:12",
+    "home_score": 35,
+    "away_score": 11,
     "events": [
       {
         "type": "MISS JUMPER",
@@ -1190,6 +1284,8 @@
     "period": "1st Half",
     "start_time": "03:12",
     "end_time": "03:01",
+    "home_score": 35,
+    "away_score": 11,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -1208,6 +1304,8 @@
     "period": "1st Half",
     "start_time": "03:01",
     "end_time": "02:48",
+    "home_score": 35,
+    "away_score": 11,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -1226,6 +1324,8 @@
     "period": "1st Half",
     "start_time": "02:48",
     "end_time": "02:21",
+    "home_score": 35,
+    "away_score": 11,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -1244,6 +1344,8 @@
     "period": "1st Half",
     "start_time": "02:21",
     "end_time": "02:06",
+    "home_score": 35,
+    "away_score": 11,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -1262,6 +1364,8 @@
     "period": "1st Half",
     "start_time": "02:06",
     "end_time": "02:02",
+    "home_score": 35,
+    "away_score": 11,
     "events": [
       {
         "type": "MISS JUMPER",
@@ -1275,6 +1379,8 @@
     "period": "1st Half",
     "start_time": "02:02",
     "end_time": "01:35",
+    "home_score": 35,
+    "away_score": 11,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -1293,6 +1399,8 @@
     "period": "1st Half",
     "start_time": "01:35",
     "end_time": "01:05",
+    "home_score": 35,
+    "away_score": 11,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -1311,6 +1419,8 @@
     "period": "1st Half",
     "start_time": "01:05",
     "end_time": "00:57",
+    "home_score": 35,
+    "away_score": 13,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -1320,8 +1430,7 @@
       {
         "type": "GOOD LAYUP",
         "time": "00:57",
-        "player": "MCNEIL,BJ",
-        "score_update": "13"
+        "player": "MCNEIL,BJ"
       }
     ]
   },
@@ -1330,12 +1439,13 @@
     "period": "1st Half",
     "start_time": "00:57",
     "end_time": "00:27",
+    "home_score": 37,
+    "away_score": 13,
     "events": [
       {
         "type": "GOOD JUMPER",
         "time": "00:27",
-        "player": "FRIEDMAN,ISAAC",
-        "score_update": "37(+24)"
+        "player": "FRIEDMAN,ISAAC"
       }
     ]
   },
@@ -1344,6 +1454,8 @@
     "period": "1st Half",
     "start_time": "00:27",
     "end_time": "00:04",
+    "home_score": 37,
+    "away_score": 13,
     "events": [
       {
         "type": "MISS 3PTR",
@@ -1357,6 +1469,8 @@
     "period": "1st Half",
     "start_time": "00:04",
     "end_time": null,
+    "home_score": 37,
+    "away_score": 13,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -1370,6 +1484,8 @@
     "period": "2nd Half",
     "start_time": "20:00",
     "end_time": "19:47",
+    "home_score": 37,
+    "away_score": 13,
     "events": [
       {
         "type": "MISS JUMPER",
@@ -1383,6 +1499,8 @@
     "period": "2nd Half",
     "start_time": "19:47",
     "end_time": "19:35",
+    "home_score": 37,
+    "away_score": 15,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -1392,8 +1510,7 @@
       {
         "type": "GOOD JUMPER",
         "time": "19:35",
-        "player": "HELMHOLD,LINUS",
-        "score_update": "15"
+        "player": "HELMHOLD,LINUS"
       },
       {
         "type": "ASSIST",
@@ -1407,6 +1524,8 @@
     "period": "2nd Half",
     "start_time": "19:35",
     "end_time": "19:08",
+    "home_score": 37,
+    "away_score": 15,
     "events": [
       {
         "type": "TIMEOUT TEAM",
@@ -1425,6 +1544,8 @@
     "period": "2nd Half",
     "start_time": "19:08",
     "end_time": "18:52",
+    "home_score": 37,
+    "away_score": 15,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -1443,6 +1564,8 @@
     "period": "2nd Half",
     "start_time": "18:52",
     "end_time": "18:47",
+    "home_score": 39,
+    "away_score": 15,
     "events": [
       {
         "type": "STEAL",
@@ -1457,14 +1580,12 @@
       {
         "type": "GOOD FT",
         "time": "18:47",
-        "player": "GYIMESI,SCOTT",
-        "score_update": "38(+23)"
+        "player": "GYIMESI,SCOTT"
       },
       {
         "type": "GOOD FT",
         "time": "18:47",
-        "player": "GYIMESI,SCOTT",
-        "score_update": "39(+24)"
+        "player": "GYIMESI,SCOTT"
       }
     ]
   },
@@ -1473,6 +1594,8 @@
     "period": "2nd Half",
     "start_time": "18:47",
     "end_time": "18:37",
+    "home_score": 39,
+    "away_score": 15,
     "events": [
       {
         "type": "MISS JUMPER",
@@ -1486,6 +1609,8 @@
     "period": "2nd Half",
     "start_time": "18:37",
     "end_time": "17:59",
+    "home_score": 41,
+    "away_score": 15,
     "events": [
       {
         "type": "BLOCK",
@@ -1500,8 +1625,7 @@
       {
         "type": "GOOD LAYUP",
         "time": "18:25",
-        "player": "BERNSTEIN,JOSHUA",
-        "score_update": "41(+26)"
+        "player": "BERNSTEIN,JOSHUA"
       },
       {
         "type": "ASSIST",
@@ -1520,18 +1644,18 @@
     "period": "2nd Half",
     "start_time": "17:59",
     "end_time": "17:44",
+    "home_score": 41,
+    "away_score": 17,
     "events": [
       {
         "type": "GOOD FT",
         "time": "17:59",
-        "player": "HELMHOLD,LINUS",
-        "score_update": "16"
+        "player": "HELMHOLD,LINUS"
       },
       {
         "type": "GOOD FT",
         "time": "17:59",
-        "player": "HELMHOLD,LINUS",
-        "score_update": "17"
+        "player": "HELMHOLD,LINUS"
       },
       {
         "type": "FOUL",
@@ -1545,6 +1669,8 @@
     "period": "2nd Half",
     "start_time": "17:44",
     "end_time": "17:33",
+    "home_score": 41,
+    "away_score": 17,
     "events": [
       {
         "type": "TURNOVER",
@@ -1558,6 +1684,8 @@
     "period": "2nd Half",
     "start_time": "17:33",
     "end_time": "16:54",
+    "home_score": 41,
+    "away_score": 17,
     "events": [
       {
         "type": "MISS JUMPER",
@@ -1586,18 +1714,18 @@
     "period": "2nd Half",
     "start_time": "16:54",
     "end_time": "16:54",
+    "home_score": 43,
+    "away_score": 17,
     "events": [
       {
         "type": "GOOD FT",
         "time": "16:54",
-        "player": "GYIMESI,SCOTT",
-        "score_update": "42(+25)"
+        "player": "GYIMESI,SCOTT"
       },
       {
         "type": "GOOD FT",
         "time": "16:54",
-        "player": "GYIMESI,SCOTT",
-        "score_update": "43(+26)"
+        "player": "GYIMESI,SCOTT"
       }
     ]
   },
@@ -1606,6 +1734,8 @@
     "period": "2nd Half",
     "start_time": "16:54",
     "end_time": "16:43",
+    "home_score": 43,
+    "away_score": 17,
     "events": [
       {
         "type": "MISS LAYUP",
@@ -1619,6 +1749,8 @@
     "period": "2nd Half",
     "start_time": "16:43",
     "end_time": "16:15",
+    "home_score": 45,
+    "away_score": 17,
     "events": [
       {
         "type": "BLOCK",
@@ -1638,8 +1770,7 @@
       {
         "type": "GOOD LAYUP",
         "time": "16:15",
-        "player": "LINSTRA,GRIFFIN",
-        "score_update": "45(+28)"
+        "player": "LINSTRA,GRIFFIN"
       },
       {
         "type": "ASSIST",
@@ -1653,12 +1784,13 @@
     "period": "2nd Half",
     "start_time": "16:15",
     "end_time": "15:58",
+    "home_score": 45,
+    "away_score": 19,
     "events": [
       {
         "type": "GOOD LAYUP",
         "time": "15:58",
-        "player": "HELMHOLD,LINUS",
-        "score_update": "19"
+        "player": "HELMHOLD,LINUS"
       },
       {
         "type": "ASSIST",
@@ -1672,12 +1804,13 @@
     "period": "2nd Half",
     "start_time": "15:58",
     "end_time": "15:45",
+    "home_score": 47,
+    "away_score": 19,
     "events": [
       {
         "type": "GOOD LAYUP",
         "time": "15:45",
-        "player": "GYIMESI,SCOTT",
-        "score_update": "47(+28)"
+        "player": "GYIMESI,SCOTT"
       }
     ]
   },
@@ -1686,12 +1819,13 @@
     "period": "2nd Half",
     "start_time": "15:45",
     "end_time": "15:30",
+    "home_score": 47,
+    "away_score": 22,
     "events": [
       {
         "type": "GOOD 3PTR",
         "time": "15:30",
-        "player": "HELMHOLD,LINUS",
-        "score_update": "22"
+        "player": "HELMHOLD,LINUS"
       },
       {
         "type": "ASSIST",
@@ -1705,12 +1839,13 @@
     "period": "2nd Half",
     "start_time": "15:30",
     "end_time": "15:15",
+    "home_score": 49,
+    "away_score": 22,
     "events": [
       {
         "type": "GOOD JUMPER",
         "time": "15:15",
-        "player": "GYIMESI,SCOTT",
-        "score_update": "49(+27)"
+        "player": "GYIMESI,SCOTT"
       }
     ]
   },
@@ -1719,6 +1854,8 @@
     "period": "2nd Half",
     "start_time": "15:15",
     "end_time": "14:49",
+    "home_score": 49,
+    "away_score": 22,
     "events": [
       {
         "type": "MISS LAYUP",
@@ -1732,6 +1869,8 @@
     "period": "2nd Half",
     "start_time": "14:49",
     "end_time": "14:41",
+    "home_score": 49,
+    "away_score": 22,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -1750,6 +1889,8 @@
     "period": "2nd Half",
     "start_time": "14:41",
     "end_time": "14:31",
+    "home_score": 49,
+    "away_score": 22,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -1768,6 +1909,8 @@
     "period": "2nd Half",
     "start_time": "14:31",
     "end_time": "14:17",
+    "home_score": 52,
+    "away_score": 22,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -1787,8 +1930,7 @@
       {
         "type": "GOOD 3PTR",
         "time": "14:17",
-        "player": "GYIMESI,SCOTT",
-        "score_update": "52(+30)"
+        "player": "GYIMESI,SCOTT"
       }
     ]
   },
@@ -1797,12 +1939,13 @@
     "period": "2nd Half",
     "start_time": "14:17",
     "end_time": "14:01",
+    "home_score": 52,
+    "away_score": 24,
     "events": [
       {
         "type": "GOOD JUMPER",
         "time": "14:01",
-        "player": "LUESSENHOP,OTTO",
-        "score_update": "24"
+        "player": "LUESSENHOP,OTTO"
       }
     ]
   },
@@ -1811,12 +1954,13 @@
     "period": "2nd Half",
     "start_time": "14:01",
     "end_time": "13:36",
+    "home_score": 55,
+    "away_score": 24,
     "events": [
       {
         "type": "GOOD 3PTR",
         "time": "13:36",
-        "player": "GYIMESI,SCOTT",
-        "score_update": "55(+31)"
+        "player": "GYIMESI,SCOTT"
       }
     ]
   },
@@ -1825,6 +1969,8 @@
     "period": "2nd Half",
     "start_time": "13:36",
     "end_time": "12:52",
+    "home_score": 55,
+    "away_score": 24,
     "events": [
       {
         "type": "TIMEOUT TEAM",
@@ -1843,6 +1989,8 @@
     "period": "2nd Half",
     "start_time": "12:52",
     "end_time": "11:55",
+    "home_score": 55,
+    "away_score": 24,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -1866,12 +2014,13 @@
     "period": "2nd Half",
     "start_time": "11:55",
     "end_time": "11:54",
+    "home_score": 55,
+    "away_score": 26,
     "events": [
       {
         "type": "GOOD LAYUP",
         "time": "11:54",
-        "player": "GRAMLICH,HANK",
-        "score_update": "26"
+        "player": "GRAMLICH,HANK"
       },
       {
         "type": "REBOUND DEF",
@@ -1885,6 +2034,8 @@
     "period": "2nd Half",
     "start_time": "11:54",
     "end_time": "11:38",
+    "home_score": 55,
+    "away_score": 26,
     "events": [
       {
         "type": "MISS LAYUP",
@@ -1913,6 +2064,8 @@
     "period": "2nd Half",
     "start_time": "11:38",
     "end_time": "11:38",
+    "home_score": 55,
+    "away_score": 26,
     "events": [
       {
         "type": "BLOCK",
@@ -1926,6 +2079,8 @@
     "period": "2nd Half",
     "start_time": "11:38",
     "end_time": "11:21",
+    "home_score": 55,
+    "away_score": 26,
     "events": [
       {
         "type": "REBOUND OFF",
@@ -1959,6 +2114,8 @@
     "period": "2nd Half",
     "start_time": "11:21",
     "end_time": "11:09",
+    "home_score": 55,
+    "away_score": 26,
     "events": [
       {
         "type": "TURNOVER",
@@ -1972,6 +2129,8 @@
     "period": "2nd Half",
     "start_time": "11:09",
     "end_time": "10:56",
+    "home_score": 56,
+    "away_score": 26,
     "events": [
       {
         "type": "STEAL",
@@ -2006,8 +2165,7 @@
       {
         "type": "GOOD FT",
         "time": "10:56",
-        "player": "NYAMWAYA,ROBBIE",
-        "score_update": "56(+30)"
+        "player": "NYAMWAYA,ROBBIE"
       },
       {
         "type": "FOUL",
@@ -2026,6 +2184,8 @@
     "period": "2nd Half",
     "start_time": "10:56",
     "end_time": "10:27",
+    "home_score": 56,
+    "away_score": 26,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -2059,6 +2219,8 @@
     "period": "2nd Half",
     "start_time": "10:27",
     "end_time": "10:10",
+    "home_score": 56,
+    "away_score": 26,
     "events": [
       {
         "type": "STEAL",
@@ -2077,6 +2239,8 @@
     "period": "2nd Half",
     "start_time": "10:10",
     "end_time": "09:56",
+    "home_score": 56,
+    "away_score": 26,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -2095,6 +2259,8 @@
     "period": "2nd Half",
     "start_time": "09:56",
     "end_time": "09:35",
+    "home_score": 56,
+    "away_score": 26,
     "events": [
       {
         "type": "STEAL",
@@ -2118,12 +2284,13 @@
     "period": "2nd Half",
     "start_time": "09:35",
     "end_time": "09:09",
+    "home_score": 56,
+    "away_score": 28,
     "events": [
       {
         "type": "GOOD LAYUP",
         "time": "09:12",
-        "player": "MCNEIL,BJ",
-        "score_update": "28"
+        "player": "MCNEIL,BJ"
       },
       {
         "type": "TIMEOUT 30SEC",
@@ -2137,12 +2304,13 @@
     "period": "2nd Half",
     "start_time": "09:09",
     "end_time": "08:57",
+    "home_score": 59,
+    "away_score": 28,
     "events": [
       {
         "type": "GOOD 3PTR",
         "time": "08:57",
-        "player": "WATT,ZION",
-        "score_update": "59(+31)"
+        "player": "WATT,ZION"
       }
     ]
   },
@@ -2151,6 +2319,8 @@
     "period": "2nd Half",
     "start_time": "08:57",
     "end_time": "08:46",
+    "home_score": 59,
+    "away_score": 28,
     "events": [
       {
         "type": "MISS LAYUP",
@@ -2174,6 +2344,8 @@
     "period": "2nd Half",
     "start_time": "08:46",
     "end_time": "08:28",
+    "home_score": 61,
+    "away_score": 28,
     "events": [
       {
         "type": "BLOCK",
@@ -2188,8 +2360,7 @@
       {
         "type": "GOOD DUNK",
         "time": "08:28",
-        "player": "WATT,ZION",
-        "score_update": "61(+33)"
+        "player": "WATT,ZION"
       },
       {
         "type": "ASSIST",
@@ -2203,6 +2374,8 @@
     "period": "2nd Half",
     "start_time": "08:28",
     "end_time": "08:03",
+    "home_score": 61,
+    "away_score": 28,
     "events": [
       {
         "type": "TURNOVER",
@@ -2216,6 +2389,8 @@
     "period": "2nd Half",
     "start_time": "08:03",
     "end_time": "07:53",
+    "home_score": 62,
+    "away_score": 28,
     "events": [
       {
         "type": "STEAL",
@@ -2230,8 +2405,7 @@
       {
         "type": "GOOD FT",
         "time": "07:53",
-        "player": "MORAKIS,JAMES",
-        "score_update": "62(+34)"
+        "player": "MORAKIS,JAMES"
       },
       {
         "type": "MISS FT",
@@ -2245,6 +2419,8 @@
     "period": "2nd Half",
     "start_time": "07:53",
     "end_time": "07:32",
+    "home_score": 62,
+    "away_score": 31,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -2264,8 +2440,7 @@
       {
         "type": "GOOD LAYUP",
         "time": "07:32",
-        "player": "LJ GLOVER,JR",
-        "score_update": "30"
+        "player": "LJ GLOVER,JR"
       },
       {
         "type": "FOUL",
@@ -2275,8 +2450,7 @@
       {
         "type": "GOOD FT",
         "time": "07:32",
-        "player": "LJ GLOVER,JR",
-        "score_update": "31"
+        "player": "LJ GLOVER,JR"
       }
     ]
   },
@@ -2285,6 +2459,8 @@
     "period": "2nd Half",
     "start_time": "07:32",
     "end_time": "07:09",
+    "home_score": 62,
+    "away_score": 31,
     "events": [
       {
         "type": "MISS LAYUP",
@@ -2298,6 +2474,8 @@
     "period": "2nd Half",
     "start_time": "07:09",
     "end_time": "06:51",
+    "home_score": 62,
+    "away_score": 34,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -2307,8 +2485,7 @@
       {
         "type": "GOOD 3PTR",
         "time": "06:51",
-        "player": "LERARIS,ROMAN",
-        "score_update": "34"
+        "player": "LERARIS,ROMAN"
       },
       {
         "type": "ASSIST",
@@ -2322,12 +2499,13 @@
     "period": "2nd Half",
     "start_time": "06:51",
     "end_time": "06:37",
+    "home_score": 64,
+    "away_score": 34,
     "events": [
       {
         "type": "GOOD LAYUP",
         "time": "06:37",
-        "player": "GYIMESI,SCOTT",
-        "score_update": "64(+30)"
+        "player": "GYIMESI,SCOTT"
       }
     ]
   },
@@ -2336,6 +2514,8 @@
     "period": "2nd Half",
     "start_time": "06:37",
     "end_time": "06:21",
+    "home_score": 64,
+    "away_score": 34,
     "events": [
       {
         "type": "TURNOVER",
@@ -2354,18 +2534,18 @@
     "period": "2nd Half",
     "start_time": "06:21",
     "end_time": "06:21",
+    "home_score": 66,
+    "away_score": 34,
     "events": [
       {
         "type": "GOOD FT",
         "time": "06:21",
-        "player": "RANDALL,IAN",
-        "score_update": "65(+31)"
+        "player": "RANDALL,IAN"
       },
       {
         "type": "GOOD FT",
         "time": "06:21",
-        "player": "RANDALL,IAN",
-        "score_update": "66(+32)"
+        "player": "RANDALL,IAN"
       }
     ]
   },
@@ -2374,12 +2554,13 @@
     "period": "2nd Half",
     "start_time": "06:21",
     "end_time": "06:10",
+    "home_score": 66,
+    "away_score": 36,
     "events": [
       {
         "type": "GOOD JUMPER",
         "time": "06:10",
-        "player": "ZUREK,CADEN",
-        "score_update": "36"
+        "player": "ZUREK,CADEN"
       },
       {
         "type": "ASSIST",
@@ -2393,6 +2574,8 @@
     "period": "2nd Half",
     "start_time": "06:10",
     "end_time": "05:21",
+    "home_score": 68,
+    "away_score": 36,
     "events": [
       {
         "type": "MISS JUMPER",
@@ -2407,8 +2590,7 @@
       {
         "type": "GOOD LAYUP",
         "time": "05:33",
-        "player": "FRIEDMAN,ISAAC",
-        "score_update": "68(+32)"
+        "player": "FRIEDMAN,ISAAC"
       },
       {
         "type": "FOUL",
@@ -2422,12 +2604,13 @@
     "period": "2nd Half",
     "start_time": "05:21",
     "end_time": "05:17",
+    "home_score": 68,
+    "away_score": 38,
     "events": [
       {
         "type": "GOOD JUMPER",
         "time": "05:17",
-        "player": "GRAMLICH,HANK",
-        "score_update": "38"
+        "player": "GRAMLICH,HANK"
       },
       {
         "type": "ASSIST",
@@ -2441,6 +2624,8 @@
     "period": "2nd Half",
     "start_time": "05:17",
     "end_time": "04:58",
+    "home_score": 68,
+    "away_score": 38,
     "events": [
       {
         "type": "MISS JUMPER",
@@ -2454,6 +2639,8 @@
     "period": "2nd Half",
     "start_time": "04:58",
     "end_time": "04:42",
+    "home_score": 68,
+    "away_score": 38,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -2472,6 +2659,8 @@
     "period": "2nd Half",
     "start_time": "04:42",
     "end_time": "04:27",
+    "home_score": 68,
+    "away_score": 38,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -2490,6 +2679,8 @@
     "period": "2nd Half",
     "start_time": "04:27",
     "end_time": "04:14",
+    "home_score": 68,
+    "away_score": 38,
     "events": [
       {
         "type": "STEAL",
@@ -2513,6 +2704,8 @@
     "period": "2nd Half",
     "start_time": "04:14",
     "end_time": "04:14",
+    "home_score": 68,
+    "away_score": 38,
     "events": [
       {
         "type": "BLOCK",
@@ -2526,6 +2719,8 @@
     "period": "2nd Half",
     "start_time": "04:14",
     "end_time": "04:10",
+    "home_score": 68,
+    "away_score": 41,
     "events": [
       {
         "type": "REBOUND OFF",
@@ -2535,8 +2730,7 @@
       {
         "type": "GOOD 3PTR",
         "time": "04:10",
-        "player": "LERARIS,ROMAN",
-        "score_update": "41"
+        "player": "LERARIS,ROMAN"
       },
       {
         "type": "ASSIST",
@@ -2550,12 +2744,13 @@
     "period": "2nd Half",
     "start_time": "04:10",
     "end_time": "03:41",
+    "home_score": 71,
+    "away_score": 41,
     "events": [
       {
         "type": "GOOD LAYUP",
         "time": "03:41",
-        "player": "NYAMWAYA,ROBBIE",
-        "score_update": "70(+29)"
+        "player": "NYAMWAYA,ROBBIE"
       },
       {
         "type": "FOUL",
@@ -2565,8 +2760,7 @@
       {
         "type": "GOOD FT",
         "time": "03:41",
-        "player": "NYAMWAYA,ROBBIE",
-        "score_update": "71(+30)"
+        "player": "NYAMWAYA,ROBBIE"
       }
     ]
   },
@@ -2575,6 +2769,8 @@
     "period": "2nd Half",
     "start_time": "03:41",
     "end_time": "03:27",
+    "home_score": 71,
+    "away_score": 44,
     "events": [
       {
         "type": "MISS 3PTR",
@@ -2589,8 +2785,7 @@
       {
         "type": "GOOD 3PTR",
         "time": "03:27",
-        "player": "MCNAMARA,BRENDAN",
-        "score_update": "44"
+        "player": "MCNAMARA,BRENDAN"
       },
       {
         "type": "ASSIST",
@@ -2604,6 +2799,8 @@
     "period": "2nd Half",
     "start_time": "03:27",
     "end_time": "03:17",
+    "home_score": 71,
+    "away_score": 44,
     "events": [
       {
         "type": "MISS 3PTR",
@@ -2617,6 +2814,8 @@
     "period": "2nd Half",
     "start_time": "03:17",
     "end_time": "03:07",
+    "home_score": 71,
+    "away_score": 44,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -2635,6 +2834,8 @@
     "period": "2nd Half",
     "start_time": "03:07",
     "end_time": "02:58",
+    "home_score": 73,
+    "away_score": 44,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -2644,8 +2845,7 @@
       {
         "type": "GOOD LAYUP",
         "time": "02:58",
-        "player": "NIEVES,RICARDO",
-        "score_update": "73(+29)"
+        "player": "NIEVES,RICARDO"
       },
       {
         "type": "ASSIST",
@@ -2659,6 +2859,8 @@
     "period": "2nd Half",
     "start_time": "02:58",
     "end_time": "02:43",
+    "home_score": 73,
+    "away_score": 44,
     "events": [
       {
         "type": "MISS JUMPER",
@@ -2682,6 +2884,8 @@
     "period": "2nd Half",
     "start_time": "02:43",
     "end_time": "02:39",
+    "home_score": 76,
+    "away_score": 44,
     "events": [
       {
         "type": "STEAL",
@@ -2691,8 +2895,7 @@
       {
         "type": "GOOD LAYUP",
         "time": "02:39",
-        "player": "NIEVES,RICARDO",
-        "score_update": "75(+31)"
+        "player": "NIEVES,RICARDO"
       },
       {
         "type": "ASSIST",
@@ -2707,8 +2910,7 @@
       {
         "type": "GOOD FT",
         "time": "02:39",
-        "player": "NIEVES,RICARDO",
-        "score_update": "76(+32)"
+        "player": "NIEVES,RICARDO"
       }
     ]
   },
@@ -2717,6 +2919,8 @@
     "period": "2nd Half",
     "start_time": "02:39",
     "end_time": "02:30",
+    "home_score": 76,
+    "away_score": 44,
     "events": [
       {
         "type": "MISS 3PTR",
@@ -2730,6 +2934,8 @@
     "period": "2nd Half",
     "start_time": "02:30",
     "end_time": "02:17",
+    "home_score": 76,
+    "away_score": 44,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -2748,6 +2954,8 @@
     "period": "2nd Half",
     "start_time": "02:17",
     "end_time": "02:17",
+    "home_score": 76,
+    "away_score": 44,
     "events": [
       {
         "type": "TIMEOUT 30SEC",
@@ -2761,18 +2969,18 @@
     "period": "2nd Half",
     "start_time": "02:17",
     "end_time": "02:17",
+    "home_score": 78,
+    "away_score": 44,
     "events": [
       {
         "type": "GOOD FT",
         "time": "02:17",
-        "player": "SCHMID,LUKAS",
-        "score_update": "77(+33)"
+        "player": "SCHMID,LUKAS"
       },
       {
         "type": "GOOD FT",
         "time": "02:17",
-        "player": "SCHMID,LUKAS",
-        "score_update": "78(+34)"
+        "player": "SCHMID,LUKAS"
       }
     ]
   },
@@ -2781,6 +2989,8 @@
     "period": "2nd Half",
     "start_time": "02:17",
     "end_time": "01:49",
+    "home_score": 78,
+    "away_score": 44,
     "events": [
       {
         "type": "MISS LAYUP",
@@ -2804,6 +3014,8 @@
     "period": "2nd Half",
     "start_time": "01:49",
     "end_time": "01:44",
+    "home_score": 80,
+    "away_score": 44,
     "events": [
       {
         "type": "BLOCK",
@@ -2823,14 +3035,12 @@
       {
         "type": "GOOD FT",
         "time": "01:44",
-        "player": "NIEVES,RICARDO",
-        "score_update": "79(+35)"
+        "player": "NIEVES,RICARDO"
       },
       {
         "type": "GOOD FT",
         "time": "01:44",
-        "player": "NIEVES,RICARDO",
-        "score_update": "80(+36)"
+        "player": "NIEVES,RICARDO"
       }
     ]
   },
@@ -2839,6 +3049,8 @@
     "period": "2nd Half",
     "start_time": "01:44",
     "end_time": "01:36",
+    "home_score": 80,
+    "away_score": 44,
     "events": [
       {
         "type": "TURNOVER",
@@ -2852,6 +3064,8 @@
     "period": "2nd Half",
     "start_time": "01:36",
     "end_time": "01:31",
+    "home_score": 82,
+    "away_score": 44,
     "events": [
       {
         "type": "STEAL",
@@ -2861,8 +3075,7 @@
       {
         "type": "GOOD LAYUP",
         "time": "01:31",
-        "player": "LIU,THEO",
-        "score_update": "82(+38)"
+        "player": "LIU,THEO"
       }
     ]
   },
@@ -2871,6 +3084,8 @@
     "period": "2nd Half",
     "start_time": "01:31",
     "end_time": "01:22",
+    "home_score": 82,
+    "away_score": 44,
     "events": [
       {
         "type": "MISS 3PTR",
@@ -2884,6 +3099,8 @@
     "period": "2nd Half",
     "start_time": "01:22",
     "end_time": "01:09",
+    "home_score": 82,
+    "away_score": 44,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -2902,6 +3119,8 @@
     "period": "2nd Half",
     "start_time": "01:09",
     "end_time": "00:31",
+    "home_score": 82,
+    "away_score": 47,
     "events": [
       {
         "type": "BLOCK",
@@ -2921,8 +3140,7 @@
       {
         "type": "GOOD FT",
         "time": "01:04",
-        "player": "VOLONTE,GIULIO",
-        "score_update": "45"
+        "player": "VOLONTE,GIULIO"
       },
       {
         "type": "MISS FT",
@@ -2947,8 +3165,7 @@
       {
         "type": "GOOD JUMPER",
         "time": "00:51",
-        "player": "VOLONTE,GIULIO",
-        "score_update": "47"
+        "player": "VOLONTE,GIULIO"
       },
       {
         "type": "FOUL",
@@ -2962,18 +3179,18 @@
     "period": "2nd Half",
     "start_time": "00:31",
     "end_time": "00:31",
+    "home_score": 84,
+    "away_score": 47,
     "events": [
       {
         "type": "GOOD FT",
         "time": "00:31",
-        "player": "NIEVES,RICARDO",
-        "score_update": "83(+36)"
+        "player": "NIEVES,RICARDO"
       },
       {
         "type": "GOOD FT",
         "time": "00:31",
-        "player": "NIEVES,RICARDO",
-        "score_update": "84(+37)"
+        "player": "NIEVES,RICARDO"
       }
     ]
   },
@@ -2982,12 +3199,13 @@
     "period": "2nd Half",
     "start_time": "00:31",
     "end_time": "00:25",
+    "home_score": 84,
+    "away_score": 50,
     "events": [
       {
         "type": "GOOD 3PTR",
         "time": "00:25",
-        "player": "VOLONTE,GIULIO",
-        "score_update": "50"
+        "player": "VOLONTE,GIULIO"
       },
       {
         "type": "ASSIST",
