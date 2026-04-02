@@ -16,22 +16,20 @@ import csv
 import json
 import sys
 
-URL = "https://gotuftsjumbos.com/sports/mens-basketball/stats/2025-26/emerson-college/boxscore/15814#play-by-play"
+URL = "https://gotuftsjumbos.com/sports/womens-basketball/stats/2025-26/marian-university/boxscore/15679#play-by-play"
 
-HALVES = {
-    "1st Half": "period-1",
-    "2nd Half": "period-2",
+PERIODS = {
+    "1st Half":    "period-1",
+    "2nd Half":    "period-2",
+    "1st Quarter": "period-1",
+    "2nd Quarter": "period-2",
+    "3rd Quarter": "period-3",
+    "4th Quarter": "period-4",
+    "OT":          "period-5",
 }
 
 
 def scrape_pbp(url: str = URL) -> list[dict]:
-    """
-    Launch a headless browser, navigate to the boxscore page,
-    and extract all play-by-play rows for each half.
-
-    Returns a list of dicts with keys:
-        half, time, home_team, home_score, away_score, away_team
-    """
     plays = []
 
     with sync_playwright() as p:
@@ -40,8 +38,6 @@ def scrape_pbp(url: str = URL) -> list[dict]:
 
         print(f"Loading: {url}")
         page.goto(url, wait_until="networkidle", timeout=30_000)
-
-        # Scroll to play-by-play section to trigger any lazy rendering
         page.evaluate("document.getElementById('play-by-play')?.scrollIntoView()")
         page.wait_for_timeout(1500)
 
@@ -50,59 +46,48 @@ def scrape_pbp(url: str = URL) -> list[dict]:
 
     soup = BeautifulSoup(html, "lxml")
 
-    for half_label, period_id in HALVES.items():
-        panel = soup.find("div", id=period_id)
+    period_labels = {}
+    for i in range(1, 6):
+        panel = soup.find("div", id=f"period-{i}")
         if not panel:
-            print(f"  Warning: could not find panel for {half_label} (id={period_id})")
             continue
+        caption = panel.find("caption")
+        label = caption.get_text(strip=True).split(" - ")[-1] if caption else f"Period {i}"
+        period_labels[f"period-{i}"] = label
 
-        table = panel.find("table", class_="sidearm-table")
+    print(f"  Detected periods: {list(period_labels.values())}")
+
+    for period_id, period_label in period_labels.items():
+        panel = soup.find("div", id=period_id)
+        table = panel.find("table", class_="sidearm-table") if panel else None
         if not table:
-            print(f"  Warning: no play-by-play table found in {half_label}")
+            print(f"  Warning: no play-by-play table found in {period_label}")
             continue
 
-        # Determine column headers from thead
         thead = table.find("thead")
-        headers = []
-        if thead:
-            headers = [th.get_text(strip=True) for th in thead.find_all("th")]
+        headers = [th.get_text(strip=True) for th in thead.find_all("th")] if thead else []
 
         tbody = table.find("tbody")
         if not tbody:
             continue
 
         rows = tbody.find_all("tr")
-        print(f"  {half_label}: {len(rows)} rows found")
+        print(f"  {period_label}: {len(rows)} rows found")
 
         for row in rows:
             cells = row.find_all(["td", "th"])
             if not cells:
                 continue
-
             text = [c.get_text(strip=True) for c in cells]
 
-            # Typical Sidearm layout: Time | Home Play | Home Score | Away Score | Away Play
-            # The score cell sometimes contains both scores separated by an arrow (↓ etc.)
             if len(text) >= 5:
-                play = {
-                    "half": half_label,
-                    "time": text[0],
-                    "home_play": text[1],
-                    "home_score": text[2],
-                    "away_score": text[3],
-                    "away_play": text[4],
-                }
+                play = {"period": period_label, "time": text[0], "home_play": text[1],
+                        "home_score": text[2], "away_score": text[3], "away_play": text[4]}
             elif len(text) == 4:
-                play = {
-                    "half": half_label,
-                    "time": text[0],
-                    "home_play": text[1],
-                    "score": text[2],
-                    "away_play": text[3],
-                }
+                play = {"period": period_label, "time": text[0], "home_play": text[1],
+                        "score": text[2], "away_play": text[3]}
             else:
-                # Fallback: store raw cells with generic keys
-                play = {"half": half_label}
+                play = {"period": period_label}
                 for i, val in enumerate(text):
                     play[headers[i] if i < len(headers) else f"col_{i}"] = val
 
