@@ -1,6 +1,5 @@
 from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup
-import csv
 import json
 import re
 import sys
@@ -86,9 +85,9 @@ def _period_start(label: str) -> str:
     return "20:00"
 
 
-def _build_possessions(flat: list[dict]) -> list[dict]:
+def scrape_pbp(url: str = URL) -> list[dict]:
     """
-    Convert a flat list of PBP rows into possession objects.
+    Scrape the play-by-play table and build possession objects on the fly.
 
     A new possession begins whenever the acting team switches sides.
     Each possession contains the team indicator, period, start/end times
@@ -97,9 +96,8 @@ def _build_possessions(flat: list[dict]) -> list[dict]:
 
     start_time is assigned at possession-creation time:
       - First possession of a period → period clock start (20:00 / 10:00 / 05:00).
-      - All other possessions → end_time of the previous possession, since one
-        possession begins the instant the previous one ends. If the previous
-        possession had no timed events, its start_time is used as the handoff.
+      - All other possessions → end_time of the previous possession. If the
+        previous possession had no timed events, its start_time is used.
 
     home_score / away_score reflect the score at the END of the possession.
     Both score columns from the table are parsed on every scoring row so the
@@ -109,94 +107,6 @@ def _build_possessions(flat: list[dict]) -> list[dict]:
     current: dict | None = None
     home_score = 0
     away_score = 0
-
-    for row in flat:
-        home = row.get("home_play", "").strip()
-        away = row.get("away_play", "").strip()
-        time = row.get("time", "--")
-        period = row.get("period", "")
-
-        if not home and not away:
-            continue
-
-        # Update the running score from whichever score columns are populated.
-        # Both columns are present on scoring plays (scoring team shows "N(+M)",
-        # the other team shows their current total as a plain number).
-        for col, side in [("home_score", "home"), ("away_score", "away")]:
-            val = row.get(col, "").strip()
-            if val:
-                parsed = _extract_score(val)
-                if parsed is not None:
-                    if side == "home":
-                        home_score = parsed
-                    else:
-                        away_score = parsed
-
-        if home and away:
-            # Both columns populated in the same row (rare); skip subs, take first non-sub
-            candidates = [(t, txt) for t, txt in [("away", away), ("home", home)]
-                          if not _is_sub(txt)]
-            if not candidates:
-                continue
-            team, play_text = candidates[0]
-        elif home:
-            if _is_sub(home):
-                continue
-            team, play_text = "home", home
-        else:
-            if _is_sub(away):
-                continue
-            team, play_text = "away", away
-
-        event = _parse_event(play_text, time)
-
-        # A foul committed by the non-possessing team does not transfer possession;
-        # attach it to the ongoing possession rather than starting a new one.
-        is_foul = "FOUL" in event["type"].upper()
-        foul_on_other_team = (
-            is_foul
-            and current is not None
-            and current["team"] != team
-            and current["period"] == period
-        )
-
-        if not foul_on_other_team:
-            if current is None or current["team"] != team or current["period"] != period:
-                if current is None or current["period"] != period:
-                    new_start = _period_start(period)
-                else:
-                    new_start = current["end_time"] if current["end_time"] is not None else current["start_time"]
-
-                if current is not None:
-                    possessions.append(current)
-
-                current = {
-                    "team": team,
-                    "period": period,
-                    "start_time": new_start,
-                    "end_time": None,
-                    "home_score": home_score,
-                    "away_score": away_score,
-                    "events": [],
-                }
-
-        # Keep scores on the possession up to date as events happen within it
-        current["home_score"] = home_score
-        current["away_score"] = away_score
-
-        if time != "--":
-            current["end_time"] = time
-
-        current["events"].append(event)
-
-    if current is not None:
-        possessions.append(current)
-
-    return possessions
-
-
-def scrape_pbp(url: str = URL) -> list[dict]:
-    flat: list[dict] = []
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
@@ -245,9 +155,88 @@ def scrape_pbp(url: str = URL) -> list[dict]:
             if not cells:
                 continue
             text = [c.get_text(strip=True) for c in cells]
-            flat.append(_parse_pbp_row(period_label, text, headers))
+            play = _parse_pbp_row(period_label, text, headers)
 
-    return _build_possessions(flat)
+            home = play.get("home_play", "").strip()
+            away = play.get("away_play", "").strip()
+            time = play.get("time", "--")
+
+            if not home and not away:
+                continue
+
+            # Update the running score from whichever score columns are populated.
+            # Both columns are present on scoring plays (scoring team shows "N(+M)",
+            # the other team shows their current total as a plain number).
+            for col, side in [("home_score", "home"), ("away_score", "away")]:
+                val = play.get(col, "").strip()
+                if val:
+                    parsed = _extract_score(val)
+                    if parsed is not None:
+                        if side == "home":
+                            home_score = parsed
+                        else:
+                            away_score = parsed
+
+            if home and away:
+                # Both columns populated in the same row (rare); skip subs, take first non-sub
+                candidates = [(t, txt) for t, txt in [("away", away), ("home", home)]
+                              if not _is_sub(txt)]
+                if not candidates:
+                    continue
+                team, play_text = candidates[0]
+            elif home:
+                if _is_sub(home):
+                    continue
+                team, play_text = "home", home
+            else:
+                if _is_sub(away):
+                    continue
+                team, play_text = "away", away
+
+            event = _parse_event(play_text, time)
+
+            # A foul committed by the non-possessing team does not transfer possession;
+            # attach it to the ongoing possession rather than starting a new one.
+            is_foul = "FOUL" in event["type"].upper()
+            foul_on_other_team = (
+                is_foul
+                and current is not None
+                and current["team"] != team
+                and current["period"] == period_label
+            )
+
+            if not foul_on_other_team:
+                if current is None or current["team"] != team or current["period"] != period_label:
+                    if current is None or current["period"] != period_label:
+                        new_start = _period_start(period_label)
+                    else:
+                        new_start = current["end_time"] if current["end_time"] is not None else current["start_time"]
+
+                    if current is not None:
+                        possessions.append(current)
+
+                    current = {
+                        "team": team,
+                        "period": period_label,
+                        "start_time": new_start,
+                        "end_time": None,
+                        "home_score": home_score,
+                        "away_score": away_score,
+                        "events": [],
+                    }
+
+            current["home_score"] = home_score
+            current["away_score"] = away_score
+
+            if time != "--":
+                current["end_time"] = time
+
+            current["events"].append(event)
+
+    if current is not None:
+        possessions.append(current)
+
+    return possessions
 
 
 def save_json(possessions: list[dict], path: str = "pbp_data.json") -> None:
