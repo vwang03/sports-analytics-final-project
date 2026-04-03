@@ -2,9 +2,6 @@ from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup
 import json
 import re
-import sys
-
-URL = "https://gotuftsjumbos.com/sports/mens-basketball/stats/2025-26/emerson-college/boxscore/15814#play-by-play"
 
 PERIODS = {
     "1st Half":    "period-1",
@@ -19,8 +16,8 @@ PERIODS = {
 
 def _parse_pbp_row(period_label: str, cells: list[str], headers: list[str]) -> dict:
     """
-    Sidearm boxscore PBP tables are: Time | away play | away score | [logo] |
-    home score | home play. Away is listed first (left), home second (right).
+    PBP tables are formatted as follows: 
+    Time | away play | away score | [logo] | home score | home play. 
     """
     n = len(cells)
     if n >= 6:
@@ -53,7 +50,6 @@ def _is_sub(text: str) -> bool:
 
 
 def _extract_score(s: str) -> int | None:
-    """Parse score strings like '2(+2)' or '14' into an integer."""
     m = re.match(r"(\d+)", s.strip())
     return int(m.group(1)) if m else None
 
@@ -85,23 +81,12 @@ def _period_start(label: str) -> str:
     return "20:00"
 
 
-def scrape_pbp(url: str = URL) -> list[dict]:
+def scrape_pbp(url: str) -> list[dict]:
     """
-    Scrape the play-by-play table and build possession objects on the fly.
+    Scrape the play-by-play table and build possessions.
 
-    A new possession begins whenever the acting team switches sides.
-    Each possession contains the team indicator, period, start/end times
-    (clock counting down, so start_time >= end_time), current scores for both
-    teams, and a list of events. Substitution rows are ignored.
-
-    start_time is assigned at possession-creation time:
-      - First possession of a period → period clock start (20:00 / 10:00 / 05:00).
-      - All other possessions → end_time of the previous possession. If the
-        previous possession had no timed events, its start_time is used.
-
-    home_score / away_score reflect the score at the END of the possession.
-    Both score columns from the table are parsed on every scoring row so the
-    tracker stays accurate for both teams simultaneously.
+    Each possession contains the team indicator, period, start/end times, 
+    current scores for both teams, and a list of events.
     """
     possessions: list[dict] = []
     current: dict | None = None
@@ -247,11 +232,13 @@ def save_json(possessions: list[dict], path: str = "pbp_data.json") -> None:
 
 if __name__ == "__main__":
     url = input("Enter the URL of the game: ")
+    if not url:
+        url = "https://gotuftsjumbos.com/sports/mens-basketball/stats/2025-26/emerson-college/boxscore/15814#play-by-play"
     possessions = scrape_pbp(url)
 
     if not possessions:
         print("ERROR: No play-by-play data was extracted. Check that the page loaded correctly.")
-        sys.exit(1)
+        exit(1)
 
     print(f"\nTotal possessions: {len(possessions)}")
     print("\nFirst 3 possessions:")
