@@ -195,11 +195,11 @@ function drawChart({ teams, pairs }) {
       .attr("x", ix + 10).attr("y", iy + 2).text(item.label);
   });
 
-  svg.append("text")
-    .attr("class", "legend-label")
-    .attr("x", metaX + 4).attr("y", legendY + 32)
-    .attr("font-size", "10").attr("fill", "#aaa")
-    .text("End tick = possession outcome · bar width = duration (seconds)");
+  // svg.append("text")
+  //   .attr("class", "legend-label")
+  //   .attr("x", metaX + 4).attr("y", legendY + 32)
+  //   .attr("font-size", "10").attr("fill", "#aaa")
+  //   .text("End tick = possession outcome · bar width = duration (seconds)");
 
   svg.append("line").attr("class", "section-rule")
     .attr("x1", metaX).attr("x2", width - metaX)
