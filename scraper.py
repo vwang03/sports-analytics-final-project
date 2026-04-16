@@ -72,6 +72,93 @@ def _parse_event(play: str, time: str) -> dict:
     return event
 
 
+def _extract_team_play(play: dict) -> tuple[str, str] | None:
+    home = play.get("home_play", "").strip()
+    away = play.get("away_play", "").strip()
+
+    if not home and not away:
+        return None
+
+    if home and away:
+        # Both columns populated in the same row (rare); skip subs, take first non-sub.
+        candidates = [(t, txt) for t, txt in [("away", away), ("home", home)] if not _is_sub(txt)]
+        return candidates[0] if candidates else None
+    if home:
+        if _is_sub(home):
+            return None
+        return ("home", home)
+    if _is_sub(away):
+        return None
+    return ("away", away)
+
+
+def _foul_flips_to_next_possession(
+    rows: list,
+    idx: int,
+    period_label: str,
+    headers: list[str],
+    foul_team: str,
+    foul_time: str,
+) -> bool:
+    """
+    Detect a defensive foul row that should belong to the *next* possession.
+    We treat this as true when the next same-clock event by the other team is a FT.
+    """
+    if foul_time == "--":
+        return False
+
+    other_team = "away" if foul_team == "home" else "home"
+
+    for j in range(idx + 1, len(rows)):
+        next_cells = rows[j].find_all(["td", "th"])
+        if not next_cells:
+            continue
+        next_text = [c.get_text(strip=True) for c in next_cells]
+        next_play = _parse_pbp_row(period_label, next_text, headers)
+        extracted = _extract_team_play(next_play)
+        if extracted is None:
+            continue
+
+        team, play_text = extracted
+        time = next_play.get("time", "--")
+
+        if time not in ("--", foul_time):
+            break
+
+        event_type = _parse_event(play_text, time)["type"].upper()
+        if team == other_team and "FT" in event_type:
+            return True
+
+    return False
+
+
+def _is_trailing_event(event_type_upper: str) -> bool:
+    """
+    Events that can be logged after the primary action without changing possession.
+    """
+    return (
+        "ASSIST" in event_type_upper
+        or "TEAM REBOUND" in event_type_upper
+        or "TIMEOUT" in event_type_upper
+    )
+
+
+def _is_made_field_goal(event_type_upper: str) -> bool:
+    return event_type_upper.startswith("GOOD ") and "FT" not in event_type_upper
+
+
+def _is_turnover_event(event_type_upper: str) -> bool:
+    return "TURNOVER" in event_type_upper
+
+
+def _is_defensive_rebound_event(event_type_upper: str) -> bool:
+    return "REBOUND DEF" in event_type_upper or "REBOUND DEADB" in event_type_upper
+
+
+def _is_block_event(event_type_upper: str) -> bool:
+    return "BLOCK" in event_type_upper
+
+
 def _period_start(label: str) -> str:
     lower = label.lower()
     if "quarter" in lower:
@@ -90,6 +177,9 @@ def scrape_pbp(url: str) -> list[dict]:
     """
     possessions: list[dict] = []
     current: dict | None = None
+    pending_possession_event: tuple[str, str, dict] | None = None
+    expected_next_team: str | None = None
+    current_has_made_shot = False
     home_score = 0
     away_score = 0
 
@@ -135,19 +225,14 @@ def scrape_pbp(url: str) -> list[dict]:
         rows = tbody.find_all("tr")
         print(f"  {period_label}: {len(rows)} rows found")
 
-        for row in rows:
+        for idx, row in enumerate(rows):
             cells = row.find_all(["td", "th"])
             if not cells:
                 continue
             text = [c.get_text(strip=True) for c in cells]
             play = _parse_pbp_row(period_label, text, headers)
 
-            home = play.get("home_play", "").strip()
-            away = play.get("away_play", "").strip()
             time = play.get("time", "--")
-
-            if not home and not away:
-                continue
 
             # Update the running score from whichever score columns are populated.
             # Both columns are present on scoring plays (scoring team shows "N(+M)",
@@ -162,53 +247,109 @@ def scrape_pbp(url: str) -> list[dict]:
                         else:
                             away_score = parsed
 
-            if home and away:
-                # Both columns populated in the same row (rare); skip subs, take first non-sub
-                candidates = [(t, txt) for t, txt in [("away", away), ("home", home)]
-                              if not _is_sub(txt)]
-                if not candidates:
-                    continue
-                team, play_text = candidates[0]
-            elif home:
-                if _is_sub(home):
-                    continue
-                team, play_text = "home", home
-            else:
-                if _is_sub(away):
-                    continue
-                team, play_text = "away", away
+            extracted = _extract_team_play(play)
+            if extracted is None:
+                continue
+            team, play_text = extracted
 
             event = _parse_event(play_text, time)
+            event_type_upper = event["type"].upper()
+            timeout_caller_team = team
+            possession_team = team
+            is_timeout = "TIMEOUT" in event_type_upper
+
+            if is_timeout:
+                event["player"] = timeout_caller_team
+
+            # Timeout rows are administrative and do not, by themselves, imply
+            # a possession change. Keep them on the current possession unless
+            # a prior event already confirmed the next offensive team.
+            if is_timeout and current is not None and current["period"] == period_label:
+                if expected_next_team is not None:
+                    possession_team = expected_next_team
+                else:
+                    possession_team = current["team"]
 
             # A foul committed by the non-possessing team does not transfer possession;
             # attach it to the ongoing possession rather than starting a new one.
-            is_foul = "FOUL" in event["type"].upper()
+            is_foul = "FOUL" in event_type_upper
             foul_on_other_team = (
                 is_foul
                 and current is not None
-                and current["team"] != team
+                and current["team"] != possession_team
                 and current["period"] == period_label
             )
 
-            if not foul_on_other_team:
-                if current is None or current["team"] != team or current["period"] != period_label:
-                    if current is None or current["period"] != period_label:
-                        new_start = _period_start(period_label)
-                    else:
-                        new_start = current["end_time"] if current["end_time"] is not None else current["start_time"]
+            # A block by the non-possessing team is a defensive/trailing action on
+            # the same shot attempt. Possession should not change until the rebound
+            # (or another possession-confirming event) resolves control.
+            is_block = _is_block_event(event_type_upper)
+            block_on_other_team = (
+                is_block
+                and current is not None
+                and current["team"] != possession_team
+                and current["period"] == period_label
+            )
+            if block_on_other_team:
+                possession_team = current["team"]
 
-                    if current is not None:
-                        possessions.append(current)
+            # If a foul appears on the current team's column but the next same-clock
+            # event is opponent free throws, defer the foul and attach it to that
+            # upcoming possession.
+            if (
+                is_foul
+                and current is not None
+                and current["team"] == team
+                and current["period"] == period_label
+                and _foul_flips_to_next_possession(rows, idx, period_label, headers, team, time)
+            ):
+                # This foul is explicitly reassigned to the upcoming possession,
+                # so it must not move the current possession's end boundary.
+                target_team = "away" if team == "home" else "home"
+                pending_possession_event = (period_label, target_team, event)
+                continue
 
-                    current = {
-                        "team": team,
-                        "period": period_label,
-                        "start_time": new_start,
-                        "end_time": None,
-                        "home_score": home_score,
-                        "away_score": away_score,
-                        "events": [],
-                    }
+            switch_possession = False
+            if current is None or current["period"] != period_label:
+                switch_possession = True
+            elif current["team"] != possession_team and not foul_on_other_team:
+                # Team changed in the feed: confirm with stateful possession-change signals.
+                if expected_next_team is None:
+                    switch_possession = True
+                elif possession_team == expected_next_team:
+                    switch_possession = True
+                elif not _is_trailing_event(event_type_upper):
+                    switch_possession = True
+
+            if switch_possession:
+                if current is None or current["period"] != period_label:
+                    new_start = _period_start(period_label)
+                else:
+                    new_start = current["end_time"] if current["end_time"] is not None else current["start_time"]
+
+                if current is not None:
+                    possessions.append(current)
+
+                current = {
+                    "team": possession_team,
+                    "period": period_label,
+                    "start_time": new_start,
+                    "end_time": None,
+                    "home_score": home_score,
+                    "away_score": away_score,
+                    "events": [],
+                }
+                expected_next_team = None
+                current_has_made_shot = False
+
+            if (
+                pending_possession_event is not None
+                and current is not None
+                and current["period"] == pending_possession_event[0]
+                and current["team"] == pending_possession_event[1]
+            ):
+                current["events"].append(pending_possession_event[2])
+                pending_possession_event = None
 
             current["home_score"] = home_score
             current["away_score"] = away_score
@@ -217,6 +358,25 @@ def scrape_pbp(url: str) -> list[dict]:
                 current["end_time"] = time
 
             current["events"].append(event)
+
+            # Stateful confirmation for possession-changing events.
+            # We don't hard-switch immediately on all of these because trailing
+            # rows (e.g., ASSIST) can be logged after the primary action.
+            if current is not None:
+                if _is_made_field_goal(event_type_upper):
+                    current_has_made_shot = True
+                    expected_next_team = "away" if current["team"] == "home" else "home"
+                elif _is_turnover_event(event_type_upper):
+                    expected_next_team = "away" if current["team"] == "home" else "home"
+                elif _is_defensive_rebound_event(event_type_upper):
+                    # Defensive rebound confirms the ball is secured by this team.
+                    expected_next_team = None
+                    current_has_made_shot = False
+                elif not _is_trailing_event(event_type_upper):
+                    # A non-trailing event by the current offense means play has advanced.
+                    # If we were waiting solely due to a prior made basket, clear it.
+                    if current_has_made_shot and current["team"] == possession_team:
+                        current_has_made_shot = False
 
     if current is not None:
         possessions.append(current)
