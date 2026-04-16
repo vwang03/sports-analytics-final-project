@@ -257,6 +257,7 @@ def scrape_pbp(url: str) -> list[dict]:
             timeout_caller_team = team
             possession_team = team
             is_timeout = "TIMEOUT" in event_type_upper
+            force_flip_after_made_shot = False
 
             if is_timeout:
                 event["player"] = timeout_caller_team
@@ -273,11 +274,25 @@ def scrape_pbp(url: str) -> list[dict]:
             # A foul committed by the non-possessing team does not transfer possession;
             # attach it to the ongoing possession rather than starting a new one.
             is_foul = "FOUL" in event_type_upper
+            # After a made basket, a foul on the scoring team is typically the
+            # new defense committing a foul in the opponent's possession.
+            if (
+                is_foul
+                and current is not None
+                and current["period"] == period_label
+                and current_has_made_shot
+                and expected_next_team is not None
+                and team == current["team"]
+            ):
+                possession_team = expected_next_team
+                force_flip_after_made_shot = True
+
             foul_on_other_team = (
                 is_foul
                 and current is not None
                 and current["team"] != possession_team
                 and current["period"] == period_label
+                and not force_flip_after_made_shot
             )
 
             # A block by the non-possessing team is a defensive/trailing action on

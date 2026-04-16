@@ -2533,7 +2533,7 @@
     "team": "home",
     "period": "2nd Half",
     "start_time": "06:10",
-    "end_time": "05:21",
+    "end_time": "05:33",
     "home_score": 68,
     "away_score": 36,
     "events": [
@@ -2551,22 +2551,22 @@
         "type": "GOOD LAYUP",
         "time": "05:33",
         "player": "FRIEDMAN,ISAAC"
-      },
-      {
-        "type": "FOUL",
-        "time": "05:21",
-        "player": "LINSTRA,GRIFFIN"
       }
     ]
   },
   {
     "team": "away",
     "period": "2nd Half",
-    "start_time": "05:21",
+    "start_time": "05:33",
     "end_time": "05:17",
     "home_score": 68,
     "away_score": 38,
     "events": [
+      {
+        "type": "FOUL",
+        "time": "05:21",
+        "player": "LINSTRA,GRIFFIN"
+      },
       {
         "type": "GOOD JUMPER",
         "time": "05:17",
