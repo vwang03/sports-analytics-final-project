@@ -147,6 +147,10 @@ def _is_made_field_goal(event_type_upper: str) -> bool:
     return event_type_upper.startswith("GOOD ") and "FT" not in event_type_upper
 
 
+def _is_made_free_throw(event_type_upper: str) -> bool:
+    return event_type_upper.startswith("GOOD FT")
+
+
 def _is_turnover_event(event_type_upper: str) -> bool:
     return "TURNOVER" in event_type_upper
 
@@ -157,6 +161,43 @@ def _is_defensive_rebound_event(event_type_upper: str) -> bool:
 
 def _is_block_event(event_type_upper: str) -> bool:
     return "BLOCK" in event_type_upper
+
+
+def _has_follow_up_same_clock_free_throw(
+    rows: list,
+    idx: int,
+    period_label: str,
+    headers: list[str],
+    shooting_team: str,
+    shot_time: str,
+) -> bool:
+    """
+    True when another FT by the same team appears at the same clock value.
+    This identifies non-terminal FT attempts in a multi-shot trip.
+    """
+    if shot_time == "--":
+        return False
+
+    for j in range(idx + 1, len(rows)):
+        next_cells = rows[j].find_all(["td", "th"])
+        if not next_cells:
+            continue
+        next_text = [c.get_text(strip=True) for c in next_cells]
+        next_play = _parse_pbp_row(period_label, next_text, headers)
+        extracted = _extract_team_play(next_play)
+        if extracted is None:
+            continue
+
+        team, play_text = extracted
+        time = next_play.get("time", "--")
+        if time not in ("--", shot_time):
+            break
+
+        event_type = _parse_event(play_text, time)["type"].upper()
+        if team == shooting_team and "FT" in event_type:
+            return True
+
+    return False
 
 
 def _period_start(label: str) -> str:
@@ -381,6 +422,19 @@ def scrape_pbp(url: str) -> list[dict]:
                 if _is_made_field_goal(event_type_upper):
                     current_has_made_shot = True
                     expected_next_team = "away" if current["team"] == "home" else "home"
+                elif _is_made_free_throw(event_type_upper):
+                    # Only the final made FT in a same-clock sequence should
+                    # trigger a possession flip expectation.
+                    if not _has_follow_up_same_clock_free_throw(
+                        rows,
+                        idx,
+                        period_label,
+                        headers,
+                        current["team"],
+                        time,
+                    ):
+                        current_has_made_shot = True
+                        expected_next_team = "away" if current["team"] == "home" else "home"
                 elif _is_turnover_event(event_type_upper):
                     expected_next_team = "away" if current["team"] == "home" else "home"
                 elif _is_defensive_rebound_event(event_type_upper):

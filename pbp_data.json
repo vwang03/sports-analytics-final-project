@@ -1618,7 +1618,7 @@
     "team": "away",
     "period": "2nd Half",
     "start_time": "18:25",
-    "end_time": "17:44",
+    "end_time": "17:59",
     "home_score": 41,
     "away_score": 17,
     "events": [
@@ -1636,22 +1636,22 @@
         "type": "GOOD FT",
         "time": "17:59",
         "player": "HELMHOLD,LINUS"
-      },
-      {
-        "type": "FOUL",
-        "time": "17:44",
-        "player": "RUIZ,GULLERMO GASSET"
       }
     ]
   },
   {
     "team": "home",
     "period": "2nd Half",
-    "start_time": "17:44",
+    "start_time": "17:59",
     "end_time": "17:33",
     "home_score": 41,
     "away_score": 17,
     "events": [
+      {
+        "type": "FOUL",
+        "time": "17:44",
+        "player": "RUIZ,GULLERMO GASSET"
+      },
       {
         "type": "TURNOVER",
         "time": "17:33",
