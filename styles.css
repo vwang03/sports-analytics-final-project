@@ -1,98 +1,42 @@
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  margin: 0;
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  color: #1f1f1f;
   background: #f4f4f4;
+  color: #1f1f1f;
 }
 
-.page {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 1.5rem 1.25rem 2rem;
-}
+.page { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1.25rem 2rem; }
 
-.title-wrap {
-  text-align: center;
-}
+.title-wrap { text-align: center; margin-bottom: 1.1rem; }
 
 h1 {
-  margin: 0 0 0.35rem;
-  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.25rem;
 }
 
-.subtitle {
-  margin: 0;
-  color: #656565;
-  font-size: 0.95rem;
-}
+.subtitle { color: #656565; font-size: 0.88rem; }
 
 .chart-wrap {
-  margin-top: 1.1rem;
-  background: #ffffff;
-  border: 1px solid #dddddd;
-  border-radius: 10px;
-  padding: 0.75rem;
+  background: #fff;
+  border: 0.5px solid #ddd;
+  border-radius: 12px;
+  padding: 1rem;
   overflow: auto;
 }
 
-#possession-chart {
-  width: 100%;
-  min-width: 920px;
-  display: block;
-}
+#possession-chart { width: 100%; min-width: 900px; display: block; }
 
-.team-label {
-  font-weight: 600;
-  fill: #2a2a2a;
-}
-
-.pair-label {
-  fill: #4b4b4b;
-  font-size: 12px;
-}
-
-.pair-meta {
-  fill: #7a7a7a;
-  font-size: 9.5px;
-}
-
-.lane-bg {
-  fill: #f8f8f8;
-  stroke: #bcbcbc;
-  stroke-width: 1;
-}
-
-.mid-divider {
-  stroke: #b4b4b4;
-  stroke-width: 1;
-}
-
-.event-tick {
-  stroke-width: 4;
-  stroke-linecap: round;
-}
-
-.legend-heading {
-  fill: #2f2f2f;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.legend-label {
-  fill: #3d3d3d;
-  font-size: 12px;
-}
-
-.legend-tick-swatch {
-  stroke-width: 4;
-  stroke-linecap: round;
-}
-
-.footnote {
-  fill: #777777;
-  font-size: 12px;
-}
+.team-label    { font-weight: 700; font-size: 14px; fill: #1a1a1a; }
+.pair-label    { fill: #4b4b4b; font-size: 11px; font-weight: 500; }
+.pair-meta     { fill: #999; font-size: 9px; letter-spacing: .01em; }
+.lane-bg       { fill: #f2f2f0; stroke: #d4d4d0; stroke-width: .5; }
+.mid-divider   { stroke: #ccc; stroke-width: .5; stroke-dasharray: 3 3; }
+.event-tick    { stroke-width: 3.5; stroke-linecap: round; }
+.section-rule  { stroke: #e0e0e0; stroke-width: .5; }
+.legend-heading { fill: #2f2f2f; font-size: 11px; font-weight: 600; letter-spacing: .03em; }
+.legend-label  { fill: #555; font-size: 11px; }
+.legend-tick-swatch { stroke-width: 3.5; stroke-linecap: round; }
+.footnote      { fill: #999; font-size: 10px; }
