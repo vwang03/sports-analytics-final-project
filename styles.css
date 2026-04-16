@@ -34,9 +34,9 @@ h1 {
 .pair-meta     { fill: #999; font-size: 9px; letter-spacing: .01em; }
 .lane-bg       { fill: #f2f2f0; stroke: #d4d4d0; stroke-width: .5; }
 .mid-divider   { stroke: #ccc; stroke-width: .5; stroke-dasharray: 3 3; }
-.event-tick    { stroke-width: 3.5; stroke-linecap: round; }
+.event-tick    { stroke-width: 3.5; stroke-linecap: butt; }
 .section-rule  { stroke: #e0e0e0; stroke-width: .5; }
 .legend-heading { fill: #2f2f2f; font-size: 11px; font-weight: 600; letter-spacing: .03em; }
 .legend-label  { fill: #555; font-size: 11px; }
-.legend-tick-swatch { stroke-width: 3.5; stroke-linecap: round; }
+.legend-tick-swatch { stroke-width: 3.5; stroke-linecap: butt; }
 .footnote      { fill: #999; font-size: 10px; }

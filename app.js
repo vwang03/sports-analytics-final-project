@@ -1,17 +1,15 @@
-const EVENT_COLORS = {
-  made_shot: "#3b8a1f",
-  def_rebound: "#3a82d4",
-  turnover: "#d94040",
-  other: "#999",
-};
-
 const TICK_COLORS = {
   made_shot: "#3b8a1f",
   missed_shot: "#aaa",
-  rebound: "#3a82d4",
+  def_rebound: "#3a42d4",
+  off_rebound: "#3a92d4",
   turnover: "#d94040",
   foul: "#e8960f",
-  other: "#888",
+  steal: "#7c3aed",
+  block: "#0f766e",
+  assist: "#2563eb",
+  timeout: "#b45309",
+  other: "#000000",
 };
 
 const HALF_SECONDS = 20 * 60;
@@ -30,30 +28,16 @@ function toAbsoluteElapsed(period, clock) {
   return halfOffset + (HALF_SECONDS - remaining);
 }
 
-function getPrimaryEventType(possession) {
-  const events = possession.events || [];
-  const eventTypes = events.map((event) => String(event.type || "").toUpperCase());
-  if (eventTypes.some((eventType) => eventType.includes("TURNOVER"))) return "turnover";
-  if (eventTypes.some((eventType) => eventType.includes("GOOD"))) return "made_shot";
-  if (eventTypes.some((eventType) => eventType.includes("REBOUND DEF"))) return "def_rebound";
-  return "other";
-}
-
-function isTickEvent(eventType) {
-  const normalized = String(eventType || "").toUpperCase();
-  if (normalized.includes("FOUL")) return true;
-  if (normalized.includes("GOOD")) return true;
-  if (normalized.includes("MISS")) return true;
-  if (normalized.includes("TURNOVER")) return true;
-  if (normalized.includes("REBOUND")) return true;
-  return false;
-}
-
 function getTickEventCategory(eventType) {
   const normalized = String(eventType || "").toUpperCase();
+  if (normalized.includes("TIMEOUT")) return "timeout";
+  if (normalized.includes("ASSIST")) return "assist";
+  if (normalized.includes("STEAL")) return "steal";
+  if (normalized.includes("BLOCK")) return "block";
   if (normalized.includes("TURNOVER")) return "turnover";
   if (normalized.includes("FOUL")) return "foul";
-  if (normalized.includes("REBOUND")) return "rebound";
+  if (normalized.includes("REBOUND OFF")) return "off_rebound";
+  if (normalized.includes("REBOUND DEF")) return "def_rebound";
   if (normalized.includes("GOOD")) return "made_shot";
   if (normalized.includes("MISS")) return "missed_shot";
   return "other";
@@ -82,21 +66,26 @@ function normalizePossessions(rawPossessions) {
     const startAbs = toAbsoluteElapsed(p.period, p.start_time);
     const endAbs = toAbsoluteElapsed(p.period, p.end_time);
     const duration = computeDurationSeconds(p);
-    const primaryEvent = getPrimaryEventType(p);
-    const outcomeColor = EVENT_COLORS[primaryEvent] || EVENT_COLORS.other;
 
-    const tickEvents = (p.events || [])
-      .filter((event) => isTickEvent(event.type))
-      .map((event) => {
-        const eventAbs = toAbsoluteElapsed(p.period, event.time);
-        const tickCategory = getTickEventCategory(event.type);
-        return {
-          ...event,
-          abs: eventAbs,
-          tickColor: TICK_COLORS[tickCategory] || TICK_COLORS.other,
-        };
-      })
-      .filter((event) => event.abs !== null);
+    let previousEventAbs = startAbs ?? null;
+    const tickEvents = (p.events || []).map((event) => {
+      const eventAbs = toAbsoluteElapsed(p.period, event.time);
+      const tickCategory = getTickEventCategory(event.type);
+      const resolvedAbs = eventAbs ?? previousEventAbs ?? endAbs ?? startAbs ?? 0;
+
+      if (eventAbs !== null) {
+        previousEventAbs = eventAbs;
+      } else {
+        previousEventAbs = resolvedAbs;
+      }
+
+      return {
+        ...event,
+        // Events with "--" inherit the last known clock in this possession.
+        abs: resolvedAbs,
+        tickColor: TICK_COLORS[tickCategory] || TICK_COLORS.other,
+      };
+    });
 
     return {
       id: index + 1,
@@ -107,7 +96,6 @@ function normalizePossessions(rawPossessions) {
       startAbs: startAbs ?? 0,
       endAbs: endAbs ?? (startAbs ?? 0) + duration,
       duration,
-      outcomeColor,
       tickEvents,
     };
   });
@@ -129,7 +117,22 @@ function normalizePossessions(rawPossessions) {
 function drawChart({ teams, pairs }) {
   const svg = d3.select("#possession-chart");
   const width = 980;
-  const legendH = 52;
+  const tickLegend = [
+    { label: "made shot", color: TICK_COLORS.made_shot },
+    { label: "missed shot", color: TICK_COLORS.missed_shot },
+    { label: "defensive rebound", color: TICK_COLORS.def_rebound },
+    { label: "offensive rebound", color: TICK_COLORS.off_rebound },
+    { label: "turnover", color: TICK_COLORS.turnover },
+    { label: "foul", color: TICK_COLORS.foul },
+    { label: "steal", color: TICK_COLORS.steal },
+    { label: "block", color: TICK_COLORS.block },
+    { label: "assist", color: TICK_COLORS.assist },
+    { label: "timeout", color: TICK_COLORS.timeout },
+    { label: "other", color: TICK_COLORS.other },
+  ];
+  const legendCols = 5;
+  const legendRows = Math.ceil(tickLegend.length / legendCols);
+  const legendH = 22 + legendRows * 20;
   const topMargin = 100 + legendH;
   const pairGap = 28;
   const bottomMargin = 32;
@@ -139,17 +142,17 @@ function drawChart({ teams, pairs }) {
   svg.selectAll("*").remove();
 
   const midX = width / 2;
-  const laneMaxWidth = 240;
-  const laneHeight = 14;
-  const leftAnchorX = midX - 16;
-  const rightAnchorX = midX + 16;
+  const laneMaxWidth = 300;
+  const laneHeight = 20;
+  const leftAnchorX = midX - 8;
+  const rightAnchorX = midX + 8;
   const leftTeamCx = midX - 140;
   const rightTeamCx = midX + 140;
   const metaX = 28;
 
   const maxDuration =
     d3.max(pairs.flatMap((pair) => [pair.teamA, pair.teamB]).filter(Boolean), (d) => d.duration) || 1;
-  const barWidthScale = d3.scaleLinear().domain([1, maxDuration]).range([20, laneMaxWidth]);
+  const barWidthScale = d3.scaleLinear().domain([1, maxDuration]).range([28, laneMaxWidth]);
 
   // Team labels
   svg.append("text").attr("x", leftTeamCx).attr("y", 30).attr("text-anchor", "middle").attr("class", "team-label").text(teams[0]);
@@ -162,15 +165,6 @@ function drawChart({ teams, pairs }) {
 
   // Legend
   const legendY = 46;
-  const tickLegend = [
-    { label: "made shot",   color: TICK_COLORS.made_shot },
-    { label: "missed shot", color: TICK_COLORS.missed_shot },
-    { label: "rebound",     color: TICK_COLORS.rebound },
-    { label: "turnover",    color: TICK_COLORS.turnover },
-    { label: "foul",        color: TICK_COLORS.foul },
-    { label: "other",       color: TICK_COLORS.other },
-  ];
-
   svg.append("rect")
     .attr("x", metaX - 4).attr("y", legendY - 4)
     .attr("width", width - metaX * 2 + 8).attr("height", legendH)
@@ -180,10 +174,10 @@ function drawChart({ teams, pairs }) {
   svg.append("text").attr("class", "legend-heading")
     .attr("x", metaX + 4).attr("y", legendY + 12).text("Event key");
 
-  const colW = 138;
+  const colW = 128;
   tickLegend.forEach((item, i) => {
-    const col = i % 3;
-    const row = Math.floor(i / 3);
+    const col = i % legendCols;
+    const row = Math.floor(i / legendCols);
     const ix = metaX + 96 + col * colW;
     const iy = legendY + 10 + row * 20;
     const g = svg.append("g");
@@ -241,36 +235,39 @@ function drawChart({ teams, pairs }) {
         .attr("x", x)
         .attr("y", y - laneHeight / 2)
         .attr("width", barWidth)
-        .attr("height", laneHeight)
-        .attr("rx", 4);
+        .attr("height", laneHeight);
 
       const eventPositionScale = d3
         .scaleLinear()
         .domain([possession.startAbs, Math.max(possession.startAbs + 1, possession.endAbs)])
         .range(side === "left" ? [x, leftAnchorX] : [x, x + barWidth]);
 
-      possession.tickEvents.forEach((tick) => {
-        const tickX = eventPositionScale(tick.abs);
-        pairsGroup
-          .append("line")
-          .attr("class", "event-tick")
-          .attr("stroke", tick.tickColor)
-          .attr("x1", tickX)
-          .attr("x2", tickX)
-          .attr("y1", y - laneHeight / 2 + 2)
-          .attr("y2", y + laneHeight / 2 - 2);
-      });
+      const innerTop = y - laneHeight / 2;
+      const innerBottom = y + laneHeight / 2;
+      const innerHeight = innerBottom - innerTop;
+      const ticksByTime = d3.groups(possession.tickEvents, (tick) => tick.abs);
 
-      const endTickX = eventPositionScale(possession.endAbs);
-      pairsGroup
-        .append("line")
-        .attr("class", "event-tick")
-        .attr("stroke", possession.outcomeColor)
-        .attr("stroke-width", 5)
-        .attr("x1", endTickX)
-        .attr("x2", endTickX)
-        .attr("y1", y - laneHeight / 2 + 1)
-        .attr("y2", y + laneHeight / 2 - 1);
+      ticksByTime.forEach(([abs, ticksAtSameTime]) => {
+        const tickX = eventPositionScale(Number(abs));
+        const segmentHeight = innerHeight / ticksAtSameTime.length;
+
+        ticksAtSameTime.forEach((tick, segmentIndex) => {
+          const y1 = innerTop + segmentIndex * segmentHeight;
+          const y2 =
+            segmentIndex === ticksAtSameTime.length - 1
+              ? innerBottom
+              : innerTop + (segmentIndex + 1) * segmentHeight;
+
+          pairsGroup
+            .append("line")
+            .attr("class", "event-tick")
+            .attr("stroke", tick.tickColor)
+            .attr("x1", tickX)
+            .attr("x2", tickX)
+            .attr("y1", y1)
+            .attr("y2", y2);
+        });
+      });
     });
   });
 }
