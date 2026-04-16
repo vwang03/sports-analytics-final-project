@@ -403,7 +403,7 @@
     "team": "home",
     "period": "1st Half",
     "start_time": "14:25",
-    "end_time": "14:06",
+    "end_time": "13:43",
     "home_score": 14,
     "away_score": 6,
     "events": [
@@ -411,22 +411,22 @@
         "type": "GOOD JUMPER",
         "time": "14:06",
         "player": "WATT,ZION"
+      },
+      {
+        "type": "FOUL",
+        "time": "13:43",
+        "player": "WOOTEN,SIDNEY"
       }
     ]
   },
   {
     "team": "away",
     "period": "1st Half",
-    "start_time": "14:06",
+    "start_time": "13:43",
     "end_time": "13:43",
     "home_score": 14,
     "away_score": 7,
     "events": [
-      {
-        "type": "FOUL",
-        "time": "13:43",
-        "player": "WOOTEN,SIDNEY"
-      },
       {
         "type": "MISS FT",
         "time": "13:43",
@@ -1608,7 +1608,7 @@
     "team": "home",
     "period": "2nd Half",
     "start_time": "18:37",
-    "end_time": "18:25",
+    "end_time": "17:59",
     "home_score": 41,
     "away_score": 15,
     "events": [
@@ -1631,22 +1631,22 @@
         "type": "ASSIST",
         "time": "--",
         "player": "MORAKIS,JAMES"
+      },
+      {
+        "type": "FOUL",
+        "time": "17:59",
+        "player": "WATT,ZION"
       }
     ]
   },
   {
     "team": "away",
     "period": "2nd Half",
-    "start_time": "18:25",
+    "start_time": "17:59",
     "end_time": "17:44",
     "home_score": 41,
     "away_score": 17,
     "events": [
-      {
-        "type": "FOUL",
-        "time": "17:59",
-        "player": "WATT,ZION"
-      },
       {
         "type": "GOOD FT",
         "time": "17:59",
@@ -1683,7 +1683,7 @@
     "team": "away",
     "period": "2nd Half",
     "start_time": "17:33",
-    "end_time": "17:01",
+    "end_time": "16:54",
     "home_score": 41,
     "away_score": 17,
     "events": [
@@ -1701,22 +1701,22 @@
         "type": "TURNOVER",
         "time": "17:01",
         "player": "HELMHOLD,LINUS"
+      },
+      {
+        "type": "FOUL",
+        "time": "16:54",
+        "player": "RUIZ,GULLERMO GASSET"
       }
     ]
   },
   {
     "team": "home",
     "period": "2nd Half",
-    "start_time": "17:01",
+    "start_time": "16:54",
     "end_time": "16:54",
     "home_score": 43,
     "away_score": 17,
     "events": [
-      {
-        "type": "FOUL",
-        "time": "16:54",
-        "player": "RUIZ,GULLERMO GASSET"
-      },
       {
         "type": "GOOD FT",
         "time": "16:54",
@@ -2513,7 +2513,7 @@
     "team": "away",
     "period": "2nd Half",
     "start_time": "06:37",
-    "end_time": "06:32",
+    "end_time": "06:21",
     "home_score": 64,
     "away_score": 34,
     "events": [
@@ -2521,22 +2521,22 @@
         "type": "TURNOVER",
         "time": "06:32",
         "player": "ZUREK,CADEN"
+      },
+      {
+        "type": "FOUL",
+        "time": "06:21",
+        "player": "LJ GLOVER,JR"
       }
     ]
   },
   {
     "team": "home",
     "period": "2nd Half",
-    "start_time": "06:32",
+    "start_time": "06:21",
     "end_time": "06:21",
     "home_score": 66,
     "away_score": 34,
     "events": [
-      {
-        "type": "FOUL",
-        "time": "06:21",
-        "player": "LJ GLOVER,JR"
-      },
       {
         "type": "GOOD FT",
         "time": "06:21",
@@ -3118,7 +3118,7 @@
     "team": "away",
     "period": "2nd Half",
     "start_time": "01:09",
-    "end_time": "00:51",
+    "end_time": "00:31",
     "home_score": 82,
     "away_score": 47,
     "events": [
@@ -3166,22 +3166,22 @@
         "type": "GOOD JUMPER",
         "time": "00:51",
         "player": "VOLONTE,GIULIO"
+      },
+      {
+        "type": "FOUL",
+        "time": "00:31",
+        "player": "BAILEY,BLAKE"
       }
     ]
   },
   {
     "team": "home",
     "period": "2nd Half",
-    "start_time": "00:51",
+    "start_time": "00:31",
     "end_time": "00:31",
     "home_score": 84,
     "away_score": 47,
     "events": [
-      {
-        "type": "FOUL",
-        "time": "00:31",
-        "player": "BAILEY,BLAKE"
-      },
       {
         "type": "GOOD FT",
         "time": "00:31",
