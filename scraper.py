@@ -275,9 +275,6 @@ def scrape_pbp(url: str) -> list[dict]:
 
             time = play.get("time", "--")
 
-            # Update the running score from whichever score columns are populated.
-            # Both columns are present on scoring plays (scoring team shows "N(+M)",
-            # the other team shows their current total as a plain number).
             for col, side in [("home_score", "home"), ("away_score", "away")]:
                 val = play.get(col, "").strip()
                 if val:
