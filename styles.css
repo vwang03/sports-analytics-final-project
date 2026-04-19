@@ -42,10 +42,12 @@ h1 {
   color: #002E6D; /* Tufts Dark Blue */
 }
 
-.subtitle { 
-  color: #5E4B3C; /* Tufts Brown - Athletics Accent */
-  font-size: 1rem; 
-  font-weight: 500;
+.disclaimer {
+  text-align: center;
+  color: #718096;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+  font-style: italic;
 }
 
 .chart-wrap {
