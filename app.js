@@ -132,8 +132,8 @@ function drawChart({ teams, pairs }) {
   ];
   const legendCols = 5;
   const legendRows = Math.ceil(tickLegend.length / legendCols);
-  const legendH = 22 + legendRows * 20;
-  const topMargin = 100 + legendH;
+  const legendH = 16 + legendRows * 20;
+  const topMargin = 90 + legendH;
   const pairGap = 28;
   const bottomMargin = 32;
   const chartHeight = topMargin + Math.max(1, pairs.length - 1) * pairGap + bottomMargin;
@@ -161,10 +161,10 @@ function drawChart({ teams, pairs }) {
   // Center divider
   svg.append("line").attr("class", "mid-divider")
     .attr("x1", midX).attr("x2", midX)
-    .attr("y1", 42).attr("y2", chartHeight - bottomMargin + 10);
+    .attr("y1", 58 + legendH).attr("y2", chartHeight - bottomMargin + 10);
 
   // Legend
-  const legendY = 46;
+  const legendY = 60;
   svg.append("rect")
     .attr("x", metaX - 4).attr("y", legendY - 4)
     .attr("width", width - metaX * 2 + 8).attr("height", legendH)
@@ -172,14 +172,14 @@ function drawChart({ teams, pairs }) {
     .attr("stroke", "#e0e0e0").attr("stroke-width", 0.5);
 
   svg.append("text").attr("class", "legend-heading")
-    .attr("x", metaX + 4).attr("y", legendY + 12).text("Event key");
+    .attr("x", metaX + 4).attr("y", legendY + 20).text("Event key");
 
   const colW = 128;
   tickLegend.forEach((item, i) => {
     const col = i % legendCols;
     const row = Math.floor(i / legendCols);
     const ix = metaX + 96 + col * colW;
-    const iy = legendY + 10 + row * 20;
+    const iy = legendY + 18 + row * 20;
     const g = svg.append("g");
     g.append("line").attr("class", "legend-tick-swatch")
       .attr("stroke", item.color)
