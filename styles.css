@@ -1,42 +1,73 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: #f4f4f4;
+  font-family: "Proxima Nova", Arial, sans-serif;
+  background: #f0f4f8; /* Light slate/blue-gray */
   color: #1f1f1f;
+  -webkit-font-smoothing: antialiased;
 }
 
 .page { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1.25rem 2rem; }
 
-.title-wrap { text-align: center; margin-bottom: 1.1rem; }
-
-h1 {
-  font-size: clamp(1.2rem, 2vw, 1.6rem);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  margin-bottom: 0.25rem;
+.title-wrap { 
+  text-align: center; 
+  margin-bottom: 1.1rem; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.subtitle { color: #656565; font-size: 0.88rem; }
+.logo-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tufts-logo.elephant {
+  max-width: 130px;
+}
+
+.tufts-logo.wordmark {
+  max-width: 250px;
+}
+
+h1 {
+  font-family: "Meta Serif", Georgia, serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+  color: #002E6D; /* Tufts Dark Blue */
+}
+
+.subtitle { 
+  color: #5E4B3C; /* Tufts Brown - Athletics Accent */
+  font-size: 1rem; 
+  font-weight: 500;
+}
 
 .chart-wrap {
   background: #fff;
-  border: 0.5px solid #ddd;
+  border: none;
+  border-top: 5px solid #002E6D; /* Tufts Dark Blue accent */
   border-radius: 12px;
-  padding: 1rem;
+  padding: 1.5rem;
   overflow: auto;
+  box-shadow: 0 10px 30px rgba(0, 46, 109, 0.08); /* Soft shadow tinted with Tufts Blue */
 }
 
 #possession-chart { width: 100%; min-width: 900px; display: block; }
 
-.team-label    { font-weight: 700; font-size: 14px; fill: #1a1a1a; }
-.pair-label    { fill: #4b4b4b; font-size: 11px; font-weight: 500; }
-.pair-meta     { fill: #999; font-size: 9px; letter-spacing: .01em; }
-.lane-bg       { fill: #f2f2f0; stroke: #d4d4d0; stroke-width: .5; }
-.mid-divider   { stroke: #ccc; stroke-width: .5; stroke-dasharray: 3 3; }
+.team-label    { font-weight: 700; font-size: 14px; fill: #002E6D; } /* Tufts Dark Blue */
+.pair-label    { fill: #3172AE; font-size: 11px; font-weight: 600; } /* Tufts Digital Blue */
+.pair-meta     { fill: #718096; font-size: 9px; letter-spacing: .01em; }
+.lane-bg       { fill: #f8fafc; stroke: #e2e8f0; stroke-width: .5; }
+.mid-divider   { stroke: #cbd5e1; stroke-width: 1; stroke-dasharray: 4 4; }
 .event-tick    { stroke-width: 3.5; stroke-linecap: butt; }
-.section-rule  { stroke: #e0e0e0; stroke-width: .5; }
-.legend-heading { fill: #2f2f2f; font-size: 11px; font-weight: 600; letter-spacing: .03em; }
-.legend-label  { fill: #555; font-size: 11px; }
+.section-rule  { stroke: #e2e8f0; stroke-width: 1; }
+.legend-heading { fill: #002E6D; font-size: 12px; font-weight: 700; letter-spacing: .02em; }
+.legend-label  { fill: #4a5568; font-size: 11px; font-weight: 500; }
 .legend-tick-swatch { stroke-width: 3.5; stroke-linecap: butt; }
-.footnote      { fill: #999; font-size: 10px; }
+.footnote      { fill: #a0aec0; font-size: 10px; }
