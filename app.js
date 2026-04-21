@@ -19,7 +19,7 @@ const OT_SECONDS = 5 * 60;
 const REGULATION_END_SECONDS = 40 * 60;
 const RUN_TEAM_FILL = "#dffcdf";
 const RUN_OPPONENT_FILL = "#fecaca";
-const DATA_VERSION = "run-highlight-3";
+const DATA_VERSION = "run-highlight-4";
 
 function parseClockToRemainingSeconds(clock) {
   if (!clock || clock === "--") return null;
@@ -103,6 +103,21 @@ function computeDurationSeconds(possession) {
   return Math.max(1, startRemaining - endRemaining);
 }
 
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function formatEventDescription(event) {
+  const type = String(event?.type || "event");
+  const player = String(event?.player || "").trim();
+  return player ? `${type} - ${player}` : type;
+}
+
 function normalizePossessions(rawPossessions, runData = null) {
   // Scrapes before ordinal-quarter handling used 20:00 as period starts; WBB clocks never go above 10:00.
   const ordinalOnly = /^\d+(st|nd|rd|th)$/i;
@@ -127,8 +142,13 @@ function normalizePossessions(rawPossessions, runData = null) {
     const endAbs = toAbsoluteElapsed(p.period, p.end_time);
     const duration = computeDurationSeconds(p);
 
+    const detailEvents = (p.events || []).map((event) => ({
+      ...event,
+      displayTime: event?.time || "--",
+      displayDescription: formatEventDescription(event),
+    }));
     let previousEventAbs = startAbs ?? null;
-    const tickEvents = (p.events || [])
+    const tickEvents = detailEvents
       .filter((event) => getTickEventCategory(event.type) !== "assist")
       .map((event) => {
       const eventAbs = toAbsoluteElapsed(p.period, event.time);
@@ -158,6 +178,7 @@ function normalizePossessions(rawPossessions, runData = null) {
       startAbs: startAbs ?? 0,
       endAbs: endAbs ?? (startAbs ?? 0) + duration,
       duration,
+      detailEvents,
       tickEvents,
       runId,
       runTeam: runMeta?.team || null,
@@ -181,6 +202,10 @@ function normalizePossessions(rawPossessions, runData = null) {
 
 function drawChart({ teams, pairs }) {
   const svg = d3.select("#possession-chart");
+  const chartWrap = d3.select(".chart-wrap");
+  chartWrap.style("position", "relative");
+  chartWrap.selectAll(".possession-tooltip").remove();
+  const tooltip = chartWrap.append("div").attr("class", "possession-tooltip");
   const width = 980;
   const tickLegendRows = [
     [
@@ -227,6 +252,52 @@ function drawChart({ teams, pairs }) {
   const maxDuration =
     d3.max(pairs.flatMap((pair) => [pair.teamA, pair.teamB]).filter(Boolean), (d) => d.duration) || 1;
   const barWidthScale = d3.scaleLinear().domain([1, maxDuration]).range([28, laneMaxWidth]);
+
+  function tooltipHtml(possession) {
+    const items = possession.detailEvents.length
+      ? possession.detailEvents
+          .map(
+            (event) =>
+              `<li><span class="event-time">${escapeHtml(event.displayTime)}</span><span class="event-desc">${escapeHtml(event.displayDescription)}</span></li>`,
+          )
+          .join("")
+      : '<li><span class="event-time">--</span><span class="event-desc">No events recorded</span></li>';
+
+    return `
+      <p class="tooltip-title">${escapeHtml(possession.team)} possession</p>
+      <p class="tooltip-meta">${escapeHtml(possession.period)} | ${escapeHtml(possession.startTime)}-${escapeHtml(possession.endTime)}</p>
+      <ul class="tooltip-events">${items}</ul>
+    `;
+  }
+
+  function placeTooltip(event) {
+    const wrapNode = chartWrap.node();
+    const tooltipNode = tooltip.node();
+    if (!wrapNode || !tooltipNode) return;
+    const [pointerX, pointerY] = d3.pointer(event, wrapNode);
+    const padding = 12;
+    const offset = 14;
+    const maxLeft = Math.max(
+      padding,
+      wrapNode.clientWidth - tooltipNode.offsetWidth - padding,
+    );
+    const maxTop = Math.max(
+      padding,
+      wrapNode.clientHeight - tooltipNode.offsetHeight - padding,
+    );
+    const left = Math.min(maxLeft, pointerX + offset);
+    const top = Math.min(maxTop, pointerY + offset);
+    tooltip.style("left", `${left}px`).style("top", `${top}px`);
+  }
+
+  function showTooltip(event, possession) {
+    tooltip.html(tooltipHtml(possession)).classed("is-visible", true);
+    placeTooltip(event);
+  }
+
+  function hideTooltip() {
+    tooltip.classed("is-visible", false);
+  }
 
   // Team labels (placed below the legend)
   svg.append("text").attr("x", leftTeamCx).attr("y", teamLabelY).attr("text-anchor", "middle").attr("class", "team-label").text(teams[0]);
@@ -323,13 +394,18 @@ function drawChart({ teams, pairs }) {
         ? (possession.team === possession.runTeam ? "lane-bg lane-bg-run-team" : "lane-bg lane-bg-run-opponent")
         : "lane-bg";
 
-      pairsGroup
+      const bar = pairsGroup
         .append("rect")
-        .attr("class", laneClass)
+        .attr("class", `${laneClass} possession-bar`)
         .attr("x", x)
         .attr("y", y - laneHeight / 2)
         .attr("width", barWidth)
         .attr("height", laneHeight);
+
+      bar
+        .on("mouseenter", (event) => showTooltip(event, possession))
+        .on("mousemove", (event) => placeTooltip(event))
+        .on("mouseleave", hideTooltip);
 
       const eventPositionScale = d3
         .scaleLinear()
@@ -364,6 +440,8 @@ function drawChart({ teams, pairs }) {
       });
     });
   });
+
+  svg.on("mouseleave", hideTooltip);
 }
 
 async function init() {
