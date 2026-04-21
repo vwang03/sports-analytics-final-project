@@ -19,7 +19,9 @@ const OT_SECONDS = 5 * 60;
 const REGULATION_END_SECONDS = 40 * 60;
 const RUN_TEAM_FILL = "#dffcdf";
 const RUN_OPPONENT_FILL = "#fecaca";
-const DATA_VERSION = "run-highlight-4";
+const DATA_VERSION = "run-highlight-7";
+const DIFF_LANE_GAP = 18;
+const DIFF_LANE_WIDTH = 128;
 
 function parseClockToRemainingSeconds(clock) {
   if (!clock || clock === "--") return null;
@@ -133,6 +135,8 @@ function normalizePossessions(rawPossessions, runData = null) {
   const [teamA = "home", teamB = "away"] = teams;
   const possessionRunLookup = runData?.possession_run_lookup || {};
   const runsById = new Map((runData?.runs || []).map((run) => [run.run_id, run]));
+  let previousHomeScore = 0;
+  let previousAwayScore = 0;
 
   const possessions = possessionsIn.map((p, index) => {
     const possessionId = index + 1;
@@ -141,6 +145,27 @@ function normalizePossessions(rawPossessions, runData = null) {
     const startAbs = toAbsoluteElapsed(p.period, p.start_time);
     const endAbs = toAbsoluteElapsed(p.period, p.end_time);
     const duration = computeDurationSeconds(p);
+    const currentHomeScore = Number.isFinite(Number(p.home_score))
+      ? Number(p.home_score)
+      : previousHomeScore;
+    const currentAwayScore = Number.isFinite(Number(p.away_score))
+      ? Number(p.away_score)
+      : previousAwayScore;
+    const homePoints = Math.max(0, currentHomeScore - previousHomeScore);
+    const awayPoints = Math.max(0, currentAwayScore - previousAwayScore);
+    const teamLower = String(p.team || "").trim().toLowerCase();
+    let pointsScored = 0;
+    if (teamLower === "home") {
+      pointsScored = homePoints;
+    } else if (teamLower === "away") {
+      pointsScored = awayPoints;
+    } else if (homePoints > 0 && awayPoints === 0) {
+      pointsScored = homePoints;
+    } else if (awayPoints > 0 && homePoints === 0) {
+      pointsScored = awayPoints;
+    }
+    previousHomeScore = currentHomeScore;
+    previousAwayScore = currentAwayScore;
 
     const detailEvents = (p.events || []).map((event) => ({
       ...event,
@@ -183,17 +208,26 @@ function normalizePossessions(rawPossessions, runData = null) {
       runId,
       runTeam: runMeta?.team || null,
       inRun: Boolean(runId),
+      pointsScored,
     };
   });
 
   const pairs = [];
+  let cumulativeDiff = 0;
   for (let i = 0; i < possessions.length; i += 2) {
     const chunk = possessions.slice(i, i + 2);
+    const teamAPossession = chunk.find((p) => p.team === teamA) || null;
+    const teamBPossession = chunk.find((p) => p.team === teamB) || null;
+    // Differential sign follows chart orientation: right lane positive, left lane negative.
+    const pairNet = (teamBPossession?.pointsScored || 0) - (teamAPossession?.pointsScored || 0);
+    cumulativeDiff += pairNet;
     pairs.push({
       pairId: pairs.length + 1,
-      teamA: chunk.find((p) => p.team === teamA) || null,
-      teamB: chunk.find((p) => p.team === teamB) || null,
+      teamA: teamAPossession,
+      teamB: teamBPossession,
       anchorTime: Math.min(...chunk.map((p) => p.startAbs)),
+      pairNet,
+      cumulativeDiff,
     });
   }
 
@@ -206,7 +240,7 @@ function drawChart({ teams, pairs }) {
   chartWrap.style("position", "relative");
   chartWrap.selectAll(".possession-tooltip").remove();
   const tooltip = chartWrap.append("div").attr("class", "possession-tooltip");
-  const width = 980;
+  const baseWidth = 980;
   const tickLegendRows = [
     [
       { label: "made shot", color: TICK_COLORS.made_shot },
@@ -237,10 +271,9 @@ function drawChart({ teams, pairs }) {
   const bottomMargin = 32;
   const chartHeight = topMargin + Math.max(1, pairs.length - 1) * pairGap + bottomMargin;
 
-  svg.attr("viewBox", `0 0 ${width} ${chartHeight}`);
   svg.selectAll("*").remove();
 
-  const midX = width / 2;
+  const midX = baseWidth / 2;
   const laneMaxWidth = 300;
   const laneHeight = 20;
   const leftAnchorX = midX - 8;
@@ -248,6 +281,10 @@ function drawChart({ teams, pairs }) {
   const leftTeamCx = midX - 140;
   const rightTeamCx = midX + 140;
   const metaX = 28;
+  const diffLaneLeftX = rightAnchorX + laneMaxWidth + DIFF_LANE_GAP;
+  const diffLaneRightX = diffLaneLeftX + DIFF_LANE_WIDTH;
+  const width = diffLaneRightX + metaX;
+  svg.attr("viewBox", `0 0 ${width} ${chartHeight}`);
 
   const maxDuration =
     d3.max(pairs.flatMap((pair) => [pair.teamA, pair.teamB]).filter(Boolean), (d) => d.duration) || 1;
@@ -356,6 +393,21 @@ function drawChart({ teams, pairs }) {
   svg.append("text").attr("class", "legend-label")
     .attr("x", metaX + 270).attr("y", runLegendY)
     .text("team on a slump");
+  const diffLegendX = metaX + 390;
+  svg.append("line")
+    .attr("class", "diff-legend-line")
+    .attr("x1", diffLegendX)
+    .attr("x2", diffLegendX + 22)
+    .attr("y1", runLegendY - 4)
+    .attr("y2", runLegendY - 4);
+  svg.append("circle")
+    .attr("class", "diff-legend-point")
+    .attr("cx", diffLegendX + 11)
+    .attr("cy", runLegendY - 4)
+    .attr("r", 3);
+  svg.append("text").attr("class", "legend-label")
+    .attr("x", diffLegendX + 30).attr("y", runLegendY)
+    .text("cumulative point differential");
 
   svg.append("line").attr("class", "section-rule")
     .attr("x1", metaX).attr("x2", width - metaX)
@@ -367,18 +419,11 @@ function drawChart({ teams, pairs }) {
   pairs.forEach((pair, pairIndex) => {
     const y = topMargin + pairIndex * pairGap;
 
-    pairsGroup
-      .append("text")
-      .attr("x", metaX)
-      .attr("y", y + 2)
-      .attr("class", "pair-label")
-      .text(`#${pair.pairId}`);
-
     const pairMeta = `${teams[0]} ${formatTimeRange(pair.teamA)}  |  ${teams[1]} ${formatTimeRange(pair.teamB)}`;
     pairsGroup
       .append("text")
       .attr("x", metaX)
-      .attr("y", y + 13)
+      .attr("y", y + 4)
       .attr("class", "pair-meta")
       .text(pairMeta);
 
@@ -440,6 +485,97 @@ function drawChart({ teams, pairs }) {
       });
     });
   });
+
+  const diffPoints = pairs.map((pair, pairIndex) => ({
+    pair,
+    y: topMargin + pairIndex * pairGap,
+    cumulativeDiff: pair.cumulativeDiff || 0,
+  }));
+  const maxAbsDiff = d3.max(diffPoints, (point) => Math.abs(point.cumulativeDiff)) || 0;
+  const diffDomainMax = Math.max(2, maxAbsDiff);
+  const diffLeftX = diffLaneLeftX;
+  const diffRightX = diffLaneRightX;
+  const diffXScale = d3
+    .scaleLinear()
+    .domain([-diffDomainMax, diffDomainMax])
+    .range([diffLeftX, diffRightX]);
+  const firstRowY = topMargin;
+  const lastRowY = topMargin + Math.max(0, pairs.length - 1) * pairGap;
+
+  const diffGroup = svg
+    .append("g")
+    .attr("class", "diff-group")
+    .attr("pointer-events", "none");
+  diffGroup
+    .append("g")
+    .attr("class", "diff-axis")
+    .attr("transform", `translate(0, ${teamLabelY + 36})`)
+    .call(d3.axisTop(diffXScale).ticks(5).tickSizeOuter(0));
+  diffGroup
+    .append("text")
+    .attr("class", "diff-axis-label")
+    .attr("x", (diffLeftX + diffRightX) / 2)
+    .attr("y", teamLabelY + 18)
+    .attr("text-anchor", "middle")
+    .text("Cumulative point differential");
+
+  diffGroup
+    .append("line")
+    .attr("class", "diff-zero-line")
+    .attr("x1", diffXScale(0))
+    .attr("x2", diffXScale(0))
+    .attr("y1", firstRowY - laneHeight / 2)
+    .attr("y2", lastRowY + laneHeight / 2);
+
+  if (diffPoints.length > 1) {
+    const diffLine = d3
+      .line()
+      .x((point) => diffXScale(point.cumulativeDiff))
+      .y((point) => point.y);
+
+    diffGroup
+      .append("path")
+      .datum(diffPoints)
+      .attr("class", "diff-line")
+      .attr("d", diffLine);
+  }
+
+  diffGroup
+    .selectAll("circle")
+    .data(diffPoints)
+    .enter()
+    .append("circle")
+    .attr("class", "diff-point")
+    .attr("cx", (point) => diffXScale(point.cumulativeDiff))
+    .attr("cy", (point) => point.y)
+    .attr("r", 3.2);
+
+  const minDiff = d3.min(diffPoints, (point) => point.cumulativeDiff);
+  const maxDiff = d3.max(diffPoints, (point) => point.cumulativeDiff);
+  const labelIndexes = new Set();
+  if (diffPoints.length) {
+    labelIndexes.add(0);
+    labelIndexes.add(diffPoints.length - 1);
+    if (minDiff !== undefined) {
+      const minIndex = diffPoints.findIndex((point) => point.cumulativeDiff === minDiff);
+      if (minIndex >= 0) labelIndexes.add(minIndex);
+    }
+    if (maxDiff !== undefined) {
+      const maxIndex = diffPoints.findIndex((point) => point.cumulativeDiff === maxDiff);
+      if (maxIndex >= 0) labelIndexes.add(maxIndex);
+    }
+  }
+
+  diffGroup
+    .selectAll(".diff-point-label")
+    .data([...labelIndexes].map((index) => diffPoints[index]))
+    .enter()
+    .append("text")
+    .attr("class", "diff-point-label")
+    .attr("x", (point) => diffXScale(point.cumulativeDiff) + (point.cumulativeDiff >= 0 ? 6 : -6))
+    .attr("y", (point) => point.y + 3)
+    .attr("text-anchor", (point) => (point.cumulativeDiff >= 0 ? "start" : "end"))
+    .text((point) => point.cumulativeDiff);
 
   svg.on("mouseleave", hideTooltip);
 }

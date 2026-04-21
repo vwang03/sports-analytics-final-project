@@ -3,444 +3,424 @@
     "team": "away",
     "period": "1st Half",
     "start_time": "20:00",
-    "end_time": "19:40",
+    "end_time": "19:35",
     "home_score": 0,
     "away_score": 2,
     "events": [
       {
         "type": "GOOD LAYUP",
-        "time": "19:40",
-        "player": "RUIZ,GULLERMO GASSET"
-      },
-      {
-        "type": "ASSIST",
-        "time": "--",
-        "player": "HELMHOLD,LINUS"
+        "time": "19:35",
+        "player": "BERNSTEIN,JOSHUA"
       }
     ]
   },
   {
     "team": "home",
     "period": "1st Half",
-    "start_time": "19:40",
-    "end_time": "19:26",
-    "home_score": 0,
+    "start_time": "19:35",
+    "end_time": "19:05",
+    "home_score": 2,
     "away_score": 2,
     "events": [
       {
-        "type": "MISS JUMPER",
-        "time": "19:26",
-        "player": "MORAKIS,JAMES"
+        "type": "MISS 3PTR",
+        "time": "19:18",
+        "player": "LAZARRE,DREW"
+      },
+      {
+        "type": "REBOUND OFF",
+        "time": "--",
+        "player": "VETTER,HENRY"
+      },
+      {
+        "type": "GOOD LAYUP",
+        "time": "19:05",
+        "player": "VETTER,HENRY"
       }
     ]
   },
   {
     "team": "away",
     "period": "1st Half",
-    "start_time": "19:26",
-    "end_time": "19:13",
-    "home_score": 0,
+    "start_time": "19:05",
+    "end_time": "18:53",
+    "home_score": 2,
     "away_score": 2,
     "events": [
       {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "ARMANT,JACOB"
-      },
-      {
-        "type": "MISS JUMPER",
-        "time": "19:13",
-        "player": "GARDINER,ASHER"
+        "type": "TURNOVER",
+        "time": "18:53",
+        "player": "BERNSTEIN,JOSHUA"
       }
     ]
   },
   {
     "team": "home",
     "period": "1st Half",
-    "start_time": "19:13",
-    "end_time": "18:49",
+    "start_time": "18:53",
+    "end_time": "18:34",
+    "home_score": 2,
+    "away_score": 2,
+    "events": [
+      {
+        "type": "STEAL",
+        "time": "18:53",
+        "player": "LAZARRE,DREW"
+      },
+      {
+        "type": "FOUL",
+        "time": "18:40",
+        "player": "WATT,ZION"
+      },
+      {
+        "type": "MISS JUMPER",
+        "time": "18:34",
+        "player": "DAVIS,TRISTAN"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "1st Half",
+    "start_time": "18:34",
+    "end_time": "18:15",
     "home_score": 2,
     "away_score": 2,
     "events": [
       {
         "type": "REBOUND DEF",
         "time": "--",
-        "player": "BERNSTEIN,JOSHUA"
+        "player": "NIEVES,RICARDO"
       },
       {
-        "type": "GOOD LAYUP",
-        "time": "18:49",
-        "player": "BERNSTEIN,JOSHUA"
-      },
-      {
-        "type": "ASSIST",
-        "time": "--",
-        "player": "GYIMESI,SCOTT"
+        "type": "MISS LAYUP",
+        "time": "18:15",
+        "player": "NIEVES,RICARDO"
       }
     ]
   },
   {
-    "team": "away",
+    "team": "home",
     "period": "1st Half",
-    "start_time": "18:49",
-    "end_time": "18:33",
+    "start_time": "18:15",
+    "end_time": "18:14",
     "home_score": 2,
     "away_score": 2,
     "events": [
       {
-        "type": "MISS 3PTR",
-        "time": "18:33",
-        "player": "HELMHOLD,LINUS"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "18:33",
-    "end_time": "18:17",
-    "home_score": 4,
-    "away_score": 2,
-    "events": [
-      {
         "type": "REBOUND DEF",
         "time": "--",
-        "player": "REILLY,DYLAN"
+        "player": "DAVIS,TRISTAN"
       },
-      {
-        "type": "FOUL",
-        "time": "18:22",
-        "player": "RUIZ,GULLERMO GASSET"
-      },
-      {
-        "type": "GOOD LAYUP",
-        "time": "18:17",
-        "player": "GYIMESI,SCOTT"
-      },
-      {
-        "type": "ASSIST",
-        "time": "--",
-        "player": "BERNSTEIN,JOSHUA"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "18:17",
-    "end_time": "17:31",
-    "home_score": 4,
-    "away_score": 2,
-    "events": [
-      {
-        "type": "MISS LAYUP",
-        "time": "17:49",
-        "player": "MCNAMARA,BRENDAN"
-      },
-      {
-        "type": "REBOUND OFF",
-        "time": "--",
-        "player": "MCNAMARA,BRENDAN"
-      },
-      {
-        "type": "MISS LAYUP",
-        "time": "17:31",
-        "player": "GARDINER,ASHER"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "17:31",
-    "end_time": "17:18",
-    "home_score": 7,
-    "away_score": 2,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "BERNSTEIN,JOSHUA"
-      },
-      {
-        "type": "GOOD 3PTR",
-        "time": "17:18",
-        "player": "WATT,ZION"
-      },
-      {
-        "type": "ASSIST",
-        "time": "--",
-        "player": "GYIMESI,SCOTT"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "17:18",
-    "end_time": "16:48",
-    "home_score": 7,
-    "away_score": 2,
-    "events": [
       {
         "type": "MISS JUMPER",
-        "time": "16:48",
-        "player": "ARMANT,JACOB"
-      },
-      {
-        "type": "BLOCK",
-        "time": "16:48",
-        "player": "WATT,ZION"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "16:48",
-    "end_time": "16:17",
-    "home_score": 9,
-    "away_score": 2,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "TEAM"
-      },
-      {
-        "type": "MISS 3PTR",
-        "time": "16:32",
-        "player": "MORAKIS,JAMES"
-      },
-      {
-        "type": "REBOUND OFF",
-        "time": "--",
-        "player": "BERNSTEIN,JOSHUA"
-      },
-      {
-        "type": "MISS 3PTR",
-        "time": "16:28",
-        "player": "WATT,ZION"
-      },
-      {
-        "type": "REBOUND OFF",
-        "time": "--",
-        "player": "WATT,ZION"
-      },
-      {
-        "type": "GOOD JUMPER",
-        "time": "16:17",
-        "player": "BERNSTEIN,JOSHUA"
-      },
-      {
-        "type": "ASSIST",
-        "time": "--",
-        "player": "MORAKIS,JAMES"
+        "time": "18:14",
+        "player": "DAVIS,TRISTAN"
       }
     ]
   },
   {
     "team": "away",
     "period": "1st Half",
-    "start_time": "16:17",
-    "end_time": "16:08",
-    "home_score": 9,
-    "away_score": 2,
-    "events": [
-      {
-        "type": "TURNOVER",
-        "time": "16:08",
-        "player": "ARMANT,JACOB"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "16:08",
-    "end_time": "15:58",
-    "home_score": 9,
-    "away_score": 2,
-    "events": [
-      {
-        "type": "STEAL",
-        "time": "16:07",
-        "player": "BERNSTEIN,JOSHUA"
-      },
-      {
-        "type": "MISS LAYUP",
-        "time": "16:01",
-        "player": "MORAKIS,JAMES"
-      },
-      {
-        "type": "REBOUND OFF",
-        "time": "--",
-        "player": "BERNSTEIN,JOSHUA"
-      },
-      {
-        "type": "MISS DUNK",
-        "time": "15:58",
-        "player": "BERNSTEIN,JOSHUA"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "15:58",
-    "end_time": "15:52",
-    "home_score": 9,
-    "away_score": 2,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "ARMANT,JACOB"
-      },
-      {
-        "type": "MISS LAYUP",
-        "time": "15:52",
-        "player": "LUESSENHOP,OTTO"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "15:52",
-    "end_time": "15:35",
-    "home_score": 9,
-    "away_score": 2,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "GYIMESI,SCOTT"
-      },
-      {
-        "type": "TURNOVER",
-        "time": "15:35",
-        "player": "MORAKIS,JAMES"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "15:35",
-    "end_time": "15:07",
-    "home_score": 9,
-    "away_score": 3,
-    "events": [
-      {
-        "type": "STEAL",
-        "time": "15:34",
-        "player": "HELMHOLD,LINUS"
-      },
-      {
-        "type": "FOUL",
-        "time": "15:07",
-        "player": "GYIMESI,SCOTT"
-      },
-      {
-        "type": "MISS FT",
-        "time": "15:07",
-        "player": "HELMHOLD,LINUS"
-      },
-      {
-        "type": "REBOUND DEADB",
-        "time": "--",
-        "player": "TEAM"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "15:07",
-        "player": "HELMHOLD,LINUS"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "15:07",
-    "end_time": "14:55",
-    "home_score": 12,
-    "away_score": 3,
-    "events": [
-      {
-        "type": "GOOD 3PTR",
-        "time": "14:55",
-        "player": "REILLY,DYLAN"
-      },
-      {
-        "type": "ASSIST",
-        "time": "--",
-        "player": "WATT,ZION"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "14:55",
-    "end_time": "14:25",
-    "home_score": 12,
-    "away_score": 6,
-    "events": [
-      {
-        "type": "GOOD 3PTR",
-        "time": "14:25",
-        "player": "LUESSENHOP,OTTO"
-      },
-      {
-        "type": "ASSIST",
-        "time": "--",
-        "player": "ARMANT,JACOB"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "14:25",
-    "end_time": "14:06",
-    "home_score": 14,
-    "away_score": 6,
+    "start_time": "18:14",
+    "end_time": "18:12",
+    "home_score": 2,
+    "away_score": 4,
     "events": [
       {
         "type": "GOOD JUMPER",
-        "time": "14:06",
-        "player": "WATT,ZION"
+        "time": "18:12",
+        "player": "NIEVES,RICARDO"
+      },
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "BERNSTEIN,JOSHUA"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "1st Half",
+    "start_time": "18:12",
+    "end_time": "18:09",
+    "home_score": 2,
+    "away_score": 4,
+    "events": [
+      {
+        "type": "TURNOVER",
+        "time": "18:09",
+        "player": "VETTER,HENRY"
       }
     ]
   },
   {
     "team": "away",
     "period": "1st Half",
-    "start_time": "14:06",
-    "end_time": "13:43",
-    "home_score": 14,
+    "start_time": "18:09",
+    "end_time": "17:54",
+    "home_score": 2,
     "away_score": 7,
     "events": [
       {
-        "type": "FOUL",
-        "time": "13:43",
-        "player": "WOOTEN,SIDNEY"
+        "type": "STEAL",
+        "time": "18:09",
+        "player": "WATT,ZION"
       },
       {
-        "type": "MISS FT",
-        "time": "13:43",
-        "player": "GRAMLICH,HANK"
+        "type": "GOOD 3PTR",
+        "time": "17:54",
+        "player": "MEDLEY,JON"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "1st Half",
+    "start_time": "17:54",
+    "end_time": "17:43",
+    "home_score": 2,
+    "away_score": 7,
+    "events": [
+      {
+        "type": "MISS JUMPER",
+        "time": "17:43",
+        "player": "AYLES,DAVID"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "1st Half",
+    "start_time": "17:43",
+    "end_time": "17:29",
+    "home_score": 2,
+    "away_score": 7,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "BERNSTEIN,JOSHUA"
       },
       {
-        "type": "REBOUND DEADB",
+        "type": "MISS JUMPER",
+        "time": "17:29",
+        "player": "WATT,ZION"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "1st Half",
+    "start_time": "17:29",
+    "end_time": "17:29",
+    "home_score": 2,
+    "away_score": 7,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "VETTER,HENRY"
+      },
+      {
+        "type": "MISS JUMPER",
+        "time": "17:29",
+        "player": "LAZARRE,DREW"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "1st Half",
+    "start_time": "17:29",
+    "end_time": "17:18",
+    "home_score": 2,
+    "away_score": 9,
+    "events": [
+      {
+        "type": "REBOUND DEF",
         "time": "--",
         "player": "TEAM"
       },
       {
-        "type": "GOOD FT",
+        "type": "GOOD JUMPER",
+        "time": "17:18",
+        "player": "BERNSTEIN,JOSHUA"
+      },
+      {
+        "type": "ASSIST",
+        "time": "--",
+        "player": "REILLY,DYLAN"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "1st Half",
+    "start_time": "17:18",
+    "end_time": "17:08",
+    "home_score": 4,
+    "away_score": 9,
+    "events": [
+      {
+        "type": "GOOD JUMPER",
+        "time": "17:08",
+        "player": "OKOROUGO,JARREL"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "1st Half",
+    "start_time": "17:08",
+    "end_time": "16:00",
+    "home_score": 4,
+    "away_score": 9,
+    "events": [
+      {
+        "type": "FOUL",
+        "time": "16:11",
+        "player": "AYLES,DAVID"
+      },
+      {
+        "type": "TURNOVER",
+        "time": "16:00",
+        "player": "REILLY,DYLAN"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "1st Half",
+    "start_time": "16:00",
+    "end_time": "15:47",
+    "home_score": 4,
+    "away_score": 9,
+    "events": [
+      {
+        "type": "TIMEOUT MEDIA",
+        "time": "16:00",
+        "player": "away"
+      },
+      {
+        "type": "MISS LAYUP",
+        "time": "15:47",
+        "player": "DAVIS,TRISTAN"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "1st Half",
+    "start_time": "15:47",
+    "end_time": "15:13",
+    "home_score": 4,
+    "away_score": 9,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "TEAM"
+      },
+      {
+        "type": "MISS 3PTR",
+        "time": "15:13",
+        "player": "MEDLEY,JON"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "1st Half",
+    "start_time": "15:13",
+    "end_time": "14:44",
+    "home_score": 6,
+    "away_score": 9,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "LAZARRE,DREW"
+      },
+      {
+        "type": "MISS JUMPER",
+        "time": "15:02",
+        "player": "OKOROUGO,JARREL"
+      },
+      {
+        "type": "REBOUND OFF",
+        "time": "--",
+        "player": "LAZARRE,DREW"
+      },
+      {
+        "type": "GOOD LAYUP",
+        "time": "14:44",
+        "player": "VETTER,HENRY"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "1st Half",
+    "start_time": "14:44",
+    "end_time": "14:19",
+    "home_score": 6,
+    "away_score": 9,
+    "events": [
+      {
+        "type": "MISS JUMPER",
+        "time": "14:19",
+        "player": "GYIMESI,SCOTT"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "1st Half",
+    "start_time": "14:19",
+    "end_time": "14:11",
+    "home_score": 8,
+    "away_score": 9,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "LAZARRE,DREW"
+      },
+      {
+        "type": "MISS LAYUP",
+        "time": "14:13",
+        "player": "LAZARRE,DREW"
+      },
+      {
+        "type": "REBOUND OFF",
+        "time": "--",
+        "player": "DAVIS,TRISTAN"
+      },
+      {
+        "type": "GOOD TIPIN",
+        "time": "14:11",
+        "player": "DAVIS,TRISTAN"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "1st Half",
+    "start_time": "14:11",
+    "end_time": "13:43",
+    "home_score": 8,
+    "away_score": 9,
+    "events": [
+      {
+        "type": "FOUL",
+        "time": "13:51",
+        "player": "LAZARRE,DREW"
+      },
+      {
+        "type": "TURNOVER",
         "time": "13:43",
-        "player": "GRAMLICH,HANK"
+        "player": "MORAKIS,JAMES"
       }
     ]
   },
@@ -448,309 +428,149 @@
     "team": "home",
     "period": "1st Half",
     "start_time": "13:43",
-    "end_time": "13:27",
-    "home_score": 17,
-    "away_score": 7,
+    "end_time": "13:26",
+    "home_score": 10,
+    "away_score": 9,
     "events": [
       {
-        "type": "GOOD 3PTR",
-        "time": "13:27",
-        "player": "WOOTEN,SIDNEY"
+        "type": "STEAL",
+        "time": "13:43",
+        "player": "BERETE,BANGALY"
+      },
+      {
+        "type": "GOOD LAYUP",
+        "time": "13:26",
+        "player": "MCDONALD,TREVOR"
       },
       {
         "type": "ASSIST",
         "time": "--",
-        "player": "REEVES,EVAN"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "13:27",
-    "end_time": "13:06",
-    "home_score": 17,
-    "away_score": 7,
-    "events": [
-      {
-        "type": "MISS 3PTR",
-        "time": "13:06",
-        "player": "RUIZ,GULLERMO GASSET"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "13:06",
-    "end_time": "12:53",
-    "home_score": 17,
-    "away_score": 7,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "TEAM"
-      },
-      {
-        "type": "MISS 3PTR",
-        "time": "12:53",
-        "player": "REILLY,DYLAN"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "12:53",
-    "end_time": "12:38",
-    "home_score": 17,
-    "away_score": 7,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "GRAMLICH,HANK"
-      },
-      {
-        "type": "TURNOVER",
-        "time": "12:38",
-        "player": "ROBAN,SHAY"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "12:38",
-    "end_time": "12:32",
-    "home_score": 17,
-    "away_score": 7,
-    "events": [
-      {
-        "type": "STEAL",
-        "time": "12:38",
-        "player": "GYIMESI,SCOTT"
-      },
-      {
-        "type": "TURNOVER",
-        "time": "12:32",
-        "player": "GYIMESI,SCOTT"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "12:32",
-    "end_time": "12:18",
-    "home_score": 17,
-    "away_score": 7,
-    "events": [
-      {
-        "type": "STEAL",
-        "time": "12:32",
-        "player": "RUIZ,GULLERMO GASSET"
+        "player": "IPPOLITO,PAUL"
       },
       {
         "type": "FOUL",
-        "time": "12:28",
-        "player": "WOOTEN,SIDNEY"
+        "time": "13:26",
+        "player": "NYAMWAYA,ROBBIE"
       },
       {
-        "type": "MISS JUMPER",
-        "time": "12:18",
-        "player": "ZUREK,CADEN"
+        "type": "MISS FT",
+        "time": "13:26",
+        "player": "MCDONALD,TREVOR"
       }
     ]
   },
   {
-    "team": "home",
+    "team": "away",
     "period": "1st Half",
-    "start_time": "12:18",
-    "end_time": "12:08",
-    "home_score": 17,
-    "away_score": 7,
+    "start_time": "13:26",
+    "end_time": "13:05",
+    "home_score": 10,
+    "away_score": 9,
     "events": [
       {
         "type": "REBOUND DEF",
         "time": "--",
-        "player": "NIEVES,RICARDO"
+        "player": "NYAMWAYA,ROBBIE"
       },
       {
-        "type": "MISS LAYUP",
-        "time": "12:08",
+        "type": "MISS 3PTR",
+        "time": "13:13",
+        "player": "GYIMESI,SCOTT"
+      },
+      {
+        "type": "REBOUND OFF",
+        "time": "--",
+        "player": "WOOTEN,SIDNEY"
+      },
+      {
+        "type": "MISS 3PTR",
+        "time": "13:05",
         "player": "MORAKIS,JAMES"
-      },
-      {
-        "type": "BLOCK",
-        "time": "12:08",
-        "player": "ZUREK,CADEN"
       }
     ]
   },
   {
-    "team": "away",
+    "team": "home",
     "period": "1st Half",
-    "start_time": "12:08",
-    "end_time": "11:45",
-    "home_score": 17,
-    "away_score": 7,
+    "start_time": "13:05",
+    "end_time": "12:46",
+    "home_score": 11,
+    "away_score": 9,
     "events": [
       {
         "type": "REBOUND DEF",
+        "time": "--",
+        "player": "BERETE,BANGALY"
+      },
+      {
+        "type": "FOUL",
+        "time": "12:46",
+        "player": "GYIMESI,SCOTT"
+      },
+      {
+        "type": "MISS FT",
+        "time": "12:46",
+        "player": "MCDONALD,TREVOR"
+      },
+      {
+        "type": "REBOUND DEADB",
         "time": "--",
         "player": "TEAM"
       },
       {
-        "type": "FOUL",
-        "time": "11:59",
-        "player": "NIEVES,RICARDO"
+        "type": "GOOD FT",
+        "time": "12:46",
+        "player": "MCDONALD,TREVOR"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "1st Half",
+    "start_time": "12:46",
+    "end_time": "12:30",
+    "home_score": 11,
+    "away_score": 9,
+    "events": [
+      {
+        "type": "MISS 3PTR",
+        "time": "12:30",
+        "player": "GYIMESI,SCOTT"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "1st Half",
+    "start_time": "12:30",
+    "end_time": "12:22",
+    "home_score": 11,
+    "away_score": 9,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "IPPOLITO,PAUL"
       },
       {
-        "type": "FOUL",
-        "time": "11:59",
-        "player": "SCHMID,LUKAS"
-      },
-      {
-        "type": "MISS JUMPER",
-        "time": "11:45",
-        "player": "GRAMLICH,HANK"
+        "type": "MISS LAYUP",
+        "time": "12:22",
+        "player": "IPPOLITO,PAUL"
       },
       {
         "type": "BLOCK",
-        "time": "11:45",
-        "player": "REEVES,EVAN"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "11:45",
-    "end_time": "11:27",
-    "home_score": 17,
-    "away_score": 7,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "SCHMID,LUKAS"
-      },
-      {
-        "type": "TURNOVER",
-        "time": "11:27",
-        "player": "REEVES,EVAN"
+        "time": "12:22",
+        "player": "NYAMWAYA,ROBBIE"
       }
     ]
   },
   {
     "team": "away",
     "period": "1st Half",
-    "start_time": "11:27",
-    "end_time": "11:02",
-    "home_score": 17,
-    "away_score": 7,
-    "events": [
-      {
-        "type": "MISS JUMPER",
-        "time": "11:02",
-        "player": "ARMANT,JACOB"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "11:02",
-    "end_time": "10:48",
-    "home_score": 17,
-    "away_score": 7,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "BERNSTEIN,JOSHUA"
-      },
-      {
-        "type": "MISS 3PTR",
-        "time": "10:48",
-        "player": "SCHMID,LUKAS"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "10:48",
-    "end_time": "10:32",
-    "home_score": 17,
-    "away_score": 7,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "ZUREK,CADEN"
-      },
-      {
-        "type": "FOUL",
-        "time": "10:33",
-        "player": "NIEVES,RICARDO"
-      },
-      {
-        "type": "MISS JUMPER",
-        "time": "10:32",
-        "player": "VOLONTE,GIULIO"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "10:32",
-    "end_time": "10:18",
-    "home_score": 19,
-    "away_score": 7,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "REILLY,DYLAN"
-      },
-      {
-        "type": "GOOD LAYUP",
-        "time": "10:18",
-        "player": "BERNSTEIN,JOSHUA"
-      },
-      {
-        "type": "ASSIST",
-        "time": "--",
-        "player": "REILLY,DYLAN"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "10:18",
-    "end_time": "09:56",
-    "home_score": 19,
-    "away_score": 7,
-    "events": [
-      {
-        "type": "MISS JUMPER",
-        "time": "09:56",
-        "player": "HELMHOLD,LINUS"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "09:56",
-    "end_time": "09:32",
-    "home_score": 19,
-    "away_score": 7,
+    "start_time": "12:22",
+    "end_time": "12:11",
+    "home_score": 11,
+    "away_score": 11,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -758,854 +578,9 @@
         "player": "NYAMWAYA,ROBBIE"
       },
       {
-        "type": "MISS LAYUP",
-        "time": "09:32",
-        "player": "BERNSTEIN,JOSHUA"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "09:32",
-    "end_time": "09:12",
-    "home_score": 19,
-    "away_score": 7,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "HELMHOLD,LINUS"
-      },
-      {
-        "type": "MISS LAYUP",
-        "time": "09:12",
-        "player": "ARMANT,JACOB"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "09:12",
-    "end_time": "08:48",
-    "home_score": 21,
-    "away_score": 7,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "NYAMWAYA,ROBBIE"
-      },
-      {
-        "type": "MISS 3PTR",
-        "time": "09:05",
-        "player": "REILLY,DYLAN"
-      },
-      {
-        "type": "REBOUND OFF",
-        "time": "--",
-        "player": "WATT,ZION"
-      },
-      {
-        "type": "GOOD JUMPER",
-        "time": "08:48",
-        "player": "LINSTRA,GRIFFIN"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "08:48",
-    "end_time": "08:29",
-    "home_score": 21,
-    "away_score": 7,
-    "events": [
-      {
-        "type": "TIMEOUT TEAM",
-        "time": "08:45",
-        "player": "home"
-      },
-      {
-        "type": "MISS 3PTR",
-        "time": "08:29",
-        "player": "ARMANT,JACOB"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "08:29",
-    "end_time": "08:03",
-    "home_score": 23,
-    "away_score": 7,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "TEAM"
-      },
-      {
         "type": "GOOD LAYUP",
-        "time": "08:03",
-        "player": "BERNSTEIN,JOSHUA"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "08:03",
-    "end_time": "07:48",
-    "home_score": 23,
-    "away_score": 7,
-    "events": [
-      {
-        "type": "TURNOVER",
-        "time": "07:48",
-        "player": "MCNAMARA,BRENDAN"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "07:48",
-    "end_time": "07:27",
-    "home_score": 25,
-    "away_score": 7,
-    "events": [
-      {
-        "type": "GOOD LAYUP",
-        "time": "07:27",
-        "player": "BERNSTEIN,JOSHUA"
-      },
-      {
-        "type": "ASSIST",
-        "time": "--",
+        "time": "12:11",
         "player": "GYIMESI,SCOTT"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "07:27",
-    "end_time": "07:11",
-    "home_score": 25,
-    "away_score": 7,
-    "events": [
-      {
-        "type": "TURNOVER",
-        "time": "07:11",
-        "player": "ARMANT,JACOB"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "07:11",
-    "end_time": "07:07",
-    "home_score": 25,
-    "away_score": 7,
-    "events": [
-      {
-        "type": "STEAL",
-        "time": "07:11",
-        "player": "LINSTRA,GRIFFIN"
-      },
-      {
-        "type": "MISS LAYUP",
-        "time": "07:07",
-        "player": "LINSTRA,GRIFFIN"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "07:07",
-    "end_time": "07:06",
-    "home_score": 25,
-    "away_score": 9,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "TEAM"
-      },
-      {
-        "type": "FOUL",
-        "time": "07:06",
-        "player": "GYIMESI,SCOTT"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "07:06",
-        "player": "MCNAMARA,BRENDAN"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "07:06",
-        "player": "MCNAMARA,BRENDAN"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "07:06",
-    "end_time": "06:52",
-    "home_score": 27,
-    "away_score": 9,
-    "events": [
-      {
-        "type": "MISS LAYUP",
-        "time": "06:55",
-        "player": "LINSTRA,GRIFFIN"
-      },
-      {
-        "type": "REBOUND OFF",
-        "time": "--",
-        "player": "GYIMESI,SCOTT"
-      },
-      {
-        "type": "FOUL",
-        "time": "06:52",
-        "player": "ARMANT,JACOB"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "06:52",
-        "player": "GYIMESI,SCOTT"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "06:52",
-        "player": "GYIMESI,SCOTT"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "06:52",
-    "end_time": "06:31",
-    "home_score": 27,
-    "away_score": 9,
-    "events": [
-      {
-        "type": "MISS 3PTR",
-        "time": "06:31",
-        "player": "LUESSENHOP,OTTO"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "06:31",
-    "end_time": "06:09",
-    "home_score": 27,
-    "away_score": 9,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "BERNSTEIN,JOSHUA"
-      },
-      {
-        "type": "MISS LAYUP",
-        "time": "06:09",
-        "player": "BERNSTEIN,JOSHUA"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "06:09",
-    "end_time": "05:47",
-    "home_score": 27,
-    "away_score": 9,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "LUESSENHOP,OTTO"
-      },
-      {
-        "type": "MISS LAYUP",
-        "time": "05:47",
-        "player": "HELMHOLD,LINUS"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "05:47",
-    "end_time": "05:36",
-    "home_score": 27,
-    "away_score": 9,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "BERNSTEIN,JOSHUA"
-      },
-      {
-        "type": "TURNOVER",
-        "time": "05:36",
-        "player": "REILLY,DYLAN"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "05:36",
-    "end_time": "05:18",
-    "home_score": 27,
-    "away_score": 9,
-    "events": [
-      {
-        "type": "TURNOVER",
-        "time": "05:18",
-        "player": "RUIZ,GULLERMO GASSET"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "05:18",
-    "end_time": "05:12",
-    "home_score": 29,
-    "away_score": 9,
-    "events": [
-      {
-        "type": "STEAL",
-        "time": "05:17",
-        "player": "WATT,ZION"
-      },
-      {
-        "type": "FOUL",
-        "time": "05:12",
-        "player": "MCNAMARA,BRENDAN"
-      },
-      {
-        "type": "TIMEOUT TEAM",
-        "time": "05:12",
-        "player": "away"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "05:12",
-        "player": "LINSTRA,GRIFFIN"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "05:12",
-        "player": "LINSTRA,GRIFFIN"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "05:12",
-    "end_time": "05:00",
-    "home_score": 29,
-    "away_score": 11,
-    "events": [
-      {
-        "type": "GOOD JUMPER",
-        "time": "05:00",
-        "player": "LUESSENHOP,OTTO"
-      },
-      {
-        "type": "ASSIST",
-        "time": "--",
-        "player": "RUIZ,GULLERMO GASSET"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "05:00",
-    "end_time": "04:47",
-    "home_score": 32,
-    "away_score": 11,
-    "events": [
-      {
-        "type": "GOOD 3PTR",
-        "time": "04:47",
-        "player": "REILLY,DYLAN"
-      },
-      {
-        "type": "ASSIST",
-        "time": "--",
-        "player": "GYIMESI,SCOTT"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "04:47",
-    "end_time": "04:30",
-    "home_score": 32,
-    "away_score": 11,
-    "events": [
-      {
-        "type": "MISS 3PTR",
-        "time": "04:30",
-        "player": "ARMANT,JACOB"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "04:30",
-    "end_time": "04:09",
-    "home_score": 32,
-    "away_score": 11,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "REILLY,DYLAN"
-      },
-      {
-        "type": "MISS LAYUP",
-        "time": "04:09",
-        "player": "BERNSTEIN,JOSHUA"
-      },
-      {
-        "type": "BLOCK",
-        "time": "04:09",
-        "player": "HELMHOLD,LINUS"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "04:09",
-    "end_time": "03:54",
-    "home_score": 32,
-    "away_score": 11,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "TEAM"
-      },
-      {
-        "type": "TURNOVER",
-        "time": "03:54",
-        "player": "RUIZ,GULLERMO GASSET"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "03:54",
-    "end_time": "03:34",
-    "home_score": 35,
-    "away_score": 11,
-    "events": [
-      {
-        "type": "STEAL",
-        "time": "03:53",
-        "player": "WATT,ZION"
-      },
-      {
-        "type": "FOUL",
-        "time": "03:34",
-        "player": "HELMHOLD,LINUS"
-      },
-      {
-        "type": "GOOD 3PTR",
-        "time": "03:34",
-        "player": "REILLY,DYLAN"
-      },
-      {
-        "type": "ASSIST",
-        "time": "--",
-        "player": "WOOTEN,SIDNEY"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "03:34",
-    "end_time": "03:12",
-    "home_score": 35,
-    "away_score": 11,
-    "events": [
-      {
-        "type": "MISS JUMPER",
-        "time": "03:12",
-        "player": "MCNEIL,BJ"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "03:12",
-    "end_time": "03:01",
-    "home_score": 35,
-    "away_score": 11,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "WATT,ZION"
-      },
-      {
-        "type": "MISS JUMPER",
-        "time": "03:01",
-        "player": "WOOTEN,SIDNEY"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "03:01",
-    "end_time": "02:48",
-    "home_score": 35,
-    "away_score": 11,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "HELMHOLD,LINUS"
-      },
-      {
-        "type": "MISS JUMPER",
-        "time": "02:48",
-        "player": "LUESSENHOP,OTTO"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "02:48",
-    "end_time": "02:21",
-    "home_score": 35,
-    "away_score": 11,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "BERNSTEIN,JOSHUA"
-      },
-      {
-        "type": "MISS JUMPER",
-        "time": "02:21",
-        "player": "WOOTEN,SIDNEY"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "02:21",
-    "end_time": "02:06",
-    "home_score": 35,
-    "away_score": 11,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "HELMHOLD,LINUS"
-      },
-      {
-        "type": "TURNOVER",
-        "time": "02:06",
-        "player": "RUIZ,GULLERMO GASSET"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "02:06",
-    "end_time": "02:02",
-    "home_score": 35,
-    "away_score": 11,
-    "events": [
-      {
-        "type": "MISS JUMPER",
-        "time": "02:02",
-        "player": "GYIMESI,SCOTT"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "02:02",
-    "end_time": "01:35",
-    "home_score": 35,
-    "away_score": 11,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "RUIZ,GULLERMO GASSET"
-      },
-      {
-        "type": "MISS 3PTR",
-        "time": "01:35",
-        "player": "LUESSENHOP,OTTO"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "01:35",
-    "end_time": "01:05",
-    "home_score": 35,
-    "away_score": 11,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "REILLY,DYLAN"
-      },
-      {
-        "type": "MISS 3PTR",
-        "time": "01:05",
-        "player": "WOOTEN,SIDNEY"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "01:05",
-    "end_time": "00:57",
-    "home_score": 35,
-    "away_score": 13,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "MCNEIL,BJ"
-      },
-      {
-        "type": "GOOD LAYUP",
-        "time": "00:57",
-        "player": "MCNEIL,BJ"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "00:57",
-    "end_time": "00:27",
-    "home_score": 37,
-    "away_score": 13,
-    "events": [
-      {
-        "type": "GOOD JUMPER",
-        "time": "00:27",
-        "player": "FRIEDMAN,ISAAC"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "1st Half",
-    "start_time": "00:27",
-    "end_time": "00:04",
-    "home_score": 37,
-    "away_score": 13,
-    "events": [
-      {
-        "type": "MISS 3PTR",
-        "time": "00:04",
-        "player": "III,RAY ALLEN"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "1st Half",
-    "start_time": "00:04",
-    "end_time": null,
-    "home_score": 37,
-    "away_score": 13,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "NYAMWAYA,ROBBIE"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "2nd Half",
-    "start_time": "20:00",
-    "end_time": "19:47",
-    "home_score": 37,
-    "away_score": 13,
-    "events": [
-      {
-        "type": "MISS JUMPER",
-        "time": "19:47",
-        "player": "GYIMESI,SCOTT"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "2nd Half",
-    "start_time": "19:47",
-    "end_time": "19:35",
-    "home_score": 37,
-    "away_score": 15,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "RUIZ,GULLERMO GASSET"
-      },
-      {
-        "type": "GOOD JUMPER",
-        "time": "19:35",
-        "player": "HELMHOLD,LINUS"
-      },
-      {
-        "type": "ASSIST",
-        "time": "--",
-        "player": "GARDINER,ASHER"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "2nd Half",
-    "start_time": "19:35",
-    "end_time": "19:08",
-    "home_score": 37,
-    "away_score": 15,
-    "events": [
-      {
-        "type": "TIMEOUT TEAM",
-        "time": "19:27",
-        "player": "home"
-      },
-      {
-        "type": "MISS 3PTR",
-        "time": "19:08",
-        "player": "WATT,ZION"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "2nd Half",
-    "start_time": "19:08",
-    "end_time": "18:52",
-    "home_score": 37,
-    "away_score": 15,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "GARDINER,ASHER"
-      },
-      {
-        "type": "TURNOVER",
-        "time": "18:52",
-        "player": "RUIZ,GULLERMO GASSET"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "2nd Half",
-    "start_time": "18:52",
-    "end_time": "18:47",
-    "home_score": 39,
-    "away_score": 15,
-    "events": [
-      {
-        "type": "STEAL",
-        "time": "18:52",
-        "player": "GYIMESI,SCOTT"
-      },
-      {
-        "type": "FOUL",
-        "time": "18:47",
-        "player": "GARDINER,ASHER"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "18:47",
-        "player": "GYIMESI,SCOTT"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "18:47",
-        "player": "GYIMESI,SCOTT"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "2nd Half",
-    "start_time": "18:47",
-    "end_time": "18:37",
-    "home_score": 39,
-    "away_score": 15,
-    "events": [
-      {
-        "type": "MISS JUMPER",
-        "time": "18:37",
-        "player": "ARMANT,JACOB"
-      },
-      {
-        "type": "BLOCK",
-        "time": "18:37",
-        "player": "BERNSTEIN,JOSHUA"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "2nd Half",
-    "start_time": "18:37",
-    "end_time": "18:25",
-    "home_score": 41,
-    "away_score": 15,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "WATT,ZION"
-      },
-      {
-        "type": "GOOD LAYUP",
-        "time": "18:25",
-        "player": "BERNSTEIN,JOSHUA"
       },
       {
         "type": "ASSIST",
@@ -1615,702 +590,357 @@
     ]
   },
   {
-    "team": "away",
-    "period": "2nd Half",
-    "start_time": "18:25",
-    "end_time": "17:59",
-    "home_score": 41,
-    "away_score": 17,
-    "events": [
-      {
-        "type": "FOUL",
-        "time": "17:59",
-        "player": "WATT,ZION"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "17:59",
-        "player": "HELMHOLD,LINUS"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "17:59",
-        "player": "HELMHOLD,LINUS"
-      }
-    ]
-  },
-  {
     "team": "home",
-    "period": "2nd Half",
-    "start_time": "17:59",
-    "end_time": "17:33",
-    "home_score": 41,
-    "away_score": 17,
+    "period": "1st Half",
+    "start_time": "12:11",
+    "end_time": "11:51",
+    "home_score": 11,
+    "away_score": 11,
     "events": [
-      {
-        "type": "FOUL",
-        "time": "17:44",
-        "player": "RUIZ,GULLERMO GASSET"
-      },
       {
         "type": "TURNOVER",
-        "time": "17:33",
-        "player": "BERNSTEIN,JOSHUA"
+        "time": "11:51",
+        "player": "BERRY,JARED"
       }
     ]
   },
   {
     "team": "away",
-    "period": "2nd Half",
-    "start_time": "17:33",
-    "end_time": "17:01",
-    "home_score": 41,
-    "away_score": 17,
+    "period": "1st Half",
+    "start_time": "11:51",
+    "end_time": "11:26",
+    "home_score": 11,
+    "away_score": 12,
     "events": [
       {
-        "type": "MISS JUMPER",
-        "time": "17:06",
-        "player": "MCNAMARA,BRENDAN"
-      },
-      {
-        "type": "REBOUND OFF",
-        "time": "--",
-        "player": "HELMHOLD,LINUS"
-      },
-      {
-        "type": "TURNOVER",
-        "time": "17:01",
-        "player": "HELMHOLD,LINUS"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "2nd Half",
-    "start_time": "17:01",
-    "end_time": "16:54",
-    "home_score": 43,
-    "away_score": 17,
-    "events": [
-      {
-        "type": "FOUL",
-        "time": "16:54",
-        "player": "RUIZ,GULLERMO GASSET"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "16:54",
-        "player": "GYIMESI,SCOTT"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "16:54",
-        "player": "GYIMESI,SCOTT"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "2nd Half",
-    "start_time": "16:54",
-    "end_time": "16:43",
-    "home_score": 43,
-    "away_score": 17,
-    "events": [
-      {
-        "type": "MISS LAYUP",
-        "time": "16:43",
-        "player": "HELMHOLD,LINUS"
-      },
-      {
-        "type": "BLOCK",
-        "time": "16:43",
-        "player": "BERNSTEIN,JOSHUA"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "2nd Half",
-    "start_time": "16:43",
-    "end_time": "16:15",
-    "home_score": 45,
-    "away_score": 17,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "BERNSTEIN,JOSHUA"
-      },
-      {
-        "type": "FOUL",
-        "time": "16:24",
-        "player": "GARDINER,ASHER"
-      },
-      {
-        "type": "GOOD LAYUP",
-        "time": "16:15",
-        "player": "LINSTRA,GRIFFIN"
-      },
-      {
-        "type": "ASSIST",
-        "time": "--",
-        "player": "BERNSTEIN,JOSHUA"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "2nd Half",
-    "start_time": "16:15",
-    "end_time": "15:58",
-    "home_score": 45,
-    "away_score": 19,
-    "events": [
-      {
-        "type": "GOOD LAYUP",
-        "time": "15:58",
-        "player": "HELMHOLD,LINUS"
-      },
-      {
-        "type": "ASSIST",
-        "time": "--",
-        "player": "ARMANT,JACOB"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "2nd Half",
-    "start_time": "15:58",
-    "end_time": "15:45",
-    "home_score": 47,
-    "away_score": 19,
-    "events": [
-      {
-        "type": "GOOD LAYUP",
-        "time": "15:45",
-        "player": "GYIMESI,SCOTT"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "2nd Half",
-    "start_time": "15:45",
-    "end_time": "15:30",
-    "home_score": 47,
-    "away_score": 22,
-    "events": [
-      {
-        "type": "GOOD 3PTR",
-        "time": "15:30",
-        "player": "HELMHOLD,LINUS"
-      },
-      {
-        "type": "ASSIST",
-        "time": "--",
-        "player": "RUIZ,GULLERMO GASSET"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "2nd Half",
-    "start_time": "15:30",
-    "end_time": "15:15",
-    "home_score": 49,
-    "away_score": 22,
-    "events": [
-      {
-        "type": "GOOD JUMPER",
-        "time": "15:15",
-        "player": "GYIMESI,SCOTT"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "2nd Half",
-    "start_time": "15:15",
-    "end_time": "14:49",
-    "home_score": 49,
-    "away_score": 22,
-    "events": [
-      {
-        "type": "MISS LAYUP",
-        "time": "14:49",
-        "player": "HELMHOLD,LINUS"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "2nd Half",
-    "start_time": "14:49",
-    "end_time": "14:41",
-    "home_score": 49,
-    "away_score": 22,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "WATT,ZION"
-      },
-      {
-        "type": "MISS 3PTR",
-        "time": "14:41",
-        "player": "LINSTRA,GRIFFIN"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "2nd Half",
-    "start_time": "14:41",
-    "end_time": "14:31",
-    "home_score": 49,
-    "away_score": 22,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "ARMANT,JACOB"
-      },
-      {
-        "type": "MISS 3PTR",
-        "time": "14:31",
-        "player": "ARMANT,JACOB"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "2nd Half",
-    "start_time": "14:31",
-    "end_time": "14:17",
-    "home_score": 52,
-    "away_score": 22,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "GYIMESI,SCOTT"
-      },
-      {
-        "type": "MISS 3PTR",
-        "time": "14:23",
-        "player": "WOOTEN,SIDNEY"
-      },
-      {
-        "type": "REBOUND OFF",
-        "time": "--",
-        "player": "WATT,ZION"
-      },
-      {
-        "type": "GOOD 3PTR",
-        "time": "14:17",
-        "player": "GYIMESI,SCOTT"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "2nd Half",
-    "start_time": "14:17",
-    "end_time": "14:01",
-    "home_score": 52,
-    "away_score": 24,
-    "events": [
-      {
-        "type": "GOOD JUMPER",
-        "time": "14:01",
-        "player": "LUESSENHOP,OTTO"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "2nd Half",
-    "start_time": "14:01",
-    "end_time": "13:36",
-    "home_score": 55,
-    "away_score": 24,
-    "events": [
-      {
-        "type": "GOOD 3PTR",
-        "time": "13:36",
-        "player": "GYIMESI,SCOTT"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "2nd Half",
-    "start_time": "13:36",
-    "end_time": "12:52",
-    "home_score": 55,
-    "away_score": 24,
-    "events": [
-      {
-        "type": "TIMEOUT TEAM",
-        "time": "13:14",
+        "type": "TIMEOUT MEDIA",
+        "time": "11:51",
         "player": "away"
       },
       {
-        "type": "MISS 3PTR",
-        "time": "12:52",
-        "player": "LUESSENHOP,OTTO"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "2nd Half",
-    "start_time": "12:52",
-    "end_time": "11:55",
-    "home_score": 55,
-    "away_score": 24,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "LINSTRA,GRIFFIN"
-      },
-      {
-        "type": "REBOUND OFF",
-        "time": "--",
-        "player": "GYIMESI,SCOTT"
-      },
-      {
-        "type": "MISS 3PTR",
-        "time": "11:55",
-        "player": "WOOTEN,SIDNEY"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "2nd Half",
-    "start_time": "11:55",
-    "end_time": "11:54",
-    "home_score": 55,
-    "away_score": 26,
-    "events": [
-      {
-        "type": "GOOD LAYUP",
-        "time": "11:54",
-        "player": "GRAMLICH,HANK"
-      },
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "ZUREK,CADEN"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "2nd Half",
-    "start_time": "11:54",
-    "end_time": "11:21",
-    "home_score": 55,
-    "away_score": 26,
-    "events": [
-      {
         "type": "MISS LAYUP",
-        "time": "11:53",
-        "player": "LINSTRA,GRIFFIN"
-      },
-      {
-        "type": "FOUL",
-        "time": "11:45",
-        "player": "GRAMLICH,HANK"
-      },
-      {
-        "type": "FOUL",
-        "time": "11:43",
-        "player": "ZUREK,CADEN"
-      },
-      {
-        "type": "MISS LAYUP",
-        "time": "11:38",
-        "player": "REEVES,EVAN"
-      },
-      {
-        "type": "BLOCK",
-        "time": "11:38",
-        "player": "VOLONTE,GIULIO"
+        "time": "11:31",
+        "player": "MORAKIS,JAMES"
       },
       {
         "type": "REBOUND OFF",
         "time": "--",
-        "player": "TEAM"
-      },
-      {
-        "type": "TIMEOUT TEAM",
-        "time": "11:33",
-        "player": "home"
-      },
-      {
-        "type": "MISS 3PTR",
-        "time": "11:22",
-        "player": "SCHMID,LUKAS"
-      },
-      {
-        "type": "REBOUND DEADB",
-        "time": "--",
-        "player": "TEAM"
-      },
-      {
-        "type": "TURNOVER",
-        "time": "11:21",
-        "player": "TEAM"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "2nd Half",
-    "start_time": "11:21",
-    "end_time": "11:09",
-    "home_score": 55,
-    "away_score": 26,
-    "events": [
-      {
-        "type": "TURNOVER",
-        "time": "11:09",
-        "player": "VOLONTE,GIULIO"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "2nd Half",
-    "start_time": "11:09",
-    "end_time": "10:56",
-    "home_score": 56,
-    "away_score": 26,
-    "events": [
-      {
-        "type": "STEAL",
-        "time": "11:08",
-        "player": "NIEVES,RICARDO"
+        "player": "MORAKIS,JAMES"
       },
       {
         "type": "FOUL",
-        "time": "11:01",
-        "player": "GRAMLICH,HANK"
-      },
-      {
-        "type": "REBOUND DEADB",
-        "time": "--",
-        "player": "TEAM"
-      },
-      {
-        "type": "MISS FT",
-        "time": "11:00",
-        "player": "REEVES,EVAN"
-      },
-      {
-        "type": "MISS FT",
-        "time": "11:00",
-        "player": "REEVES,EVAN"
-      },
-      {
-        "type": "REBOUND OFF",
-        "time": "--",
-        "player": "NIEVES,RICARDO"
+        "time": "11:26",
+        "player": "NORRIS,SAMUEL"
       },
       {
         "type": "GOOD FT",
-        "time": "10:56",
-        "player": "NYAMWAYA,ROBBIE"
-      },
-      {
-        "type": "FOUL",
-        "time": "10:56",
-        "player": "GRAMLICH,HANK"
+        "time": "11:26",
+        "player": "BERNSTEIN,JOSHUA"
       },
       {
         "type": "MISS FT",
-        "time": "10:56",
-        "player": "NYAMWAYA,ROBBIE"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "2nd Half",
-    "start_time": "10:56",
-    "end_time": "10:27",
-    "home_score": 56,
-    "away_score": 26,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "GRAMLICH,HANK"
-      },
-      {
-        "type": "MISS 3PTR",
-        "time": "10:41",
-        "player": "MCNEIL,BJ"
-      },
-      {
-        "type": "REBOUND OFF",
-        "time": "--",
-        "player": "III,RAY ALLEN"
-      },
-      {
-        "type": "FOUL",
-        "time": "10:38",
-        "player": "WOOTEN,SIDNEY"
-      },
-      {
-        "type": "TURNOVER",
-        "time": "10:27",
-        "player": "III,RAY ALLEN"
+        "time": "11:26",
+        "player": "BERNSTEIN,JOSHUA"
       }
     ]
   },
   {
     "team": "home",
-    "period": "2nd Half",
-    "start_time": "10:27",
+    "period": "1st Half",
+    "start_time": "11:26",
+    "end_time": "11:13",
+    "home_score": 13,
+    "away_score": 12,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "NORRIS,SAMUEL"
+      },
+      {
+        "type": "GOOD LAYUP",
+        "time": "11:13",
+        "player": "BERRY,JARED"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "1st Half",
+    "start_time": "11:13",
+    "end_time": "10:42",
+    "home_score": 13,
+    "away_score": 12,
+    "events": [
+      {
+        "type": "MISS 3PTR",
+        "time": "10:42",
+        "player": "WATT,ZION"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "1st Half",
+    "start_time": "10:42",
+    "end_time": "10:23",
+    "home_score": 16,
+    "away_score": 12,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "DAVIS,TRISTAN"
+      },
+      {
+        "type": "GOOD JUMPER",
+        "time": "10:23",
+        "player": "VETTER,HENRY"
+      },
+      {
+        "type": "FOUL",
+        "time": "10:23",
+        "player": "REILLY,DYLAN"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "10:23",
+        "player": "VETTER,HENRY"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "1st Half",
+    "start_time": "10:23",
     "end_time": "10:10",
-    "home_score": 56,
-    "away_score": 26,
+    "home_score": 16,
+    "away_score": 14,
     "events": [
       {
-        "type": "STEAL",
-        "time": "10:27",
-        "player": "WOOTEN,SIDNEY"
+        "type": "MISS JUMPER",
+        "time": "10:14",
+        "player": "NIEVES,RICARDO"
       },
       {
-        "type": "MISS LAYUP",
+        "type": "REBOUND OFF",
+        "time": "--",
+        "player": "WATT,ZION"
+      },
+      {
+        "type": "FOUL",
         "time": "10:10",
-        "player": "REEVES,EVAN"
+        "player": "DAVIS,TRISTAN"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "10:10",
+        "player": "WATT,ZION"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "10:10",
+        "player": "WATT,ZION"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "1st Half",
+    "start_time": "10:10",
+    "end_time": "10:01",
+    "home_score": 19,
+    "away_score": 14,
+    "events": [
+      {
+        "type": "GOOD LAYUP",
+        "time": "10:01",
+        "player": "DAVIS,TRISTAN"
+      },
+      {
+        "type": "ASSIST",
+        "time": "--",
+        "player": "AYLES,DAVID"
+      },
+      {
+        "type": "FOUL",
+        "time": "10:01",
+        "player": "REILLY,DYLAN"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "10:01",
+        "player": "DAVIS,TRISTAN"
       }
     ]
   },
   {
     "team": "away",
-    "period": "2nd Half",
-    "start_time": "10:10",
-    "end_time": "09:56",
-    "home_score": 56,
-    "away_score": 26,
+    "period": "1st Half",
+    "start_time": "10:01",
+    "end_time": "09:49",
+    "home_score": 19,
+    "away_score": 14,
+    "events": [
+      {
+        "type": "MISS LAYUP",
+        "time": "09:49",
+        "player": "MEDLEY,JON"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "1st Half",
+    "start_time": "09:49",
+    "end_time": "09:40",
+    "home_score": 19,
+    "away_score": 14,
     "events": [
       {
         "type": "REBOUND DEF",
         "time": "--",
-        "player": "LJ GLOVER,JR"
+        "player": "VETTER,HENRY"
       },
       {
-        "type": "TURNOVER",
-        "time": "09:56",
-        "player": "MCNEIL,BJ"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "2nd Half",
-    "start_time": "09:56",
-    "end_time": "09:35",
-    "home_score": 56,
-    "away_score": 26,
-    "events": [
-      {
-        "type": "STEAL",
-        "time": "09:53",
-        "player": "NIEVES,RICARDO"
-      },
-      {
-        "type": "TURNOVER",
-        "time": "09:35",
-        "player": "NYAMWAYA,ROBBIE"
-      },
-      {
-        "type": "FOUL",
-        "time": "09:35",
-        "player": "NYAMWAYA,ROBBIE"
+        "type": "MISS JUMPER",
+        "time": "09:40",
+        "player": "LAZARRE,DREW"
       }
     ]
   },
   {
     "team": "away",
-    "period": "2nd Half",
-    "start_time": "09:35",
-    "end_time": "09:12",
-    "home_score": 56,
-    "away_score": 28,
+    "period": "1st Half",
+    "start_time": "09:40",
+    "end_time": "09:34",
+    "home_score": 19,
+    "away_score": 17,
     "events": [
       {
-        "type": "GOOD LAYUP",
-        "time": "09:12",
-        "player": "MCNEIL,BJ"
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "BERNSTEIN,JOSHUA"
+      },
+      {
+        "type": "GOOD 3PTR",
+        "time": "09:34",
+        "player": "WATT,ZION"
+      },
+      {
+        "type": "ASSIST",
+        "time": "--",
+        "player": "MEDLEY,JON"
       }
     ]
   },
   {
     "team": "home",
-    "period": "2nd Half",
-    "start_time": "09:12",
-    "end_time": "08:57",
-    "home_score": 59,
-    "away_score": 28,
+    "period": "1st Half",
+    "start_time": "09:34",
+    "end_time": "09:08",
+    "home_score": 21,
+    "away_score": 17,
     "events": [
+      {
+        "type": "GOOD JUMPER",
+        "time": "09:08",
+        "player": "VETTER,HENRY"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "1st Half",
+    "start_time": "09:08",
+    "end_time": "08:41",
+    "home_score": 21,
+    "away_score": 17,
+    "events": [
+      {
+        "type": "MISS 3PTR",
+        "time": "08:45",
+        "player": "NIEVES,RICARDO"
+      },
+      {
+        "type": "REBOUND OFF",
+        "time": "--",
+        "player": "WATT,ZION"
+      },
+      {
+        "type": "MISS 3PTR",
+        "time": "08:41",
+        "player": "REILLY,DYLAN"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "1st Half",
+    "start_time": "08:41",
+    "end_time": "08:03",
+    "home_score": 21,
+    "away_score": 17,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "LAZARRE,DREW"
+      },
+      {
+        "type": "MISS 3PTR",
+        "time": "08:21",
+        "player": "AYLES,DAVID"
+      },
+      {
+        "type": "REBOUND OFF",
+        "time": "--",
+        "player": "TEAM"
+      },
+      {
+        "type": "MISS LAYUP",
+        "time": "08:07",
+        "player": "OKOROUGO,JARREL"
+      },
+      {
+        "type": "REBOUND OFF",
+        "time": "--",
+        "player": "TEAM"
+      },
       {
         "type": "TIMEOUT 30SEC",
-        "time": "09:09",
+        "time": "08:06",
+        "player": "home"
+      },
+      {
+        "type": "TIMEOUT MEDIA",
+        "time": "08:06",
         "player": "away"
       },
       {
-        "type": "GOOD 3PTR",
-        "time": "08:57",
-        "player": "WATT,ZION"
+        "type": "MISS JUMPER",
+        "time": "08:05",
+        "player": "OKOROUGO,JARREL"
+      },
+      {
+        "type": "REBOUND OFF",
+        "time": "--",
+        "player": "OKOROUGO,JARREL"
+      },
+      {
+        "type": "MISS LAYUP",
+        "time": "08:03",
+        "player": "OKOROUGO,JARREL"
       }
     ]
   },
   {
     "team": "away",
-    "period": "2nd Half",
-    "start_time": "08:57",
-    "end_time": "08:46",
-    "home_score": 59,
-    "away_score": 28,
-    "events": [
-      {
-        "type": "MISS LAYUP",
-        "time": "08:48",
-        "player": "ZUREK,CADEN"
-      },
-      {
-        "type": "REBOUND OFF",
-        "time": "--",
-        "player": "ZUREK,CADEN"
-      },
-      {
-        "type": "MISS LAYUP",
-        "time": "08:46",
-        "player": "ZUREK,CADEN"
-      },
-      {
-        "type": "BLOCK",
-        "time": "08:46",
-        "player": "BERNSTEIN,JOSHUA"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "2nd Half",
-    "start_time": "08:46",
-    "end_time": "08:28",
-    "home_score": 61,
-    "away_score": 28,
+    "period": "1st Half",
+    "start_time": "08:03",
+    "end_time": "07:43",
+    "home_score": 21,
+    "away_score": 20,
     "events": [
       {
         "type": "REBOUND DEF",
@@ -2318,299 +948,1809 @@
         "player": "MORAKIS,JAMES"
       },
       {
-        "type": "GOOD DUNK",
-        "time": "08:28",
+        "type": "GOOD 3PTR",
+        "time": "07:43",
         "player": "WATT,ZION"
       },
       {
         "type": "ASSIST",
         "time": "--",
-        "player": "BERNSTEIN,JOSHUA"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "2nd Half",
-    "start_time": "08:28",
-    "end_time": "08:03",
-    "home_score": 61,
-    "away_score": 28,
-    "events": [
-      {
-        "type": "TURNOVER",
-        "time": "08:03",
-        "player": "MCNEIL,BJ"
+        "player": "MORAKIS,JAMES"
       }
     ]
   },
   {
     "team": "home",
-    "period": "2nd Half",
-    "start_time": "08:03",
-    "end_time": "07:53",
-    "home_score": 62,
-    "away_score": 28,
+    "period": "1st Half",
+    "start_time": "07:43",
+    "end_time": "07:13",
+    "home_score": 21,
+    "away_score": 20,
     "events": [
-      {
-        "type": "STEAL",
-        "time": "08:02",
-        "player": "REILLY,DYLAN"
-      },
-      {
-        "type": "FOUL",
-        "time": "07:53",
-        "player": "GRAMLICH,HANK"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "07:53",
-        "player": "MORAKIS,JAMES"
-      },
-      {
-        "type": "MISS FT",
-        "time": "07:53",
-        "player": "MORAKIS,JAMES"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "2nd Half",
-    "start_time": "07:53",
-    "end_time": "07:32",
-    "home_score": 62,
-    "away_score": 31,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "LERARIS,ROMAN"
-      },
       {
         "type": "MISS JUMPER",
-        "time": "07:33",
-        "player": "LJ GLOVER,JR"
+        "time": "07:19",
+        "player": "VETTER,HENRY"
       },
       {
         "type": "REBOUND OFF",
         "time": "--",
-        "player": "LJ GLOVER,JR"
+        "player": "DAVIS,TRISTAN"
       },
       {
-        "type": "GOOD LAYUP",
-        "time": "07:32",
-        "player": "LJ GLOVER,JR"
-      },
-      {
-        "type": "FOUL",
-        "time": "07:32",
-        "player": "RANDALL,IAN"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "07:32",
-        "player": "LJ GLOVER,JR"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "2nd Half",
-    "start_time": "07:32",
-    "end_time": "07:09",
-    "home_score": 62,
-    "away_score": 31,
-    "events": [
-      {
-        "type": "MISS LAYUP",
-        "time": "07:09",
-        "player": "MORAKIS,JAMES"
+        "type": "MISS 3PTR",
+        "time": "07:13",
+        "player": "VETTER,HENRY"
       }
     ]
   },
   {
     "team": "away",
-    "period": "2nd Half",
-    "start_time": "07:09",
+    "period": "1st Half",
+    "start_time": "07:13",
     "end_time": "06:51",
-    "home_score": 62,
-    "away_score": 34,
+    "home_score": 21,
+    "away_score": 20,
     "events": [
       {
         "type": "REBOUND DEF",
+        "time": "--",
+        "player": "MORAKIS,JAMES"
+      },
+      {
+        "type": "MISS 3PTR",
+        "time": "06:58",
+        "player": "NIEVES,RICARDO"
+      },
+      {
+        "type": "REBOUND OFF",
+        "time": "--",
+        "player": "MORAKIS,JAMES"
+      },
+      {
+        "type": "MISS LAYUP",
+        "time": "06:51",
+        "player": "MORAKIS,JAMES"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "1st Half",
+    "start_time": "06:51",
+    "end_time": "06:42",
+    "home_score": 22,
+    "away_score": 20,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "LAZARRE,DREW"
+      },
+      {
+        "type": "FOUL",
+        "time": "06:42",
+        "player": "WATT,ZION"
+      },
+      {
+        "type": "MISS FT",
+        "time": "06:42",
+        "player": "LAZARRE,DREW"
+      },
+      {
+        "type": "REBOUND DEADB",
         "time": "--",
         "player": "TEAM"
       },
       {
-        "type": "GOOD 3PTR",
-        "time": "06:51",
-        "player": "LERARIS,ROMAN"
-      },
+        "type": "GOOD FT",
+        "time": "06:42",
+        "player": "LAZARRE,DREW"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "1st Half",
+    "start_time": "06:42",
+    "end_time": "06:27",
+    "home_score": 22,
+    "away_score": 20,
+    "events": [
       {
-        "type": "ASSIST",
-        "time": "--",
-        "player": "GRAMLICH,HANK"
+        "type": "MISS LAYUP",
+        "time": "06:27",
+        "player": "MEDLEY,JON"
       }
     ]
   },
   {
     "team": "home",
-    "period": "2nd Half",
-    "start_time": "06:51",
-    "end_time": "06:37",
-    "home_score": 64,
-    "away_score": 34,
+    "period": "1st Half",
+    "start_time": "06:27",
+    "end_time": "06:19",
+    "home_score": 22,
+    "away_score": 20,
     "events": [
       {
-        "type": "GOOD LAYUP",
-        "time": "06:37",
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "BERETE,BANGALY"
+      },
+      {
+        "type": "MISS 3PTR",
+        "time": "06:19",
+        "player": "IPPOLITO,PAUL"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "1st Half",
+    "start_time": "06:19",
+    "end_time": "06:06",
+    "home_score": 22,
+    "away_score": 20,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "GYIMESI,SCOTT"
+      },
+      {
+        "type": "MISS JUMPER",
+        "time": "06:06",
         "player": "GYIMESI,SCOTT"
       }
     ]
   },
   {
-    "team": "away",
-    "period": "2nd Half",
-    "start_time": "06:37",
-    "end_time": "06:32",
-    "home_score": 64,
-    "away_score": 34,
-    "events": [
-      {
-        "type": "TURNOVER",
-        "time": "06:32",
-        "player": "ZUREK,CADEN"
-      }
-    ]
-  },
-  {
     "team": "home",
-    "period": "2nd Half",
-    "start_time": "06:32",
-    "end_time": "06:21",
-    "home_score": 66,
-    "away_score": 34,
+    "period": "1st Half",
+    "start_time": "06:06",
+    "end_time": "05:41",
+    "home_score": 24,
+    "away_score": 20,
     "events": [
       {
-        "type": "FOUL",
-        "time": "06:21",
-        "player": "LJ GLOVER,JR"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "06:21",
-        "player": "RANDALL,IAN"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "06:21",
-        "player": "RANDALL,IAN"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "2nd Half",
-    "start_time": "06:21",
-    "end_time": "06:10",
-    "home_score": 66,
-    "away_score": 36,
-    "events": [
-      {
-        "type": "GOOD JUMPER",
-        "time": "06:10",
-        "player": "ZUREK,CADEN"
-      },
-      {
-        "type": "ASSIST",
+        "type": "REBOUND DEF",
         "time": "--",
-        "player": "LERARIS,ROMAN"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "2nd Half",
-    "start_time": "06:10",
-    "end_time": "05:33",
-    "home_score": 68,
-    "away_score": 36,
-    "events": [
-      {
-        "type": "MISS JUMPER",
-        "time": "05:54",
-        "player": "LIU,THEO"
-      },
-      {
-        "type": "REBOUND OFF",
-        "time": "--",
-        "player": "RANDALL,IAN"
+        "player": "IPPOLITO,PAUL"
       },
       {
         "type": "GOOD LAYUP",
-        "time": "05:33",
-        "player": "FRIEDMAN,ISAAC"
+        "time": "05:41",
+        "player": "IPPOLITO,PAUL"
       }
     ]
   },
   {
     "team": "away",
-    "period": "2nd Half",
-    "start_time": "05:33",
-    "end_time": "05:17",
-    "home_score": 68,
-    "away_score": 38,
+    "period": "1st Half",
+    "start_time": "05:41",
+    "end_time": "05:26",
+    "home_score": 24,
+    "away_score": 20,
     "events": [
       {
-        "type": "FOUL",
-        "time": "05:21",
-        "player": "LINSTRA,GRIFFIN"
-      },
-      {
-        "type": "GOOD JUMPER",
-        "time": "05:17",
-        "player": "GRAMLICH,HANK"
-      },
-      {
-        "type": "ASSIST",
-        "time": "--",
-        "player": "LJ GLOVER,JR"
+        "type": "MISS 3PTR",
+        "time": "05:26",
+        "player": "GYIMESI,SCOTT"
       }
     ]
   },
   {
     "team": "home",
-    "period": "2nd Half",
+    "period": "1st Half",
+    "start_time": "05:26",
+    "end_time": "05:17",
+    "home_score": 26,
+    "away_score": 20,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "BERRY,JARED"
+      },
+      {
+        "type": "GOOD LAYUP",
+        "time": "05:17",
+        "player": "BERETE,BANGALY"
+      },
+      {
+        "type": "ASSIST",
+        "time": "--",
+        "player": "BERRY,JARED"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "1st Half",
     "start_time": "05:17",
     "end_time": "04:58",
-    "home_score": 68,
-    "away_score": 38,
+    "home_score": 26,
+    "away_score": 20,
     "events": [
       {
         "type": "MISS JUMPER",
         "time": "04:58",
-        "player": "LINSTRA,GRIFFIN"
+        "player": "MORAKIS,JAMES"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "1st Half",
+    "start_time": "04:58",
+    "end_time": "04:50",
+    "home_score": 26,
+    "away_score": 20,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "IPPOLITO,PAUL"
+      },
+      {
+        "type": "MISS LAYUP",
+        "time": "04:50",
+        "player": "IPPOLITO,PAUL"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "1st Half",
+    "start_time": "04:50",
+    "end_time": "04:43",
+    "home_score": 26,
+    "away_score": 20,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "WATT,ZION"
+      },
+      {
+        "type": "TURNOVER",
+        "time": "04:43",
+        "player": "WATT,ZION"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "1st Half",
+    "start_time": "04:43",
+    "end_time": "04:38",
+    "home_score": 26,
+    "away_score": 20,
+    "events": [
+      {
+        "type": "STEAL",
+        "time": "04:43",
+        "player": "IPPOLITO,PAUL"
+      },
+      {
+        "type": "TURNOVER",
+        "time": "04:38",
+        "player": "NORRIS,SAMUEL"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "1st Half",
+    "start_time": "04:38",
+    "end_time": "04:10",
+    "home_score": 26,
+    "away_score": 20,
+    "events": [
+      {
+        "type": "STEAL",
+        "time": "04:38",
+        "player": "MEDLEY,JON"
+      },
+      {
+        "type": "MISS JUMPER",
+        "time": "04:10",
+        "player": "MEDLEY,JON"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "1st Half",
+    "start_time": "04:10",
+    "end_time": "04:06",
+    "home_score": 28,
+    "away_score": 20,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "BERRY,JARED"
+      },
+      {
+        "type": "FOUL",
+        "time": "04:06",
+        "player": "GYIMESI,SCOTT"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "04:06",
+        "player": "BERRY,JARED"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "04:06",
+        "player": "BERRY,JARED"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "1st Half",
+    "start_time": "04:06",
+    "end_time": "03:50",
+    "home_score": 28,
+    "away_score": 20,
+    "events": [
+      {
+        "type": "MISS 3PTR",
+        "time": "03:50",
+        "player": "REILLY,DYLAN"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "1st Half",
+    "start_time": "03:50",
+    "end_time": "02:57",
+    "home_score": 28,
+    "away_score": 20,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "BERETE,BANGALY"
+      },
+      {
+        "type": "MISS 3PTR",
+        "time": "03:19",
+        "player": "MCDONALD,TREVOR"
+      },
+      {
+        "type": "REBOUND OFF",
+        "time": "--",
+        "player": "BERETE,BANGALY"
+      },
+      {
+        "type": "MISS 3PTR",
+        "time": "03:03",
+        "player": "IPPOLITO,PAUL"
+      },
+      {
+        "type": "REBOUND OFF",
+        "time": "--",
+        "player": "BERRY,JARED"
+      },
+      {
+        "type": "MISS LAYUP",
+        "time": "02:57",
+        "player": "BERRY,JARED"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "1st Half",
+    "start_time": "02:57",
+    "end_time": "02:44",
+    "home_score": 28,
+    "away_score": 20,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "BERNSTEIN,JOSHUA"
+      },
+      {
+        "type": "TURNOVER",
+        "time": "02:44",
+        "player": "MEDLEY,JON"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "1st Half",
+    "start_time": "02:44",
+    "end_time": "02:36",
+    "home_score": 28,
+    "away_score": 20,
+    "events": [
+      {
+        "type": "STEAL",
+        "time": "02:44",
+        "player": "BERETE,BANGALY"
+      },
+      {
+        "type": "MISS LAYUP",
+        "time": "02:36",
+        "player": "BERETE,BANGALY"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "1st Half",
+    "start_time": "02:36",
+    "end_time": "02:08",
+    "home_score": 28,
+    "away_score": 22,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "WOOTEN,SIDNEY"
+      },
+      {
+        "type": "GOOD LAYUP",
+        "time": "02:08",
+        "player": "NIEVES,RICARDO"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "1st Half",
+    "start_time": "02:08",
+    "end_time": "01:39",
+    "home_score": 28,
+    "away_score": 22,
+    "events": [
+      {
+        "type": "TIMEOUT 30SEC",
+        "time": "02:07",
+        "player": "away"
+      },
+      {
+        "type": "TIMEOUT MEDIA",
+        "time": "02:07",
+        "player": "away"
+      },
+      {
+        "type": "MISS LAYUP",
+        "time": "01:42",
+        "player": "DAVIS,TRISTAN"
+      },
+      {
+        "type": "REBOUND OFF",
+        "time": "--",
+        "player": "DAVIS,TRISTAN"
+      },
+      {
+        "type": "FOUL",
+        "time": "01:39",
+        "player": "MEDLEY,JON"
+      },
+      {
+        "type": "MISS FT",
+        "time": "01:39",
+        "player": "DAVIS,TRISTAN"
+      },
+      {
+        "type": "REBOUND DEADB",
+        "time": "--",
+        "player": "TEAM"
+      },
+      {
+        "type": "MISS FT",
+        "time": "01:39",
+        "player": "DAVIS,TRISTAN"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "1st Half",
+    "start_time": "01:39",
+    "end_time": "01:23",
+    "home_score": 28,
+    "away_score": 24,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "BERNSTEIN,JOSHUA"
+      },
+      {
+        "type": "FOUL",
+        "time": "01:23",
+        "player": "DAVIS,TRISTAN"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "01:23",
+        "player": "MEDLEY,JON"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "01:23",
+        "player": "MEDLEY,JON"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "1st Half",
+    "start_time": "01:23",
+    "end_time": "00:57",
+    "home_score": 29,
+    "away_score": 24,
+    "events": [
+      {
+        "type": "FOUL",
+        "time": "00:57",
+        "player": "BERNSTEIN,JOSHUA"
+      },
+      {
+        "type": "MISS FT",
+        "time": "00:57",
+        "player": "AYLES,DAVID"
+      },
+      {
+        "type": "REBOUND DEADB",
+        "time": "--",
+        "player": "TEAM"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "00:57",
+        "player": "AYLES,DAVID"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "1st Half",
+    "start_time": "00:57",
+    "end_time": "00:30",
+    "home_score": 29,
+    "away_score": 27,
+    "events": [
+      {
+        "type": "MISS 3PTR",
+        "time": "00:44",
+        "player": "NIEVES,RICARDO"
+      },
+      {
+        "type": "REBOUND OFF",
+        "time": "--",
+        "player": "TEAM"
+      },
+      {
+        "type": "FOUL",
+        "time": "00:30",
+        "player": "OKOROUGO,JARREL"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "00:30",
+        "player": "WATT,ZION"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "00:30",
+        "player": "WATT,ZION"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "00:30",
+        "player": "WATT,ZION"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "1st Half",
+    "start_time": "00:30",
+    "end_time": "00:01",
+    "home_score": 29,
+    "away_score": 27,
+    "events": [
+      {
+        "type": "MISS 3PTR",
+        "time": "00:05",
+        "player": "VETTER,HENRY"
+      },
+      {
+        "type": "REBOUND OFF",
+        "time": "--",
+        "player": "LAZARRE,DREW"
+      },
+      {
+        "type": "MISS 3PTR",
+        "time": "00:01",
+        "player": "OKOROUGO,JARREL"
+      },
+      {
+        "type": "REBOUND DEADB",
+        "time": "--",
+        "player": "TEAM"
       }
     ]
   },
   {
     "team": "away",
     "period": "2nd Half",
-    "start_time": "04:58",
-    "end_time": "04:42",
-    "home_score": 68,
+    "start_time": "20:00",
+    "end_time": "19:46",
+    "home_score": 29,
+    "away_score": 27,
+    "events": [
+      {
+        "type": "MISS LAYUP",
+        "time": "19:46",
+        "player": "BERNSTEIN,JOSHUA"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "19:46",
+    "end_time": "19:38",
+    "home_score": 31,
+    "away_score": 27,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "OKOROUGO,JARREL"
+      },
+      {
+        "type": "GOOD JUMPER",
+        "time": "19:38",
+        "player": "OKOROUGO,JARREL"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "19:38",
+    "end_time": "19:12",
+    "home_score": 31,
+    "away_score": 27,
+    "events": [
+      {
+        "type": "TURNOVER",
+        "time": "19:12",
+        "player": "NIEVES,RICARDO"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "19:12",
+    "end_time": "19:04",
+    "home_score": 33,
+    "away_score": 27,
+    "events": [
+      {
+        "type": "STEAL",
+        "time": "19:12",
+        "player": "OKOROUGO,JARREL"
+      },
+      {
+        "type": "GOOD LAYUP",
+        "time": "19:04",
+        "player": "DAVIS,TRISTAN"
+      },
+      {
+        "type": "ASSIST",
+        "time": "--",
+        "player": "VETTER,HENRY"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "19:04",
+    "end_time": "18:50",
+    "home_score": 33,
+    "away_score": 27,
+    "events": [
+      {
+        "type": "MISS 3PTR",
+        "time": "18:50",
+        "player": "REILLY,DYLAN"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "18:50",
+    "end_time": "18:39",
+    "home_score": 33,
+    "away_score": 27,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "LAZARRE,DREW"
+      },
+      {
+        "type": "TURNOVER",
+        "time": "18:39",
+        "player": "LAZARRE,DREW"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "18:39",
+    "end_time": "18:26",
+    "home_score": 33,
+    "away_score": 29,
+    "events": [
+      {
+        "type": "GOOD JUMPER",
+        "time": "18:26",
+        "player": "WATT,ZION"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "18:26",
+    "end_time": "17:56",
+    "home_score": 33,
+    "away_score": 29,
+    "events": [
+      {
+        "type": "TURNOVER",
+        "time": "17:56",
+        "player": "OKOROUGO,JARREL"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "17:56",
+    "end_time": "17:52",
+    "home_score": 33,
+    "away_score": 29,
+    "events": [
+      {
+        "type": "STEAL",
+        "time": "17:56",
+        "player": "WATT,ZION"
+      },
+      {
+        "type": "TURNOVER",
+        "time": "17:52",
+        "player": "WATT,ZION"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "17:52",
+    "end_time": "17:48",
+    "home_score": 36,
+    "away_score": 29,
+    "events": [
+      {
+        "type": "STEAL",
+        "time": "17:52",
+        "player": "DAVIS,TRISTAN"
+      },
+      {
+        "type": "GOOD LAYUP",
+        "time": "17:48",
+        "player": "VETTER,HENRY"
+      },
+      {
+        "type": "FOUL",
+        "time": "17:48",
+        "player": "NIEVES,RICARDO"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "17:48",
+        "player": "VETTER,HENRY"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "17:48",
+    "end_time": "17:36",
+    "home_score": 36,
+    "away_score": 29,
+    "events": [
+      {
+        "type": "MISS JUMPER",
+        "time": "17:36",
+        "player": "WATT,ZION"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "17:36",
+    "end_time": "17:19",
+    "home_score": 38,
+    "away_score": 29,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "LAZARRE,DREW"
+      },
+      {
+        "type": "GOOD LAYUP",
+        "time": "17:19",
+        "player": "OKOROUGO,JARREL"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "17:19",
+    "end_time": "16:52",
+    "home_score": 38,
+    "away_score": 31,
+    "events": [
+      {
+        "type": "GOOD LAYUP",
+        "time": "16:52",
+        "player": "MEDLEY,JON"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "16:52",
+    "end_time": "16:31",
+    "home_score": 38,
+    "away_score": 31,
+    "events": [
+      {
+        "type": "MISS JUMPER",
+        "time": "16:31",
+        "player": "LAZARRE,DREW"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "16:31",
+    "end_time": "16:17",
+    "home_score": 38,
+    "away_score": 33,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "MEDLEY,JON"
+      },
+      {
+        "type": "GOOD LAYUP",
+        "time": "16:17",
+        "player": "BERNSTEIN,JOSHUA"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "16:17",
+    "end_time": "15:59",
+    "home_score": 40,
+    "away_score": 33,
+    "events": [
+      {
+        "type": "GOOD JUMPER",
+        "time": "15:59",
+        "player": "VETTER,HENRY"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "15:59",
+    "end_time": "15:36",
+    "home_score": 40,
+    "away_score": 35,
+    "events": [
+      {
+        "type": "MISS LAYUP",
+        "time": "15:38",
+        "player": "NIEVES,RICARDO"
+      },
+      {
+        "type": "REBOUND OFF",
+        "time": "--",
+        "player": "NIEVES,RICARDO"
+      },
+      {
+        "type": "GOOD LAYUP",
+        "time": "15:36",
+        "player": "BERNSTEIN,JOSHUA"
+      },
+      {
+        "type": "FOUL",
+        "time": "15:36",
+        "player": "AYLES,DAVID"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "15:36",
+    "end_time": "15:36",
+    "home_score": 40,
+    "away_score": 35,
+    "events": [
+      {
+        "type": "TIMEOUT MEDIA",
+        "time": "15:36",
+        "player": "away"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "15:36",
+    "end_time": "15:36",
+    "home_score": 40,
+    "away_score": 36,
+    "events": [
+      {
+        "type": "MISS LAYUP",
+        "time": "15:36",
+        "player": "NIEVES,RICARDO"
+      },
+      {
+        "type": "REBOUND OFF",
+        "time": "--",
+        "player": "BERNSTEIN,JOSHUA"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "15:36",
+        "player": "BERNSTEIN,JOSHUA"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "15:36",
+    "end_time": "15:07",
+    "home_score": 42,
+    "away_score": 36,
+    "events": [
+      {
+        "type": "GOOD LAYUP",
+        "time": "15:07",
+        "player": "DAVIS,TRISTAN"
+      },
+      {
+        "type": "ASSIST",
+        "time": "--",
+        "player": "AYLES,DAVID"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "15:07",
+    "end_time": "14:51",
+    "home_score": 42,
+    "away_score": 36,
+    "events": [
+      {
+        "type": "MISS JUMPER",
+        "time": "14:51",
+        "player": "BERNSTEIN,JOSHUA"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "14:51",
+    "end_time": "14:21",
+    "home_score": 42,
+    "away_score": 36,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "AYLES,DAVID"
+      },
+      {
+        "type": "MISS JUMPER",
+        "time": "14:21",
+        "player": "VETTER,HENRY"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "14:21",
+    "end_time": "14:04",
+    "home_score": 42,
     "away_score": 38,
     "events": [
       {
         "type": "REBOUND DEF",
         "time": "--",
-        "player": "ZUREK,CADEN"
+        "player": "BERNSTEIN,JOSHUA"
+      },
+      {
+        "type": "FOUL",
+        "time": "14:08",
+        "player": "DAVIS,TRISTAN"
+      },
+      {
+        "type": "GOOD LAYUP",
+        "time": "14:04",
+        "player": "BERNSTEIN,JOSHUA"
+      },
+      {
+        "type": "ASSIST",
+        "time": "--",
+        "player": "GYIMESI,SCOTT"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "14:04",
+    "end_time": "13:29",
+    "home_score": 42,
+    "away_score": 38,
+    "events": [
+      {
+        "type": "MISS LAYUP",
+        "time": "13:33",
+        "player": "MCDONALD,TREVOR"
+      },
+      {
+        "type": "BLOCK",
+        "time": "13:33",
+        "player": "BERNSTEIN,JOSHUA"
+      },
+      {
+        "type": "REBOUND OFF",
+        "time": "--",
+        "player": "TEAM"
+      },
+      {
+        "type": "TURNOVER",
+        "time": "13:29",
+        "player": "TEAM"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "13:29",
+    "end_time": "13:16",
+    "home_score": 42,
+    "away_score": 38,
+    "events": [
+      {
+        "type": "MISS JUMPER",
+        "time": "13:16",
+        "player": "GYIMESI,SCOTT"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "13:16",
+    "end_time": "12:55",
+    "home_score": 44,
+    "away_score": 38,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "BERRY,JARED"
+      },
+      {
+        "type": "FOUL",
+        "time": "12:55",
+        "player": "MORAKIS,JAMES"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "12:55",
+        "player": "MCDONALD,TREVOR"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "12:55",
+        "player": "MCDONALD,TREVOR"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "12:55",
+    "end_time": "12:26",
+    "home_score": 44,
+    "away_score": 38,
+    "events": [
+      {
+        "type": "MISS 3PTR",
+        "time": "12:26",
+        "player": "WOOTEN,SIDNEY"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "12:26",
+    "end_time": "12:18",
+    "home_score": 46,
+    "away_score": 38,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "MCDONALD,TREVOR"
+      },
+      {
+        "type": "FOUL",
+        "time": "12:18",
+        "player": "WATT,ZION"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "12:18",
+        "player": "BERRY,JARED"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "12:18",
+        "player": "BERRY,JARED"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "12:18",
+    "end_time": "11:56",
+    "home_score": 46,
+    "away_score": 39,
+    "events": [
+      {
+        "type": "FOUL",
+        "time": "11:56",
+        "player": "MCDONALD,TREVOR"
+      },
+      {
+        "type": "TIMEOUT MEDIA",
+        "time": "11:56",
+        "player": "away"
+      },
+      {
+        "type": "MISS FT",
+        "time": "11:56",
+        "player": "WATT,ZION"
+      },
+      {
+        "type": "REBOUND DEADB",
+        "time": "--",
+        "player": "TEAM"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "11:56",
+        "player": "WATT,ZION"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "11:56",
+    "end_time": "11:31",
+    "home_score": 47,
+    "away_score": 39,
+    "events": [
+      {
+        "type": "TIMEOUT 30SEC",
+        "time": "11:49",
+        "player": "home"
+      },
+      {
+        "type": "TIMEOUT MEDIA",
+        "time": "11:49",
+        "player": "away"
+      },
+      {
+        "type": "MISS LAYUP",
+        "time": "11:38",
+        "player": "BERRY,JARED"
+      },
+      {
+        "type": "BLOCK",
+        "time": "11:38",
+        "player": "WATT,ZION"
+      },
+      {
+        "type": "REBOUND OFF",
+        "time": "--",
+        "player": "TEAM"
+      },
+      {
+        "type": "FOUL",
+        "time": "11:31",
+        "player": "WATT,ZION"
+      },
+      {
+        "type": "MISS FT",
+        "time": "11:31",
+        "player": "BERRY,JARED"
+      },
+      {
+        "type": "REBOUND DEADB",
+        "time": "--",
+        "player": "TEAM"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "11:31",
+        "player": "BERRY,JARED"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "11:31",
+    "end_time": "11:10",
+    "home_score": 47,
+    "away_score": 41,
+    "events": [
+      {
+        "type": "MISS LAYUP",
+        "time": "11:13",
+        "player": "REILLY,DYLAN"
+      },
+      {
+        "type": "REBOUND OFF",
+        "time": "--",
+        "player": "BERNSTEIN,JOSHUA"
+      },
+      {
+        "type": "GOOD TIPIN",
+        "time": "11:10",
+        "player": "BERNSTEIN,JOSHUA"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "11:10",
+    "end_time": "10:53",
+    "home_score": 49,
+    "away_score": 41,
+    "events": [
+      {
+        "type": "GOOD LAYUP",
+        "time": "10:53",
+        "player": "BERRY,JARED"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "10:53",
+    "end_time": "10:36",
+    "home_score": 49,
+    "away_score": 41,
+    "events": [
+      {
+        "type": "MISS 3PTR",
+        "time": "10:36",
+        "player": "MEDLEY,JON"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "10:36",
+    "end_time": "10:24",
+    "home_score": 53,
+    "away_score": 41,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "BERETE,BANGALY"
+      },
+      {
+        "type": "MISS 3PTR",
+        "time": "10:29",
+        "player": "BERRY,JARED"
+      },
+      {
+        "type": "REBOUND DEADB",
+        "time": "--",
+        "player": "TEAM"
+      },
+      {
+        "type": "FOUL",
+        "time": "10:26",
+        "player": "GYIMESI,SCOTT"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "10:26",
+        "player": "NORRIS,SAMUEL"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "10:26",
+        "player": "NORRIS,SAMUEL"
+      },
+      {
+        "type": "GOOD LAYUP",
+        "time": "10:24",
+        "player": "LAZARRE,DREW"
+      },
+      {
+        "type": "ASSIST",
+        "time": "--",
+        "player": "OKOROUGO,JARREL"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "10:24",
+    "end_time": "10:11",
+    "home_score": 53,
+    "away_score": 41,
+    "events": [
+      {
+        "type": "MISS LAYUP",
+        "time": "10:11",
+        "player": "NIEVES,RICARDO"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "10:11",
+    "end_time": "09:54",
+    "home_score": 53,
+    "away_score": 41,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "LAZARRE,DREW"
       },
       {
         "type": "MISS JUMPER",
+        "time": "09:54",
+        "player": "OKOROUGO,JARREL"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "09:54",
+    "end_time": "09:31",
+    "home_score": 53,
+    "away_score": 41,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "TEAM"
+      },
+      {
+        "type": "FOUL",
+        "time": "09:39",
+        "player": "AYLES,DAVID"
+      },
+      {
+        "type": "MISS 3PTR",
+        "time": "09:36",
+        "player": "REILLY,DYLAN"
+      },
+      {
+        "type": "REBOUND OFF",
+        "time": "--",
+        "player": "MORAKIS,JAMES"
+      },
+      {
+        "type": "MISS 3PTR",
+        "time": "09:31",
+        "player": "NYAMWAYA,ROBBIE"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "09:31",
+    "end_time": "09:04",
+    "home_score": 53,
+    "away_score": 41,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "VETTER,HENRY"
+      },
+      {
+        "type": "MISS JUMPER",
+        "time": "09:04",
+        "player": "OKOROUGO,JARREL"
+      },
+      {
+        "type": "BLOCK",
+        "time": "09:04",
+        "player": "GYIMESI,SCOTT"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "09:04",
+    "end_time": "08:40",
+    "home_score": 53,
+    "away_score": 44,
+    "events": [
+      {
+        "type": "REBOUND DEADB",
+        "time": "--",
+        "player": "TEAM"
+      },
+      {
+        "type": "FOUL",
+        "time": "09:02",
+        "player": "DAVIS,TRISTAN"
+      },
+      {
+        "type": "GOOD 3PTR",
+        "time": "08:40",
+        "player": "NYAMWAYA,ROBBIE"
+      },
+      {
+        "type": "ASSIST",
+        "time": "--",
+        "player": "MORAKIS,JAMES"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "08:40",
+    "end_time": "08:23",
+    "home_score": 53,
+    "away_score": 44,
+    "events": [
+      {
+        "type": "MISS JUMPER",
+        "time": "08:23",
+        "player": "OKOROUGO,JARREL"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "08:23",
+    "end_time": "08:07",
+    "home_score": 53,
+    "away_score": 44,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "WOOTEN,SIDNEY"
+      },
+      {
+        "type": "MISS LAYUP",
+        "time": "08:07",
+        "player": "BERNSTEIN,JOSHUA"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "08:07",
+    "end_time": "07:49",
+    "home_score": 53,
+    "away_score": 44,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "VETTER,HENRY"
+      },
+      {
+        "type": "MISS JUMPER",
+        "time": "07:49",
+        "player": "VETTER,HENRY"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "07:49",
+    "end_time": "07:30",
+    "home_score": 53,
+    "away_score": 44,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "NYAMWAYA,ROBBIE"
+      },
+      {
+        "type": "TURNOVER",
+        "time": "07:30",
+        "player": "MORAKIS,JAMES"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "07:30",
+    "end_time": "07:21",
+    "home_score": 55,
+    "away_score": 44,
+    "events": [
+      {
+        "type": "STEAL",
+        "time": "07:30",
+        "player": "MCDONALD,TREVOR"
+      },
+      {
+        "type": "GOOD JUMPER",
+        "time": "07:21",
+        "player": "OKOROUGO,JARREL"
+      },
+      {
+        "type": "ASSIST",
+        "time": "--",
+        "player": "LAZARRE,DREW"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "07:21",
+    "end_time": "06:59",
+    "home_score": 55,
+    "away_score": 44,
+    "events": [
+      {
+        "type": "MISS JUMPER",
+        "time": "06:59",
+        "player": "BERNSTEIN,JOSHUA"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "06:59",
+    "end_time": "06:31",
+    "home_score": 56,
+    "away_score": 44,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "MCDONALD,TREVOR"
+      },
+      {
+        "type": "FOUL",
+        "time": "06:31",
+        "player": "BERNSTEIN,JOSHUA"
+      },
+      {
+        "type": "TIMEOUT MEDIA",
+        "time": "06:31",
+        "player": "away"
+      },
+      {
+        "type": "MISS FT",
+        "time": "06:31",
+        "player": "LAZARRE,DREW"
+      },
+      {
+        "type": "REBOUND DEADB",
+        "time": "--",
+        "player": "TEAM"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "06:31",
+        "player": "LAZARRE,DREW"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "06:31",
+    "end_time": "06:22",
+    "home_score": 56,
+    "away_score": 46,
+    "events": [
+      {
+        "type": "GOOD LAYUP",
+        "time": "06:22",
+        "player": "MEDLEY,JON"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "06:22",
+    "end_time": "06:02",
+    "home_score": 56,
+    "away_score": 46,
+    "events": [
+      {
+        "type": "MISS LAYUP",
+        "time": "06:02",
+        "player": "OKOROUGO,JARREL"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "06:02",
+    "end_time": "05:38",
+    "home_score": 56,
+    "away_score": 49,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "TEAM"
+      },
+      {
+        "type": "GOOD 3PTR",
+        "time": "05:38",
+        "player": "MEDLEY,JON"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "05:38",
+    "end_time": "05:25",
+    "home_score": 56,
+    "away_score": 49,
+    "events": [
+      {
+        "type": "MISS LAYUP",
+        "time": "05:25",
+        "player": "LAZARRE,DREW"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "05:25",
+    "end_time": "05:10",
+    "home_score": 56,
+    "away_score": 51,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "BERNSTEIN,JOSHUA"
+      },
+      {
+        "type": "GOOD LAYUP",
+        "time": "05:10",
+        "player": "BERNSTEIN,JOSHUA"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "05:10",
+    "end_time": "04:54",
+    "home_score": 58,
+    "away_score": 51,
+    "events": [
+      {
+        "type": "GOOD LAYUP",
+        "time": "04:54",
+        "player": "MCDONALD,TREVOR"
+      },
+      {
+        "type": "ASSIST",
+        "time": "--",
+        "player": "AYLES,DAVID"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "04:54",
+    "end_time": "04:42",
+    "home_score": 58,
+    "away_score": 53,
+    "events": [
+      {
+        "type": "FOUL",
         "time": "04:42",
-        "player": "ZUREK,CADEN"
+        "player": "MCDONALD,TREVOR"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "04:42",
+        "player": "NIEVES,RICARDO"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "04:42",
+        "player": "NIEVES,RICARDO"
       }
     ]
   },
@@ -2618,519 +2758,449 @@
     "team": "home",
     "period": "2nd Half",
     "start_time": "04:42",
-    "end_time": "04:27",
-    "home_score": 68,
-    "away_score": 38,
+    "end_time": "04:37",
+    "home_score": 60,
+    "away_score": 53,
     "events": [
       {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "RANDALL,IAN"
-      },
-      {
-        "type": "TURNOVER",
-        "time": "04:27",
-        "player": "LINSTRA,GRIFFIN"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "2nd Half",
-    "start_time": "04:27",
-    "end_time": "04:10",
-    "home_score": 68,
-    "away_score": 41,
-    "events": [
-      {
-        "type": "STEAL",
-        "time": "04:27",
-        "player": "LERARIS,ROMAN"
-      },
-      {
-        "type": "TIMEOUT TEAM",
-        "time": "04:19",
+        "type": "TIMEOUT 30SEC",
+        "time": "04:42",
         "player": "away"
       },
       {
-        "type": "MISS LAYUP",
-        "time": "04:14",
-        "player": "MCNAMARA,BRENDAN"
-      },
-      {
-        "type": "BLOCK",
-        "time": "04:14",
-        "player": "SCHMID,LUKAS"
-      },
-      {
-        "type": "REBOUND OFF",
-        "time": "--",
-        "player": "MCNAMARA,BRENDAN"
-      },
-      {
-        "type": "GOOD 3PTR",
-        "time": "04:10",
-        "player": "LERARIS,ROMAN"
-      },
-      {
-        "type": "ASSIST",
-        "time": "--",
-        "player": "MCNAMARA,BRENDAN"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "2nd Half",
-    "start_time": "04:10",
-    "end_time": "03:41",
-    "home_score": 71,
-    "away_score": 41,
-    "events": [
-      {
-        "type": "GOOD LAYUP",
-        "time": "03:41",
-        "player": "NYAMWAYA,ROBBIE"
-      },
-      {
         "type": "FOUL",
-        "time": "03:41",
-        "player": "LJ GLOVER,JR"
+        "time": "04:37",
+        "player": "MEDLEY,JON"
       },
       {
         "type": "GOOD FT",
-        "time": "03:41",
-        "player": "NYAMWAYA,ROBBIE"
+        "time": "04:37",
+        "player": "BERRY,JARED"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "04:37",
+        "player": "BERRY,JARED"
       }
     ]
   },
   {
     "team": "away",
     "period": "2nd Half",
-    "start_time": "03:41",
-    "end_time": "03:27",
-    "home_score": 71,
-    "away_score": 44,
+    "start_time": "04:37",
+    "end_time": "04:25",
+    "home_score": 60,
+    "away_score": 55,
     "events": [
       {
-        "type": "MISS 3PTR",
-        "time": "03:31",
-        "player": "VOLONTE,GIULIO"
+        "type": "FOUL",
+        "time": "04:25",
+        "player": "BERRY,JARED"
       },
       {
-        "type": "REBOUND OFF",
-        "time": "--",
-        "player": "TEAM"
+        "type": "GOOD FT",
+        "time": "04:25",
+        "player": "MEDLEY,JON"
       },
       {
-        "type": "GOOD 3PTR",
-        "time": "03:27",
-        "player": "MCNAMARA,BRENDAN"
-      },
-      {
-        "type": "ASSIST",
-        "time": "--",
-        "player": "VOLONTE,GIULIO"
+        "type": "GOOD FT",
+        "time": "04:25",
+        "player": "MEDLEY,JON"
       }
     ]
   },
   {
     "team": "home",
     "period": "2nd Half",
-    "start_time": "03:27",
-    "end_time": "03:17",
-    "home_score": 71,
-    "away_score": 44,
+    "start_time": "04:25",
+    "end_time": "04:19",
+    "home_score": 60,
+    "away_score": 55,
     "events": [
       {
-        "type": "MISS 3PTR",
-        "time": "03:17",
-        "player": "LIU,THEO"
+        "type": "MISS LAYUP",
+        "time": "04:19",
+        "player": "OKOROUGO,JARREL"
+      },
+      {
+        "type": "BLOCK",
+        "time": "04:19",
+        "player": "BERNSTEIN,JOSHUA"
       }
     ]
   },
   {
     "team": "away",
     "period": "2nd Half",
-    "start_time": "03:17",
-    "end_time": "03:07",
-    "home_score": 71,
-    "away_score": 44,
+    "start_time": "04:19",
+    "end_time": "04:14",
+    "home_score": 60,
+    "away_score": 55,
     "events": [
       {
         "type": "REBOUND DEF",
         "time": "--",
-        "player": "TAN,JEFF"
-      },
-      {
-        "type": "MISS 3PTR",
-        "time": "03:07",
-        "player": "LERARIS,ROMAN"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "2nd Half",
-    "start_time": "03:07",
-    "end_time": "02:58",
-    "home_score": 73,
-    "away_score": 44,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "LIU,THEO"
-      },
-      {
-        "type": "GOOD LAYUP",
-        "time": "02:58",
         "player": "NIEVES,RICARDO"
       },
       {
+        "type": "TURNOVER",
+        "time": "04:14",
+        "player": "NIEVES,RICARDO"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "04:14",
+    "end_time": "03:48",
+    "home_score": 63,
+    "away_score": 55,
+    "events": [
+      {
+        "type": "STEAL",
+        "time": "04:14",
+        "player": "BERRY,JARED"
+      },
+      {
+        "type": "TIMEOUT MEDIA",
+        "time": "04:01",
+        "player": "away"
+      },
+      {
+        "type": "GOOD 3PTR",
+        "time": "03:48",
+        "player": "LAZARRE,DREW"
+      },
+      {
         "type": "ASSIST",
         "time": "--",
-        "player": "LIU,THEO"
+        "player": "VETTER,HENRY"
       }
     ]
   },
   {
     "team": "away",
     "period": "2nd Half",
-    "start_time": "02:58",
-    "end_time": "02:43",
-    "home_score": 73,
-    "away_score": 44,
+    "start_time": "03:48",
+    "end_time": "03:26",
+    "home_score": 63,
+    "away_score": 58,
+    "events": [
+      {
+        "type": "GOOD 3PTR",
+        "time": "03:26",
+        "player": "WOOTEN,SIDNEY"
+      },
+      {
+        "type": "ASSIST",
+        "time": "--",
+        "player": "BERNSTEIN,JOSHUA"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "03:26",
+    "end_time": "03:01",
+    "home_score": 63,
+    "away_score": 58,
     "events": [
       {
         "type": "MISS JUMPER",
-        "time": "02:49",
-        "player": "VOLONTE,GIULIO"
-      },
-      {
-        "type": "REBOUND OFF",
-        "time": "--",
-        "player": "TAN,JEFF"
-      },
-      {
-        "type": "TURNOVER",
-        "time": "02:43",
-        "player": "TAN,JEFF"
+        "time": "03:01",
+        "player": "LAZARRE,DREW"
       }
     ]
   },
   {
-    "team": "home",
+    "team": "away",
     "period": "2nd Half",
-    "start_time": "02:43",
+    "start_time": "03:01",
     "end_time": "02:39",
-    "home_score": 76,
-    "away_score": 44,
-    "events": [
-      {
-        "type": "STEAL",
-        "time": "02:42",
-        "player": "NIEVES,RICARDO"
-      },
-      {
-        "type": "GOOD LAYUP",
-        "time": "02:39",
-        "player": "NIEVES,RICARDO"
-      },
-      {
-        "type": "ASSIST",
-        "time": "--",
-        "player": "LIU,THEO"
-      },
-      {
-        "type": "FOUL",
-        "time": "02:39",
-        "player": "MCNAMARA,BRENDAN"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "02:39",
-        "player": "NIEVES,RICARDO"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "2nd Half",
-    "start_time": "02:39",
-    "end_time": "02:30",
-    "home_score": 76,
-    "away_score": 44,
-    "events": [
-      {
-        "type": "MISS 3PTR",
-        "time": "02:30",
-        "player": "LERARIS,ROMAN"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "2nd Half",
-    "start_time": "02:30",
-    "end_time": "02:17",
-    "home_score": 78,
-    "away_score": 44,
+    "home_score": 63,
+    "away_score": 60,
     "events": [
       {
         "type": "REBOUND DEF",
         "time": "--",
-        "player": "NIEVES,RICARDO"
-      },
-      {
-        "type": "FOUL",
-        "time": "02:17",
-        "player": "RABBI,YOAV"
-      },
-      {
-        "type": "TIMEOUT 30SEC",
-        "time": "02:17",
-        "player": "away"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "02:17",
-        "player": "SCHMID,LUKAS"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "02:17",
-        "player": "SCHMID,LUKAS"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "2nd Half",
-    "start_time": "02:17",
-    "end_time": "01:49",
-    "home_score": 78,
-    "away_score": 44,
-    "events": [
-      {
-        "type": "MISS LAYUP",
-        "time": "01:57",
-        "player": "RABBI,YOAV"
-      },
-      {
-        "type": "REBOUND OFF",
-        "time": "--",
-        "player": "LERARIS,ROMAN"
-      },
-      {
-        "type": "MISS 3PTR",
-        "time": "01:49",
-        "player": "MCNAMARA,BRENDAN"
-      },
-      {
-        "type": "BLOCK",
-        "time": "01:49",
-        "player": "NIEVES,RICARDO"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "2nd Half",
-    "start_time": "01:49",
-    "end_time": "01:44",
-    "home_score": 80,
-    "away_score": 44,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "NIEVES,RICARDO"
-      },
-      {
-        "type": "FOUL",
-        "time": "01:44",
-        "player": "LERARIS,ROMAN"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "01:44",
-        "player": "NIEVES,RICARDO"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "01:44",
-        "player": "NIEVES,RICARDO"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "2nd Half",
-    "start_time": "01:44",
-    "end_time": "01:36",
-    "home_score": 80,
-    "away_score": 44,
-    "events": [
-      {
-        "type": "TURNOVER",
-        "time": "01:36",
-        "player": "LERARIS,ROMAN"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "2nd Half",
-    "start_time": "01:36",
-    "end_time": "01:31",
-    "home_score": 82,
-    "away_score": 44,
-    "events": [
-      {
-        "type": "STEAL",
-        "time": "01:34",
-        "player": "LIU,THEO"
-      },
-      {
-        "type": "GOOD LAYUP",
-        "time": "01:31",
-        "player": "LIU,THEO"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "2nd Half",
-    "start_time": "01:31",
-    "end_time": "01:22",
-    "home_score": 82,
-    "away_score": 44,
-    "events": [
-      {
-        "type": "MISS 3PTR",
-        "time": "01:22",
-        "player": "RABBI,YOAV"
-      }
-    ]
-  },
-  {
-    "team": "home",
-    "period": "2nd Half",
-    "start_time": "01:22",
-    "end_time": "01:09",
-    "home_score": 82,
-    "away_score": 44,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "RANDALL,IAN"
-      },
-      {
-        "type": "MISS LAYUP",
-        "time": "01:09",
-        "player": "FRIEDMAN,ISAAC"
-      },
-      {
-        "type": "BLOCK",
-        "time": "01:09",
-        "player": "TAN,JEFF"
-      }
-    ]
-  },
-  {
-    "team": "away",
-    "period": "2nd Half",
-    "start_time": "01:09",
-    "end_time": "00:51",
-    "home_score": 82,
-    "away_score": 47,
-    "events": [
-      {
-        "type": "REBOUND DEF",
-        "time": "--",
-        "player": "VOLONTE,GIULIO"
-      },
-      {
-        "type": "FOUL",
-        "time": "01:04",
-        "player": "NIEVES,RICARDO"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "01:04",
-        "player": "VOLONTE,GIULIO"
-      },
-      {
-        "type": "MISS FT",
-        "time": "01:04",
-        "player": "VOLONTE,GIULIO"
-      },
-      {
-        "type": "REBOUND OFF",
-        "time": "--",
-        "player": "RABBI,YOAV"
-      },
-      {
-        "type": "MISS 3PTR",
-        "time": "00:57",
-        "player": "RABBI,YOAV"
-      },
-      {
-        "type": "REBOUND OFF",
-        "time": "--",
-        "player": "VOLONTE,GIULIO"
+        "player": "WOOTEN,SIDNEY"
       },
       {
         "type": "GOOD JUMPER",
-        "time": "00:51",
-        "player": "VOLONTE,GIULIO"
+        "time": "02:39",
+        "player": "BERNSTEIN,JOSHUA"
       }
     ]
   },
   {
     "team": "home",
     "period": "2nd Half",
-    "start_time": "00:51",
-    "end_time": "00:31",
-    "home_score": 84,
-    "away_score": 47,
+    "start_time": "02:39",
+    "end_time": "02:27",
+    "home_score": 63,
+    "away_score": 60,
     "events": [
       {
-        "type": "FOUL",
-        "time": "00:31",
-        "player": "BAILEY,BLAKE"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "00:31",
-        "player": "NIEVES,RICARDO"
-      },
-      {
-        "type": "GOOD FT",
-        "time": "00:31",
-        "player": "NIEVES,RICARDO"
+        "type": "TURNOVER",
+        "time": "02:27",
+        "player": "BERRY,JARED"
       }
     ]
   },
   {
     "team": "away",
     "period": "2nd Half",
-    "start_time": "00:31",
-    "end_time": "00:25",
-    "home_score": 84,
-    "away_score": 50,
+    "start_time": "02:27",
+    "end_time": "02:09",
+    "home_score": 63,
+    "away_score": 61,
     "events": [
       {
-        "type": "GOOD 3PTR",
-        "time": "00:25",
-        "player": "VOLONTE,GIULIO"
+        "type": "STEAL",
+        "time": "02:27",
+        "player": "WOOTEN,SIDNEY"
       },
       {
-        "type": "ASSIST",
+        "type": "FOUL",
+        "time": "02:09",
+        "player": "LAZARRE,DREW"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "02:09",
+        "player": "MEDLEY,JON"
+      },
+      {
+        "type": "MISS FT",
+        "time": "02:09",
+        "player": "MEDLEY,JON"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "02:09",
+    "end_time": "01:53",
+    "home_score": 65,
+    "away_score": 61,
+    "events": [
+      {
+        "type": "REBOUND DEF",
         "time": "--",
-        "player": "BAILEY,BLAKE"
+        "player": "VETTER,HENRY"
+      },
+      {
+        "type": "GOOD JUMPER",
+        "time": "01:53",
+        "player": "VETTER,HENRY"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "01:53",
+    "end_time": "01:30",
+    "home_score": 65,
+    "away_score": 63,
+    "events": [
+      {
+        "type": "GOOD JUMPER",
+        "time": "01:30",
+        "player": "BERNSTEIN,JOSHUA"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "01:30",
+    "end_time": "00:55",
+    "home_score": 67,
+    "away_score": 63,
+    "events": [
+      {
+        "type": "MISS 3PTR",
+        "time": "01:07",
+        "player": "VETTER,HENRY"
+      },
+      {
+        "type": "REBOUND OFF",
+        "time": "--",
+        "player": "BERRY,JARED"
+      },
+      {
+        "type": "GOOD LAYUP",
+        "time": "00:55",
+        "player": "BERRY,JARED"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "00:55",
+    "end_time": "00:48",
+    "home_score": 67,
+    "away_score": 63,
+    "events": [
+      {
+        "type": "MISS 3PTR",
+        "time": "00:48",
+        "player": "MEDLEY,JON"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "00:48",
+    "end_time": "00:42",
+    "home_score": 68,
+    "away_score": 63,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "DAVIS,TRISTAN"
+      },
+      {
+        "type": "FOUL",
+        "time": "00:42",
+        "player": "MEDLEY,JON"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "00:42",
+        "player": "LAZARRE,DREW"
+      },
+      {
+        "type": "TURNOVER",
+        "time": "00:42",
+        "player": "LAZARRE,DREW"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "00:42",
+    "end_time": "00:32",
+    "home_score": 68,
+    "away_score": 64,
+    "events": [
+      {
+        "type": "FOUL",
+        "time": "00:32",
+        "player": "DAVIS,TRISTAN"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "00:32",
+        "player": "REILLY,DYLAN"
+      },
+      {
+        "type": "MISS FT",
+        "time": "00:32",
+        "player": "REILLY,DYLAN"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "00:32",
+    "end_time": "00:17",
+    "home_score": 69,
+    "away_score": 64,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "VETTER,HENRY"
+      },
+      {
+        "type": "FOUL",
+        "time": "00:17",
+        "player": "MEDLEY,JON"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "00:17",
+        "player": "BERRY,JARED"
+      },
+      {
+        "type": "MISS FT",
+        "time": "00:17",
+        "player": "BERRY,JARED"
+      }
+    ]
+  },
+  {
+    "team": "away",
+    "period": "2nd Half",
+    "start_time": "00:17",
+    "end_time": "00:01",
+    "home_score": 69,
+    "away_score": 66,
+    "events": [
+      {
+        "type": "REBOUND DEF",
+        "time": "--",
+        "player": "BERNSTEIN,JOSHUA"
+      },
+      {
+        "type": "MISS 3PTR",
+        "time": "00:09",
+        "player": "MEDLEY,JON"
+      },
+      {
+        "type": "REBOUND OFF",
+        "time": "--",
+        "player": "REILLY,DYLAN"
+      },
+      {
+        "type": "MISS 3PTR",
+        "time": "00:05",
+        "player": "WATT,ZION"
+      },
+      {
+        "type": "REBOUND OFF",
+        "time": "--",
+        "player": "MEDLEY,JON"
+      },
+      {
+        "type": "FOUL",
+        "time": "00:01",
+        "player": "BERRY,JARED"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "00:01",
+        "player": "MEDLEY,JON"
+      },
+      {
+        "type": "GOOD FT",
+        "time": "00:01",
+        "player": "MEDLEY,JON"
+      }
+    ]
+  },
+  {
+    "team": "home",
+    "period": "2nd Half",
+    "start_time": "00:01",
+    "end_time": "00:01",
+    "home_score": 69,
+    "away_score": 66,
+    "events": [
+      {
+        "type": "TIMEOUT 30SEC",
+        "time": "00:01",
+        "player": "away"
       }
     ]
   }

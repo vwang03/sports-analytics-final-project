@@ -95,9 +95,10 @@ h1 {
 
 /* Tufts Digital Blue */
 .pair-meta {
-  fill: #718096;
-  font-size: 9px;
-  letter-spacing: .01em;
+  fill: #515b6a;
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: .0025em;
 }
 
 .lane-bg {
@@ -153,6 +154,15 @@ h1 {
   font-weight: 500;
 }
 
+.diff-legend-line {
+  stroke: #1d4ed8;
+  stroke-width: 1.5;
+}
+
+.diff-legend-point {
+  fill: #1d4ed8;
+}
+
 .legend-tick-swatch {
   stroke-width: 3.5;
   stroke-linecap: butt;
@@ -161,6 +171,58 @@ h1 {
 .footnote {
   fill: #a0aec0;
   font-size: 10px;
+}
+
+.diff-zero-line {
+  stroke: #3c4044;
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+  opacity: 0.65;
+}
+
+.diff-line {
+  fill: none;
+  stroke: #1d4ed8;
+  stroke-width: 1.8;
+  opacity: 0.5;
+}
+
+.diff-point {
+  fill: #1d4ed8;
+  opacity: 0.45;
+}
+
+.diff-point-label {
+  fill: #1e3a8a;
+  font-size: 9px;
+  font-weight: 600;
+  opacity: 0.55;
+}
+
+.diff-axis path,
+.diff-axis line {
+  stroke: #93c5fd;
+  stroke-width: 1;
+}
+
+.diff-axis text {
+  fill: #1d4ed8;
+  font-size: 8px;
+  font-weight: 600;
+}
+
+.diff-axis-label {
+  fill: #1e40af;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.diff-lane-label {
+  fill: #1e3a8a;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
 }
 
 .possession-tooltip {
