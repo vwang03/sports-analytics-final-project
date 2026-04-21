@@ -1,15 +1,15 @@
 const TICK_COLORS = {
-  made_shot: "#3b8a1f",
-  missed_shot: "#aaa",
-  def_rebound: "#3a42d4",
-  off_rebound: "#3a92d4",
-  turnover: "#d94040",
-  foul: "#e8960f",
-  steal: "#7c3aed",
-  block: "#0f766e",
-  assist: "#2563eb",
-  timeout: "#b45309",
-  other: "#000000",
+  made_shot: "#166534",
+  missed_shot: "#9ca3af",
+  def_rebound: "#374151",
+  off_rebound: "#1d4ed8",
+  turnover: "#dc2626",
+  foul: "#FF7518",
+  steal: "#dc2626",
+  block: "#dc2626",
+  assist: "#A6C3A8",
+  timeout: "#704214",
+  other: "#704214",
 };
 
 const HALF_SECONDS = 20 * 60;
@@ -68,7 +68,9 @@ function normalizePossessions(rawPossessions) {
     const duration = computeDurationSeconds(p);
 
     let previousEventAbs = startAbs ?? null;
-    const tickEvents = (p.events || []).map((event) => {
+    const tickEvents = (p.events || [])
+      .filter((event) => getTickEventCategory(event.type) !== "assist")
+      .map((event) => {
       const eventAbs = toAbsoluteElapsed(p.period, event.time);
       const tickCategory = getTickEventCategory(event.type);
       const resolvedAbs = eventAbs ?? previousEventAbs ?? endAbs ?? startAbs ?? 0;
@@ -117,23 +119,31 @@ function normalizePossessions(rawPossessions) {
 function drawChart({ teams, pairs }) {
   const svg = d3.select("#possession-chart");
   const width = 980;
-  const tickLegend = [
-    { label: "made shot", color: TICK_COLORS.made_shot },
-    { label: "missed shot", color: TICK_COLORS.missed_shot },
-    { label: "defensive rebound", color: TICK_COLORS.def_rebound },
-    { label: "offensive rebound", color: TICK_COLORS.off_rebound },
-    { label: "turnover", color: TICK_COLORS.turnover },
-    { label: "foul", color: TICK_COLORS.foul },
-    { label: "steal", color: TICK_COLORS.steal },
-    { label: "block", color: TICK_COLORS.block },
-    { label: "assist", color: TICK_COLORS.assist },
-    { label: "timeout", color: TICK_COLORS.timeout },
-    { label: "other", color: TICK_COLORS.other },
+  const tickLegendRows = [
+    [
+      { label: "made shot", color: TICK_COLORS.made_shot },
+      { label: "missed shot", color: TICK_COLORS.missed_shot },
+    ],
+    [
+      { label: "defensive rebound", color: TICK_COLORS.def_rebound },
+      { label: "offensive rebound", color: TICK_COLORS.off_rebound },
+    ],
+    [
+      { label: "turnover", color: TICK_COLORS.turnover },
+      { label: "steal", color: TICK_COLORS.steal },
+      { label: "block", color: TICK_COLORS.block },
+      { label: "foul", color: TICK_COLORS.foul },
+    ],
+    [
+      { label: "timeout", color: TICK_COLORS.timeout },
+      { label: "other", color: TICK_COLORS.other },
+    ],
   ];
-  const legendCols = 5;
-  const legendRows = Math.ceil(tickLegend.length / legendCols);
+  const legendRows = tickLegendRows.length;
   const legendH = 16 + legendRows * 20;
-  const topMargin = 90 + legendH;
+  const legendY = 20;
+  const teamLabelY = legendY + legendH + 30;
+  const topMargin = teamLabelY + 60;
   const pairGap = 28;
   const bottomMargin = 32;
   const chartHeight = topMargin + Math.max(1, pairs.length - 1) * pairGap + bottomMargin;
@@ -154,17 +164,14 @@ function drawChart({ teams, pairs }) {
     d3.max(pairs.flatMap((pair) => [pair.teamA, pair.teamB]).filter(Boolean), (d) => d.duration) || 1;
   const barWidthScale = d3.scaleLinear().domain([1, maxDuration]).range([28, laneMaxWidth]);
 
-  // Team labels
-  svg.append("text").attr("x", leftTeamCx).attr("y", 30).attr("text-anchor", "middle").attr("class", "team-label").text(teams[0]);
-  svg.append("text").attr("x", rightTeamCx).attr("y", 30).attr("text-anchor", "middle").attr("class", "team-label").text(teams[1]);
+  // Team labels (placed below the legend)
+  svg.append("text").attr("x", leftTeamCx).attr("y", teamLabelY).attr("text-anchor", "middle").attr("class", "team-label").text(teams[0]);
+  svg.append("text").attr("x", rightTeamCx).attr("y", teamLabelY).attr("text-anchor", "middle").attr("class", "team-label").text(teams[1]);
 
   // Center divider
   svg.append("line").attr("class", "mid-divider")
     .attr("x1", midX).attr("x2", midX)
-    .attr("y1", 58 + legendH).attr("y2", chartHeight - bottomMargin + 10);
-
-  // Legend
-  const legendY = 60;
+    .attr("y1", teamLabelY + 10).attr("y2", chartHeight - bottomMargin + 10);
   svg.append("rect")
     .attr("x", metaX - 4).attr("y", legendY - 4)
     .attr("width", width - metaX * 2 + 8).attr("height", legendH)
@@ -175,18 +182,18 @@ function drawChart({ teams, pairs }) {
     .attr("x", metaX + 4).attr("y", legendY + 20).text("Event key");
 
   const colW = 128;
-  tickLegend.forEach((item, i) => {
-    const col = i % legendCols;
-    const row = Math.floor(i / legendCols);
-    const ix = metaX + 96 + col * colW;
-    const iy = legendY + 18 + row * 20;
-    const g = svg.append("g");
-    g.append("line").attr("class", "legend-tick-swatch")
-      .attr("stroke", item.color)
-      .attr("x1", ix).attr("x2", ix)
-      .attr("y1", iy - 8).attr("y2", iy + 4);
-    g.append("text").attr("class", "legend-label")
-      .attr("x", ix + 10).attr("y", iy + 2).text(item.label);
+  tickLegendRows.forEach((rowItems, row) => {
+    rowItems.forEach((item, col) => {
+      const ix = metaX + 96 + col * colW;
+      const iy = legendY + 18 + row * 20;
+      const g = svg.append("g");
+      g.append("line").attr("class", "legend-tick-swatch")
+        .attr("stroke", item.color)
+        .attr("x1", ix).attr("x2", ix)
+        .attr("y1", iy - 8).attr("y2", iy + 4);
+      g.append("text").attr("class", "legend-label")
+        .attr("x", ix + 10).attr("y", iy + 2).text(item.label);
+    });
   });
 
   svg.append("line").attr("class", "section-rule")
