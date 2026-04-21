@@ -201,11 +201,16 @@ def _has_follow_up_same_clock_free_throw(
 
 
 def _period_start(label: str) -> str:
-    lower = label.lower()
-    if "quarter" in lower:
-        return "10:00"
+    lower = label.lower().strip()
     if "ot" in lower or "overtime" in lower:
         return "05:00"
+    if "half" in lower:
+        return "20:00"
+    if "quarter" in lower:
+        return "10:00"
+    # NCAA WBB (and similar feeds) often use caption-only ordinals ("1st", "2nd", …).
+    if re.match(r"^\d+(st|nd|rd|th)\s*$", lower):
+        return "10:00"
     return "20:00"
 
 

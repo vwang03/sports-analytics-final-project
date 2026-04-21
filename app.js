@@ -13,9 +13,13 @@ const TICK_COLORS = {
 };
 
 const HALF_SECONDS = 20 * 60;
+const QUARTER_SECONDS = 10 * 60;
+const OT_SECONDS = 5 * 60;
+/** Elapsed seconds at end of regulation (2×20 min halves or 4×10 min quarters). */
+const REGULATION_END_SECONDS = 40 * 60;
 const RUN_TEAM_FILL = "#dffcdf";
 const RUN_OPPONENT_FILL = "#fecaca";
-const DATA_VERSION = "run-highlight-2";
+const DATA_VERSION = "run-highlight-3";
 
 function parseClockToRemainingSeconds(clock) {
   if (!clock || clock === "--") return null;
@@ -24,11 +28,49 @@ function parseClockToRemainingSeconds(clock) {
   return m * 60 + s;
 }
 
+/**
+ * Returns { offsetSeconds, periodLengthSeconds } for game clock → absolute elapsed mapping.
+ * Ordinals without "Half"/"Quarter" (e.g. NCAA WBB "1st") are treated as 10-minute quarters.
+ */
+function periodOffsetAndLength(period) {
+  const p = String(period || "").trim();
+  const lower = p.toLowerCase();
+
+  if (lower.includes("half")) {
+    const isSecondHalf = /2nd\s+half/i.test(p);
+    return { offsetSeconds: isSecondHalf ? HALF_SECONDS : 0, periodLengthSeconds: HALF_SECONDS };
+  }
+
+  let quarterIndex = null;
+  if (lower.includes("quarter")) {
+    const m = p.match(/(\d)\s*(?:st|nd|rd|th)\s+quarter/i);
+    if (m) quarterIndex = parseInt(m[1], 10) - 1;
+  } else {
+    const m = p.match(/^(\d+)(st|nd|rd|th)$/i);
+    if (m) {
+      const n = parseInt(m[1], 10);
+      if (n >= 1 && n <= 4) quarterIndex = n - 1;
+    }
+  }
+  if (quarterIndex !== null) {
+    return {
+      offsetSeconds: quarterIndex * QUARTER_SECONDS,
+      periodLengthSeconds: QUARTER_SECONDS,
+    };
+  }
+
+  if (/ot|overtime/i.test(p)) {
+    return { offsetSeconds: REGULATION_END_SECONDS, periodLengthSeconds: OT_SECONDS };
+  }
+
+  return { offsetSeconds: 0, periodLengthSeconds: HALF_SECONDS };
+}
+
 function toAbsoluteElapsed(period, clock) {
   const remaining = parseClockToRemainingSeconds(clock);
   if (remaining === null) return null;
-  const halfOffset = period === "2nd Half" ? HALF_SECONDS : 0;
-  return halfOffset + (HALF_SECONDS - remaining);
+  const { offsetSeconds, periodLengthSeconds } = periodOffsetAndLength(period);
+  return offsetSeconds + (periodLengthSeconds - remaining);
 }
 
 function getTickEventCategory(eventType) {
@@ -62,12 +104,22 @@ function computeDurationSeconds(possession) {
 }
 
 function normalizePossessions(rawPossessions, runData = null) {
-  const teams = [...new Set(rawPossessions.map((d) => d.team).filter(Boolean))];
+  // Scrapes before ordinal-quarter handling used 20:00 as period starts; WBB clocks never go above 10:00.
+  const ordinalOnly = /^\d+(st|nd|rd|th)$/i;
+  const possessionsIn = rawPossessions.map((p) => {
+    const per = String(p.period || "").trim();
+    if (ordinalOnly.test(per) && p.start_time === "20:00") {
+      return { ...p, start_time: "10:00" };
+    }
+    return p;
+  });
+
+  const teams = [...new Set(possessionsIn.map((d) => d.team).filter(Boolean))];
   const [teamA = "home", teamB = "away"] = teams;
   const possessionRunLookup = runData?.possession_run_lookup || {};
   const runsById = new Map((runData?.runs || []).map((run) => [run.run_id, run]));
 
-  const possessions = rawPossessions.map((p, index) => {
+  const possessions = possessionsIn.map((p, index) => {
     const possessionId = index + 1;
     const runId = possessionRunLookup[String(possessionId)] || null;
     const runMeta = runId ? runsById.get(runId) : null;
