@@ -120,6 +120,232 @@ function formatEventDescription(event) {
   return player ? `${type} - ${player}` : type;
 }
 
+const OUTCOME_COLORS = {
+  free_throw: "#f97316",
+  three_pointer: "#2563eb",
+  layup_dunk: "#16a34a",
+  two_pointer: "#14b8a6",
+  turnover: "#dc2626",
+  missed_shot: "#6b7280",
+  other: "#8b5cf6",
+};
+
+const OUTCOME_LABELS = {
+  free_throw: "Free throw",
+  three_pointer: "3-pointer",
+  layup_dunk: "Layup/Dunk",
+  two_pointer: "2-pointer",
+  turnover: "Turnover",
+  missed_shot: "Missed shot",
+  other: "Other",
+};
+
+const TEAM_COLORS = {
+  home: "#002E6D",
+  away: "#3172AE",
+};
+
+const SHOT_TYPE_LABELS = {
+  free_throw: "Free throw",
+  three_pointer: "3PT",
+  layup_dunk: "Layup/Dunk",
+  two_pointer: "2PT",
+};
+
+const LENGTH_BUCKET_SIZE_SECONDS = 4;
+
+function normalizeTeamKey(team) {
+  return String(team || "").trim().toLowerCase();
+}
+
+function classifyShotType(eventTypeUpper) {
+  if (!eventTypeUpper) return null;
+  if (eventTypeUpper.includes("FT")) return "free_throw";
+  if (eventTypeUpper.includes("3PTR") || eventTypeUpper.includes("3-PT")) return "three_pointer";
+  if (eventTypeUpper.includes("LAYUP") || eventTypeUpper.includes("DUNK")) return "layup_dunk";
+  return "two_pointer";
+}
+
+function isShotAttemptEvent(eventTypeUpper) {
+  return eventTypeUpper.startsWith("GOOD ") || eventTypeUpper.startsWith("MISS ");
+}
+
+function isMadeShotEvent(eventTypeUpper) {
+  return eventTypeUpper.startsWith("GOOD ");
+}
+
+function findTerminalDecisiveEvent(events) {
+  for (let i = events.length - 1; i >= 0; i -= 1) {
+    const eventTypeUpper = String(events[i]?.type || "").toUpperCase();
+    if (!eventTypeUpper) continue;
+    if (eventTypeUpper.includes("TURNOVER")) return events[i];
+    if (isShotAttemptEvent(eventTypeUpper)) return events[i];
+  }
+  return null;
+}
+
+function classifyPossessionOutcome(possession) {
+  const terminalEvent = findTerminalDecisiveEvent(possession.detailEvents || []);
+  if (!terminalEvent) {
+    return possession.pointsScored > 0 ? "two_pointer" : "other";
+  }
+  const eventTypeUpper = String(terminalEvent.type || "").toUpperCase();
+  if (eventTypeUpper.includes("TURNOVER")) return "turnover";
+  if (isShotAttemptEvent(eventTypeUpper)) {
+    if (!isMadeShotEvent(eventTypeUpper)) return "missed_shot";
+    const shotType = classifyShotType(eventTypeUpper);
+    return shotType || "other";
+  }
+  return "other";
+}
+
+function createTeamAggregate(teamKey) {
+  return {
+    teamKey,
+    totalPossessions: 0,
+    outcomeCounts: Object.fromEntries(Object.keys(OUTCOME_LABELS).map((key) => [key, 0])),
+    durationByOutcomeSamples: {
+      made_shot: [],
+      missed_shot: [],
+      turnover: [],
+    },
+    durationSamples: [],
+    shotStats: {
+      free_throw: { makes: 0, attempts: 0 },
+      three_pointer: { makes: 0, attempts: 0 },
+      layup_dunk: { makes: 0, attempts: 0 },
+      two_pointer: { makes: 0, attempts: 0 },
+    },
+    turnoverPossessions: 0,
+    totalPoints: 0,
+    secondChanceWithOrebPoints: 0,
+    secondChanceWithOrebPossessions: 0,
+    secondChanceWithoutOrebPoints: 0,
+    secondChanceWithoutOrebPossessions: 0,
+    fastBreakPoints: 0,
+    fastBreakPossessions: 0,
+    histogramBuckets: [],
+  };
+}
+
+function formatPercent(numerator, denominator, decimals = 1) {
+  if (!denominator) return "0.0%";
+  return `${((numerator / denominator) * 100).toFixed(decimals)}%`;
+}
+
+function buildDurationBucketIndex(duration, bucketSize) {
+  return Math.floor(Math.max(1, duration - 1) / bucketSize);
+}
+
+function buildDurationBucketLabel(index, bucketSize) {
+  const start = index * bucketSize;
+  const end = start + bucketSize;
+  return `${start}-${end}s`;
+}
+
+function finalizeBuckets(rawBuckets, bucketSize) {
+  const indexes = Object.keys(rawBuckets).map((value) => Number(value));
+  if (!indexes.length) return [];
+  const maxIndex = Math.max(...indexes);
+  return d3.range(0, maxIndex + 1).map((index) => {
+    const bucket = rawBuckets[index] || { count: 0, attempts: 0, makes: 0 };
+    return {
+      bucketIndex: index,
+      label: buildDurationBucketLabel(index, bucketSize),
+      count: bucket.count || 0,
+      attempts: bucket.attempts || 0,
+      makes: bucket.makes || 0,
+      fgPct: bucket.attempts ? bucket.makes / bucket.attempts : null,
+    };
+  });
+}
+
+function deriveAnalytics({ teams, possessions }) {
+  const teamKeys = [...new Set(teams.map((team) => normalizeTeamKey(team)).filter(Boolean))];
+  const byTeam = {};
+  teamKeys.forEach((teamKey) => {
+    byTeam[teamKey] = createTeamAggregate(teamKey);
+  });
+
+  possessions.forEach((possession) => {
+    const teamKey = normalizeTeamKey(possession.team);
+    if (!byTeam[teamKey]) {
+      byTeam[teamKey] = createTeamAggregate(teamKey);
+      teamKeys.push(teamKey);
+    }
+    const teamData = byTeam[teamKey];
+    const outcome = classifyPossessionOutcome(possession);
+    const hasTurnover = (possession.detailEvents || []).some((event) =>
+      String(event.type || "").toUpperCase().includes("TURNOVER"),
+    );
+    const hasOffRebound = (possession.detailEvents || []).some((event) =>
+      String(event.type || "").toUpperCase().includes("REBOUND OFF"),
+    );
+    const isFastBreak = possession.duration < 5;
+
+    teamData.totalPossessions += 1;
+    teamData.outcomeCounts[outcome] = (teamData.outcomeCounts[outcome] || 0) + 1;
+    teamData.durationSamples.push(possession.duration);
+    teamData.totalPoints += possession.pointsScored || 0;
+
+    if (outcome === "turnover" || hasTurnover) {
+      teamData.turnoverPossessions += 1;
+      teamData.durationByOutcomeSamples.turnover.push(possession.duration);
+    } else if (outcome === "missed_shot") {
+      teamData.durationByOutcomeSamples.missed_shot.push(possession.duration);
+    } else if (
+      outcome === "free_throw" ||
+      outcome === "three_pointer" ||
+      outcome === "layup_dunk" ||
+      outcome === "two_pointer"
+    ) {
+      teamData.durationByOutcomeSamples.made_shot.push(possession.duration);
+    }
+
+    if (hasOffRebound) {
+      teamData.secondChanceWithOrebPoints += possession.pointsScored || 0;
+      teamData.secondChanceWithOrebPossessions += 1;
+    } else {
+      teamData.secondChanceWithoutOrebPoints += possession.pointsScored || 0;
+      teamData.secondChanceWithoutOrebPossessions += 1;
+    }
+
+    if (isFastBreak) {
+      teamData.fastBreakPoints += possession.pointsScored || 0;
+      teamData.fastBreakPossessions += 1;
+    }
+
+    const histogramIndex = buildDurationBucketIndex(possession.duration, LENGTH_BUCKET_SIZE_SECONDS);
+    if (!teamData.histogramBuckets[histogramIndex]) {
+      teamData.histogramBuckets[histogramIndex] = { count: 0, attempts: 0, makes: 0 };
+    }
+    teamData.histogramBuckets[histogramIndex].count += 1;
+
+    (possession.detailEvents || []).forEach((event) => {
+      const eventTypeUpper = String(event.type || "").toUpperCase();
+      if (!isShotAttemptEvent(eventTypeUpper)) return;
+      const shotType = classifyShotType(eventTypeUpper);
+      if (!shotType) return;
+      teamData.shotStats[shotType].attempts += 1;
+      if (isMadeShotEvent(eventTypeUpper)) {
+        teamData.shotStats[shotType].makes += 1;
+      }
+    });
+  });
+
+  teamKeys.forEach((teamKey) => {
+    const teamData = byTeam[teamKey];
+    teamData.durationByOutcome = {
+      made_shot: d3.mean(teamData.durationByOutcomeSamples.made_shot) || 0,
+      missed_shot: d3.mean(teamData.durationByOutcomeSamples.missed_shot) || 0,
+      turnover: d3.mean(teamData.durationByOutcomeSamples.turnover) || 0,
+    };
+    teamData.histogram = finalizeBuckets(teamData.histogramBuckets, LENGTH_BUCKET_SIZE_SECONDS);
+  });
+
+  return { teamKeys, byTeam, pairChartTeamLabels: teams };
+}
+
 function normalizePossessions(rawPossessions, runData = null) {
   // Scrapes before ordinal-quarter handling used 20:00 as period starts; WBB clocks never go above 10:00.
   const ordinalOnly = /^\d+(st|nd|rd|th)$/i;
@@ -209,6 +435,8 @@ function normalizePossessions(rawPossessions, runData = null) {
       runTeam: runMeta?.team || null,
       inRun: Boolean(runId),
       pointsScored,
+      homeScore: currentHomeScore,
+      awayScore: currentAwayScore,
     };
   });
 
@@ -221,6 +449,11 @@ function normalizePossessions(rawPossessions, runData = null) {
     // Differential sign follows chart orientation: right lane positive, left lane negative.
     const pairNet = (teamBPossession?.pointsScored || 0) - (teamAPossession?.pointsScored || 0);
     cumulativeDiff += pairNet;
+    const endSnapshot = chunk.reduce((latest, possession) => {
+      if (!latest) return possession;
+      if ((possession.endAbs ?? 0) > (latest.endAbs ?? 0)) return possession;
+      return latest;
+    }, null);
     pairs.push({
       pairId: pairs.length + 1,
       teamA: teamAPossession,
@@ -228,10 +461,14 @@ function normalizePossessions(rawPossessions, runData = null) {
       anchorTime: Math.min(...chunk.map((p) => p.startAbs)),
       pairNet,
       cumulativeDiff,
+      scoreAfterPair: {
+        home: endSnapshot?.homeScore ?? 0,
+        away: endSnapshot?.awayScore ?? 0,
+      },
     });
   }
 
-  return { teams: [teamA, teamB], pairs };
+  return { teams: [teamA, teamB], pairs, possessions };
 }
 
 function drawChart({ teams, pairs }) {
@@ -267,9 +504,21 @@ function drawChart({ teams, pairs }) {
   const legendY = 20;
   const teamLabelY = legendY + legendH + 30;
   const topMargin = teamLabelY + 60;
-  const pairGap = 28;
+  const pairGap = 34;
+  const halftimeGap = 16;
+  const halftimeSplitIndex = pairs.findIndex((pair) => {
+    const possessions = [pair.teamA, pair.teamB].filter(Boolean);
+    if (!possessions.length) return false;
+    const earliestStart = d3.min(possessions, (possession) => possession.startAbs);
+    return Number.isFinite(earliestStart) && earliestStart >= HALF_SECONDS;
+  });
+  const hasHalftimeSplit = halftimeSplitIndex > 0;
   const bottomMargin = 32;
-  const chartHeight = topMargin + Math.max(1, pairs.length - 1) * pairGap + bottomMargin;
+  const chartHeight =
+    topMargin
+    + Math.max(1, pairs.length - 1) * pairGap
+    + (hasHalftimeSplit ? halftimeGap : 0)
+    + bottomMargin;
 
   svg.selectAll("*").remove();
 
@@ -285,6 +534,8 @@ function drawChart({ teams, pairs }) {
   const diffLaneRightX = diffLaneLeftX + DIFF_LANE_WIDTH;
   const width = diffLaneRightX + metaX;
   svg.attr("viewBox", `0 0 ${width} ${chartHeight}`);
+  /** Horizontal axis for away | home labels (gutter left of widest away bar). */
+  const pairLabelDividerX = (metaX + (leftAnchorX - laneMaxWidth)) / 2;
 
   const maxDuration =
     d3.max(pairs.flatMap((pair) => [pair.teamA, pair.teamB]).filter(Boolean), (d) => d.duration) || 1;
@@ -334,6 +585,31 @@ function drawChart({ teams, pairs }) {
 
   function hideTooltip() {
     tooltip.classed("is-visible", false);
+  }
+
+  function appendPairSplitRow(group, y, leftText, rightText, { leftClass, rightClass, sepClass = "pair-split-sep" }) {
+    const gutter = 3;
+    group
+      .append("text")
+      .attr("class", leftClass)
+      .attr("x", pairLabelDividerX - gutter)
+      .attr("y", y)
+      .attr("text-anchor", "end")
+      .text(leftText);
+    group
+      .append("text")
+      .attr("class", sepClass)
+      .attr("x", pairLabelDividerX)
+      .attr("y", y)
+      .attr("text-anchor", "middle")
+      .text("|");
+    group
+      .append("text")
+      .attr("class", rightClass)
+      .attr("x", pairLabelDividerX + gutter)
+      .attr("y", y)
+      .attr("text-anchor", "start")
+      .text(rightText);
   }
 
   // Team labels (placed below the legend)
@@ -415,17 +691,40 @@ function drawChart({ teams, pairs }) {
 
   // Pair rows
   const pairsGroup = svg.append("g").attr("class", "pairs");
+  const rowY = (pairIndex) =>
+    topMargin + pairIndex * pairGap + (hasHalftimeSplit && pairIndex >= halftimeSplitIndex ? halftimeGap : 0);
+  appendPairSplitRow(
+    pairsGroup,
+    topMargin - 20,
+    String(teams[0]).toUpperCase(),
+    String(teams[1]).toUpperCase(),
+    {
+      leftClass: "pair-meta-heading pair-meta-heading-side",
+      rightClass: "pair-meta-heading pair-meta-heading-side",
+      sepClass: "pair-split-sep pair-split-sep--heading",
+    },
+  );
 
   pairs.forEach((pair, pairIndex) => {
-    const y = topMargin + pairIndex * pairGap;
+    const y = rowY(pairIndex);
 
-    const pairMeta = `${teams[0]} ${formatTimeRange(pair.teamA)}  |  ${teams[1]} ${formatTimeRange(pair.teamB)}`;
-    pairsGroup
-      .append("text")
-      .attr("x", metaX)
-      .attr("y", y + 4)
-      .attr("class", "pair-meta")
-      .text(pairMeta);
+    const awayTimes = formatTimeRange(pair.teamA);
+    const homeTimes = formatTimeRange(pair.teamB);
+    const scoreAfterPair = pair.scoreAfterPair || { home: 0, away: 0 };
+    const teamAScore = String(teams[0]).toLowerCase() === "home"
+      ? scoreAfterPair.home
+      : scoreAfterPair.away;
+    const teamBScore = String(teams[1]).toLowerCase() === "home"
+      ? scoreAfterPair.home
+      : scoreAfterPair.away;
+    appendPairSplitRow(pairsGroup, y - 6, String(teamAScore), String(teamBScore), {
+      leftClass: "pair-score",
+      rightClass: "pair-score",
+    });
+    appendPairSplitRow(pairsGroup, y + 6, awayTimes, homeTimes, {
+      leftClass: "pair-meta",
+      rightClass: "pair-meta",
+    });
 
     [
       { possession: pair.teamA, side: "left" },
@@ -486,9 +785,20 @@ function drawChart({ teams, pairs }) {
     });
   });
 
+  if (hasHalftimeSplit) {
+    const splitY = (rowY(halftimeSplitIndex - 1) + rowY(halftimeSplitIndex)) / 2;
+    svg
+      .append("line")
+      .attr("class", "halftime-divider")
+      .attr("x1", metaX)
+      .attr("x2", width - metaX)
+      .attr("y1", splitY)
+      .attr("y2", splitY);
+  }
+
   const diffPoints = pairs.map((pair, pairIndex) => ({
     pair,
-    y: topMargin + pairIndex * pairGap,
+    y: rowY(pairIndex),
     cumulativeDiff: pair.cumulativeDiff || 0,
   }));
   const maxAbsDiff = d3.max(diffPoints, (point) => Math.abs(point.cumulativeDiff)) || 0;
@@ -532,12 +842,17 @@ function drawChart({ teams, pairs }) {
       .line()
       .x((point) => diffXScale(point.cumulativeDiff))
       .y((point) => point.y);
-
-    diffGroup
-      .append("path")
-      .datum(diffPoints)
-      .attr("class", "diff-line")
-      .attr("d", diffLine);
+    const diffSegments = hasHalftimeSplit
+      ? [diffPoints.slice(0, halftimeSplitIndex), diffPoints.slice(halftimeSplitIndex)]
+      : [diffPoints];
+    diffSegments.forEach((segment) => {
+      if (segment.length < 2) return;
+      diffGroup
+        .append("path")
+        .datum(segment)
+        .attr("class", "diff-line")
+        .attr("d", diffLine);
+    });
   }
 
   diffGroup
@@ -580,6 +895,463 @@ function drawChart({ teams, pairs }) {
   svg.on("mouseleave", hideTooltip);
 }
 
+/** Display label for the team in the paired chart lane at index 0 (left) or 1 (right). */
+function pairChartTeamLabel(analytics, index) {
+  const raw = analytics.pairChartTeamLabels?.[index];
+  if (raw != null && String(raw).length) return String(raw);
+  return analytics.teamKeys[index] ?? "";
+}
+
+function getTeamColor(teamKey, index) {
+  return TEAM_COLORS[teamKey] || (index === 0 ? TEAM_COLORS.home : TEAM_COLORS.away);
+}
+
+const OUTCOME_SLICE_TOOLTIP_ID = "outcome-slice-tooltip";
+
+function getOutcomeSliceTooltip() {
+  const existing = d3.select(`#${OUTCOME_SLICE_TOOLTIP_ID}`);
+  if (!existing.empty()) return existing;
+  return d3
+    .select("body")
+    .append("div")
+    .attr("id", OUTCOME_SLICE_TOOLTIP_ID)
+    .attr("class", "outcome-slice-tooltip");
+}
+
+function placeOutcomeSliceTooltip(event) {
+  const tip = d3.select(`#${OUTCOME_SLICE_TOOLTIP_ID}`).node();
+  if (!tip) return;
+  const offset = 10;
+  const pad = 8;
+  let left = event.clientX + offset;
+  let top = event.clientY + offset;
+  const w = tip.offsetWidth;
+  const h = tip.offsetHeight;
+  left = Math.min(left, window.innerWidth - w - pad);
+  top = Math.min(top, window.innerHeight - h - pad);
+  left = Math.max(pad, left);
+  top = Math.max(pad, top);
+  d3.select(tip).style("left", `${left}px`).style("top", `${top}px`);
+}
+
+function showOutcomeSliceTooltip(event, d, teamData) {
+  const label = OUTCOME_LABELS[d.data.key] || d.data.key;
+  const n = d.data.count;
+  const noun = n === 1 ? "possession" : "possessions";
+  getOutcomeSliceTooltip()
+    .classed("is-visible", true)
+    .html(
+      `<strong>${escapeHtml(label)}</strong><br/><span>${n} ${noun} (${escapeHtml(
+        formatPercent(n, teamData.totalPossessions),
+      )} of team total)</span>`,
+    );
+  placeOutcomeSliceTooltip(event);
+}
+
+function hideOutcomeSliceTooltip() {
+  d3.select(`#${OUTCOME_SLICE_TOOLTIP_ID}`).classed("is-visible", false);
+}
+
+function drawOutcomePie(svgId, teamData, teamColor) {
+  const svg = d3.select(`#${svgId}`);
+  if (svg.empty()) return;
+  const width = 440;
+  const height = 280;
+  const innerRadius = 40;
+  const outerRadius = 100;
+  const cx = 128;
+  const cy = 128;
+  svg.selectAll("*").remove();
+  svg.attr("viewBox", `0 0 ${width} ${height}`);
+
+  const entries = Object.entries(teamData.outcomeCounts)
+    .map(([key, count]) => ({ key, count }))
+    .filter((entry) => entry.count > 0);
+
+  const fallbackEntries = entries.length ? entries : [{ key: "other", count: 1 }];
+  const pie = d3.pie().value((d) => d.count).sort(null);
+  const arc = d3.arc().innerRadius(innerRadius).outerRadius(outerRadius);
+
+  const group = svg.append("g").attr("transform", `translate(${cx}, ${cy})`);
+
+  function allSlices() {
+    return group.selectAll("path.outcome-slice");
+  }
+
+  function resetSliceOpacity() {
+    allSlices().attr("opacity", 1);
+  }
+
+  const slicePaths = group
+    .selectAll("path")
+    .data(pie(fallbackEntries))
+    .enter()
+    .append("path")
+    .attr("class", "outcome-slice")
+    .attr("d", arc)
+    .attr("fill", (d) => OUTCOME_COLORS[d.data.key] || teamColor)
+    .attr("stroke", "#ffffff")
+    .attr("stroke-width", 1.2)
+    .attr("cursor", "pointer")
+    .on("mouseenter", function (event, d) {
+      allSlices().attr("opacity", 0.38);
+      d3.select(this).attr("opacity", 1);
+      showOutcomeSliceTooltip(event, d, teamData);
+    })
+    .on("mousemove", (event) => placeOutcomeSliceTooltip(event))
+    .on("mouseleave", function (event) {
+      const rel = event.relatedTarget;
+      if (rel && rel.classList && rel.classList.contains("outcome-slice")) return;
+      resetSliceOpacity();
+      hideOutcomeSliceTooltip();
+    });
+
+  slicePaths.append("title").text((d) => {
+    const label = OUTCOME_LABELS[d.data.key] || d.data.key;
+    return `${label}: ${d.data.count} ${d.data.count === 1 ? "possession" : "possessions"}`;
+  });
+
+  group
+    .append("text")
+    .attr("text-anchor", "middle")
+    .attr("dy", "-0.1em")
+    .style("font-size", "0.95rem")
+    .style("font-weight", "700")
+    .style("fill", "#0f172a")
+    .text(teamData.totalPossessions);
+
+  group
+    .append("text")
+    .attr("text-anchor", "middle")
+    .attr("dy", "1.15em")
+    .style("font-size", "0.7rem")
+    .style("fill", "#64748b")
+    .text("possessions");
+
+  const legend = svg.append("g").attr("transform", "translate(248, 20)");
+  fallbackEntries.slice(0, 7).forEach((entry, index) => {
+    const y = index * 26;
+    legend
+      .append("rect")
+      .attr("x", 0)
+      .attr("y", y)
+      .attr("width", 11)
+      .attr("height", 11)
+      .attr("fill", OUTCOME_COLORS[entry.key] || teamColor);
+    legend
+      .append("text")
+      .attr("x", 18)
+      .attr("y", y + 9)
+      .attr("class", "analytics-legend")
+      .text(`${OUTCOME_LABELS[entry.key] || entry.key}: ${formatPercent(entry.count, teamData.totalPossessions)}`);
+  });
+}
+
+function renderOutcomePieCharts(analytics) {
+  const leftKey = analytics.teamKeys[0];
+  const rightKey = analytics.teamKeys[1];
+  const leftLabel = pairChartTeamLabel(analytics, 0);
+  const rightLabel = pairChartTeamLabel(analytics, 1);
+
+  const leftCap = document.querySelector("#outcome-pie-home")?.closest("figure")?.querySelector("figcaption");
+  const rightCap = document.querySelector("#outcome-pie-away")?.closest("figure")?.querySelector("figcaption");
+  if (leftCap) leftCap.textContent = leftLabel;
+  if (rightCap) rightCap.textContent = rightLabel;
+
+  d3.select("#outcome-pie-home").attr("aria-label", `${leftLabel} possession outcome distribution`);
+  d3.select("#outcome-pie-away").attr("aria-label", `${rightLabel} possession outcome distribution`);
+
+  drawOutcomePie("outcome-pie-home", analytics.byTeam[leftKey], getTeamColor(leftKey, 0));
+  drawOutcomePie("outcome-pie-away", analytics.byTeam[rightKey], getTeamColor(rightKey, 1));
+}
+
+function renderDurationByOutcome(analytics) {
+  const svg = d3.select("#duration-by-outcome-chart");
+  if (svg.empty()) return;
+  svg.selectAll("*").remove();
+
+  const width = 700;
+  const height = 260;
+  const margin = { top: 24, right: 16, bottom: 56, left: 52 };
+  svg.attr("viewBox", `0 0 ${width} ${height}`);
+
+  const categories = [
+    { key: "made_shot", label: "Made shot" },
+    { key: "missed_shot", label: "Missed shot" },
+    { key: "turnover", label: "Turnover" },
+  ];
+  const chartTeams = [analytics.teamKeys[0], analytics.teamKeys[1]];
+  const records = categories.flatMap((category) =>
+    chartTeams.map((teamKey, idx) => ({
+      category: category.label,
+      teamKey,
+      teamIndex: idx,
+      value: analytics.byTeam[teamKey].durationByOutcome[category.key] || 0,
+    })),
+  );
+  const maxValue = d3.max(records, (record) => record.value) || 1;
+  const x0 = d3
+    .scaleBand()
+    .domain(categories.map((d) => d.label))
+    .range([margin.left, width - margin.right])
+    .paddingInner(0.3);
+  const x1 = d3.scaleBand().domain(chartTeams).range([0, x0.bandwidth()]).padding(0.2);
+  const y = d3
+    .scaleLinear()
+    .domain([0, maxValue * 1.25])
+    .nice()
+    .range([height - margin.bottom, margin.top]);
+
+  svg
+    .append("g")
+    .attr("class", "analytics-axis")
+    .attr("transform", `translate(0, ${height - margin.bottom})`)
+    .call(d3.axisBottom(x0));
+
+  svg
+    .append("g")
+    .attr("class", "analytics-axis")
+    .attr("transform", `translate(${margin.left}, 0)`)
+    .call(d3.axisLeft(y).ticks(5).tickFormat((value) => `${value}s`));
+
+  svg
+    .append("g")
+    .selectAll("rect")
+    .data(records)
+    .enter()
+    .append("rect")
+    .attr("x", (d) => x0(d.category) + x1(d.teamKey))
+    .attr("y", (d) => y(d.value))
+    .attr("width", x1.bandwidth())
+    .attr("height", (d) => y(0) - y(d.value))
+    .attr("fill", (d) => getTeamColor(d.teamKey, d.teamIndex))
+    .attr("opacity", 0.82);
+
+  svg
+    .append("text")
+    .attr("x", margin.left)
+    .attr("y", 14)
+    .attr("class", "analytics-legend")
+    .text("Average possession duration (seconds)");
+
+  chartTeams.forEach((teamKey, index) => {
+    const x = width - margin.right - 140 + index * 68;
+    svg.append("rect").attr("x", x).attr("y", 8).attr("width", 10).attr("height", 10).attr("fill", getTeamColor(teamKey, index));
+    svg
+      .append("text")
+      .attr("x", x + 14)
+      .attr("y", 17)
+      .attr("class", "analytics-legend")
+      .text(pairChartTeamLabel(analytics, index));
+  });
+}
+
+function mergeHistogramDomains(analytics, chartTeams) {
+  const labels = new Set();
+  chartTeams.forEach((teamKey) => {
+    analytics.byTeam[teamKey].histogram.forEach((bucket) => labels.add(bucket.label));
+  });
+  const resolved = [...labels].sort((a, b) => Number(a.split("-")[0]) - Number(b.split("-")[0]));
+  return resolved.length ? resolved : ["0-4s"];
+}
+
+function renderPossessionLengthHistogram(analytics) {
+  const svg = d3.select("#possession-length-histogram");
+  if (svg.empty()) return;
+  svg.selectAll("*").remove();
+
+  const width = 700;
+  const height = 260;
+  const margin = { top: 26, right: 16, bottom: 54, left: 48 };
+  svg.attr("viewBox", `0 0 ${width} ${height}`);
+  const chartTeams = [analytics.teamKeys[0], analytics.teamKeys[1]];
+  const labels = mergeHistogramDomains(analytics, chartTeams);
+  const records = labels.flatMap((label) =>
+    chartTeams.map((teamKey, index) => {
+      const found = analytics.byTeam[teamKey].histogram.find((bucket) => bucket.label === label);
+      return {
+        label,
+        teamKey,
+        teamIndex: index,
+        count: found?.count || 0,
+      };
+    }),
+  );
+  const maxCount = d3.max(records, (record) => record.count) || 1;
+  const x0 = d3
+    .scaleBand()
+    .domain(labels)
+    .range([margin.left, width - margin.right])
+    .paddingInner(0.26);
+  const x1 = d3.scaleBand().domain(chartTeams).range([0, x0.bandwidth()]).padding(0.2);
+  const y = d3
+    .scaleLinear()
+    .domain([0, maxCount * 1.2])
+    .nice()
+    .range([height - margin.bottom, margin.top]);
+
+  svg
+    .append("g")
+    .attr("class", "analytics-axis")
+    .attr("transform", `translate(0, ${height - margin.bottom})`)
+    .call(d3.axisBottom(x0).tickValues(labels.filter((_, index) => index % 2 === 0)));
+  svg
+    .append("g")
+    .attr("class", "analytics-axis")
+    .attr("transform", `translate(${margin.left}, 0)`)
+    .call(d3.axisLeft(y).ticks(5));
+
+  svg
+    .append("g")
+    .selectAll("rect")
+    .data(records)
+    .enter()
+    .append("rect")
+    .attr("x", (d) => x0(d.label) + x1(d.teamKey))
+    .attr("y", (d) => y(d.count))
+    .attr("width", x1.bandwidth())
+    .attr("height", (d) => y(0) - y(d.count))
+    .attr("fill", (d) => getTeamColor(d.teamKey, d.teamIndex))
+    .attr("opacity", 0.75);
+
+  svg
+    .append("text")
+    .attr("x", margin.left)
+    .attr("y", 16)
+    .attr("class", "analytics-legend")
+    .text("Possession count by duration bucket");
+}
+
+function buildFactCard(title, leftValue, leftSubValue, rightValue, rightSubValue, leftLabel, rightLabel) {
+  const card = document.createElement("article");
+  card.className = "fact-card";
+  card.innerHTML = `
+    <p class="fact-title">${escapeHtml(title)}</p>
+    <div class="fact-team-row">
+      <p class="fact-team-label">${escapeHtml(leftLabel)}</p>
+      <div>
+        <p class="fact-value">${escapeHtml(leftValue)}</p>
+        <p class="fact-subvalue">${escapeHtml(leftSubValue)}</p>
+      </div>
+    </div>
+    <div class="fact-team-row">
+      <p class="fact-team-label">${escapeHtml(rightLabel)}</p>
+      <div>
+        <p class="fact-value">${escapeHtml(rightValue)}</p>
+        <p class="fact-subvalue">${escapeHtml(rightSubValue)}</p>
+      </div>
+    </div>
+  `;
+  return card;
+}
+
+function renderQuickFacts(analytics) {
+  const grid = document.querySelector("#quick-facts-grid");
+  if (!grid) return;
+  grid.innerHTML = "";
+
+  const leftKey = analytics.teamKeys[0];
+  const rightKey = analytics.teamKeys[1];
+  const leftLabel = pairChartTeamLabel(analytics, 0);
+  const rightLabel = pairChartTeamLabel(analytics, 1);
+  const home = analytics.byTeam[leftKey];
+  const away = analytics.byTeam[rightKey];
+  const getFgAttempts = (team) =>
+    team.shotStats.three_pointer.attempts + team.shotStats.layup_dunk.attempts + team.shotStats.two_pointer.attempts;
+  const getFgMakes = (team) =>
+    team.shotStats.three_pointer.makes + team.shotStats.layup_dunk.makes + team.shotStats.two_pointer.makes;
+
+  const cards = [
+    buildFactCard(
+      "FG Percentage",
+      formatPercent(getFgMakes(home), getFgAttempts(home)),
+      `${getFgMakes(home)}/${getFgAttempts(home)} FG attempts`,
+      formatPercent(getFgMakes(away), getFgAttempts(away)),
+      `${getFgMakes(away)}/${getFgAttempts(away)} FG attempts`,
+      leftLabel,
+      rightLabel,
+    ),
+    ...Object.entries(SHOT_TYPE_LABELS).map(([shotType, label]) =>
+      buildFactCard(
+        `${label} success`,
+        formatPercent(home.shotStats[shotType].makes, home.shotStats[shotType].attempts),
+        `${home.shotStats[shotType].makes}/${home.shotStats[shotType].attempts} made`,
+        formatPercent(away.shotStats[shotType].makes, away.shotStats[shotType].attempts),
+        `${away.shotStats[shotType].makes}/${away.shotStats[shotType].attempts} made`,
+        leftLabel,
+        rightLabel,
+      )),
+    buildFactCard(
+      "Turnover rate",
+      formatPercent(home.turnoverPossessions, home.totalPossessions),
+      `${home.turnoverPossessions}/${home.totalPossessions} possessions`,
+      formatPercent(away.turnoverPossessions, away.totalPossessions),
+      `${away.turnoverPossessions}/${away.totalPossessions} possessions`,
+      leftLabel,
+      rightLabel,
+    ),
+    buildFactCard(
+      "Points per possession",
+      (home.totalPoints / Math.max(1, home.totalPossessions)).toFixed(2),
+      `${home.totalPoints} points / ${home.totalPossessions} possessions`,
+      (away.totalPoints / Math.max(1, away.totalPossessions)).toFixed(2),
+      `${away.totalPoints} points / ${away.totalPossessions} possessions`,
+      leftLabel,
+      rightLabel,
+    ),
+    buildFactCard(
+      "Second-chance points",
+      `${home.secondChanceWithOrebPoints} pts`,
+      `With OREB: ${home.secondChanceWithOrebPoints} (${home.secondChanceWithOrebPossessions} possessions), without: ${home.secondChanceWithoutOrebPoints}`,
+      `${away.secondChanceWithOrebPoints} pts`,
+      `With OREB: ${away.secondChanceWithOrebPoints} (${away.secondChanceWithOrebPossessions} possessions), without: ${away.secondChanceWithoutOrebPoints}`,
+      leftLabel,
+      rightLabel,
+    ),
+    buildFactCard(
+      "Fast-break points (<5s)",
+      `${home.fastBreakPoints} pts`,
+      `${home.fastBreakPossessions} fast-break possessions`,
+      `${away.fastBreakPoints} pts`,
+      `${away.fastBreakPossessions} fast-break possessions`,
+      leftLabel,
+      rightLabel,
+    ),
+  ];
+
+  cards.forEach((card) => grid.appendChild(card));
+}
+
+function runAnalyticsValidation(analytics) {
+  analytics.teamKeys.forEach((teamKey) => {
+    const team = analytics.byTeam[teamKey];
+    const outcomeTotal = Object.values(team.outcomeCounts).reduce((sum, value) => sum + value, 0);
+    console.assert(
+      outcomeTotal === team.totalPossessions,
+      `${teamKey}: outcome total mismatch (${outcomeTotal} vs ${team.totalPossessions})`,
+    );
+    const fgAttempts =
+      team.shotStats.three_pointer.attempts +
+      team.shotStats.layup_dunk.attempts +
+      team.shotStats.two_pointer.attempts;
+    const fgMakes =
+      team.shotStats.three_pointer.makes +
+      team.shotStats.layup_dunk.makes +
+      team.shotStats.two_pointer.makes;
+    console.assert(
+      fgMakes <= fgAttempts,
+      `${teamKey}: FG makes exceed attempts (${fgMakes}/${fgAttempts})`,
+    );
+  });
+}
+
+function renderAnalyticsDashboard(analytics) {
+  renderOutcomePieCharts(analytics);
+  renderDurationByOutcome(analytics);
+  renderPossessionLengthHistogram(analytics);
+  renderQuickFacts(analytics);
+}
+
 async function init() {
   try {
     const [raw, runData] = await Promise.all([
@@ -589,6 +1361,9 @@ async function init() {
     if (!Array.isArray(raw)) throw new Error("pbp_data.json must be an array of possessions");
     const normalized = normalizePossessions(raw, runData);
     drawChart(normalized);
+    const analytics = deriveAnalytics(normalized);
+    runAnalyticsValidation(analytics);
+    renderAnalyticsDashboard(analytics);
   } catch (error) {
     const container = document.querySelector(".chart-wrap");
     if (!container) return;

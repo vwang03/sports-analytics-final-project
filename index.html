@@ -18,6 +18,36 @@
       <section class="chart-wrap">
         <svg id="possession-chart" role="img" aria-label="Possession pair anatomy chart"></svg>
       </section>
+      <section class="analytics-wrap" aria-label="Possession analytics details">
+        <h2 class="analytics-title">Possession Analytics</h2>
+        <div class="analytics-grid">
+          <article class="analytics-card">
+            <h3>Possession outcomes</h3>
+            <div class="team-chart-grid">
+              <figure class="team-chart">
+                <figcaption>Home</figcaption>
+                <svg id="outcome-pie-home" class="analytics-svg outcome-pie-chart" role="img" aria-label="Home possession outcome distribution"></svg>
+              </figure>
+              <figure class="team-chart">
+                <figcaption>Away</figcaption>
+                <svg id="outcome-pie-away" class="analytics-svg outcome-pie-chart" role="img" aria-label="Away possession outcome distribution"></svg>
+              </figure>
+            </div>
+          </article>
+          <article class="analytics-card">
+            <h3>Average possession duration by outcome</h3>
+            <svg id="duration-by-outcome-chart" class="analytics-svg analytics-svg-wide" role="img" aria-label="Average possession duration by outcome for home and away"></svg>
+          </article>
+          <article class="analytics-card">
+            <h3>Possession length distribution</h3>
+            <svg id="possession-length-histogram" class="analytics-svg analytics-svg-wide" role="img" aria-label="Possession length distribution for home and away"></svg>
+          </article>
+        </div>
+      </section>
+      <section class="quick-facts-wrap" aria-label="Quick facts">
+        <h2 class="analytics-title">Quick Facts</h2>
+        <div id="quick-facts-grid" class="quick-facts-grid"></div>
+      </section>
       <p class="disclaimer">
         *Note: Each row represents a pair of alternating possessions, bar width encodes duration, and the cumulative differential line updates after each pair.
       </p>
