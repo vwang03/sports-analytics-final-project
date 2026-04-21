@@ -209,6 +209,212 @@ def _period_start(label: str) -> str:
     return "20:00"
 
 
+def _parse_clock_seconds(clock: str) -> int | None:
+    if not clock or clock == "--":
+        return None
+    parts = clock.split(":")
+    if len(parts) != 2:
+        return None
+    try:
+        minutes = int(parts[0])
+        seconds = int(parts[1])
+    except ValueError:
+        return None
+    return minutes * 60 + seconds
+
+
+def _compute_possession_duration_seconds(possession: dict) -> int:
+    start_seconds = _parse_clock_seconds(possession.get("start_time", "--"))
+    end_seconds = _parse_clock_seconds(possession.get("end_time", "--"))
+    if start_seconds is None or end_seconds is None:
+        return 1
+    return max(1, start_seconds - end_seconds)
+
+
+def _to_int_score(value, fallback: int) -> int:
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return fallback
+
+
+def analyze_unanswered_runs(possessions: list[dict], min_unanswered_points: int = 8) -> dict:
+    runs: list[dict] = []
+    active_run: dict | None = None
+    prev_home_score = 0
+    prev_away_score = 0
+
+    def finalize_run(run: dict) -> None:
+        start_pair = ((run["start_possession_id"] - 1) // 2) + 1
+        end_pair = ((run["end_possession_id"] - 1) // 2) + 1
+        pair_ids = list(range(start_pair, end_pair + 1))
+
+        run_id = f"run_{len(runs) + 1}"
+        qualifies = run["threshold_possession_id"] is not None
+        highlight_end_possession_id = run["threshold_possession_id"] if qualifies else None
+        highlight_pair_ids: list[int] = []
+        if highlight_end_possession_id is not None:
+            highlight_start_pair = ((run["start_possession_id"] - 1) // 2) + 1
+            highlight_end_pair = ((highlight_end_possession_id - 1) // 2) + 1
+            highlight_pair_ids = list(range(highlight_start_pair, highlight_end_pair + 1))
+        runs.append(
+            {
+                "run_id": run_id,
+                "team": run["team"],
+                "points": run["points"],
+                "qualifies": qualifies,
+                "start_possession_id": run["start_possession_id"],
+                "end_possession_id": run["end_possession_id"],
+                "pair_ids": pair_ids,
+                "possession_count": run["possession_count"],
+                "scoring_possessions": run["scoring_possessions"],
+                "duration_seconds": run["duration_seconds"],
+                "start_period": run["start_period"],
+                "start_time": run["start_time"],
+                "end_period": run["end_period"],
+                "end_time": run["end_time"],
+                "highlight_end_possession_id": highlight_end_possession_id,
+                "highlight_possession_count": run["threshold_possession_count"] if qualifies else None,
+                "highlight_duration_seconds": run["threshold_duration_seconds"] if qualifies else None,
+                "highlight_end_period": run["threshold_end_period"] if qualifies else None,
+                "highlight_end_time": run["threshold_end_time"] if qualifies else None,
+                "highlight_score_diff_end": run["threshold_score_diff_end"] if qualifies else None,
+                "highlight_pair_ids": highlight_pair_ids,
+                "start_home_score": run["start_home_score"],
+                "start_away_score": run["start_away_score"],
+                "end_home_score": run["end_home_score"],
+                "end_away_score": run["end_away_score"],
+                "score_diff_start": run["score_diff_start"],
+                "score_diff_end": run["score_diff_end"],
+            }
+        )
+
+    for idx, possession in enumerate(possessions):
+        possession_id = idx + 1
+        home_score = _to_int_score(possession.get("home_score"), prev_home_score)
+        away_score = _to_int_score(possession.get("away_score"), prev_away_score)
+
+        home_delta = max(0, home_score - prev_home_score)
+        away_delta = max(0, away_score - prev_away_score)
+
+        prev_home_score = home_score
+        prev_away_score = away_score
+
+        scoring_team: str | None = None
+        scored_points = 0
+        if home_delta > 0 and away_delta == 0:
+            scoring_team = "home"
+            scored_points = home_delta
+        elif away_delta > 0 and home_delta == 0:
+            scoring_team = "away"
+            scored_points = away_delta
+
+        if active_run is None:
+            if scoring_team is None:
+                continue
+            active_run = {
+                "team": scoring_team,
+                "points": scored_points,
+                "start_possession_id": possession_id,
+                "end_possession_id": possession_id,
+                "possession_count": 1,
+                "scoring_possessions": 1,
+                "duration_seconds": _compute_possession_duration_seconds(possession),
+                "start_period": possession.get("period"),
+                "start_time": possession.get("start_time"),
+                "end_period": possession.get("period"),
+                "end_time": possession.get("end_time"),
+                "start_home_score": home_score - home_delta,
+                "start_away_score": away_score - away_delta,
+                "end_home_score": home_score,
+                "end_away_score": away_score,
+                "score_diff_start": (home_score - home_delta) - (away_score - away_delta),
+                "score_diff_end": home_score - away_score,
+                "threshold_possession_id": possession_id if scored_points >= min_unanswered_points else None,
+                "threshold_possession_count": 1 if scored_points >= min_unanswered_points else None,
+                "threshold_duration_seconds": _compute_possession_duration_seconds(possession) if scored_points >= min_unanswered_points else None,
+                "threshold_end_period": possession.get("period") if scored_points >= min_unanswered_points else None,
+                "threshold_end_time": possession.get("end_time") if scored_points >= min_unanswered_points else None,
+                "threshold_score_diff_end": (home_score - away_score) if scored_points >= min_unanswered_points else None,
+            }
+            continue
+
+        opponent_scored = (away_delta > 0) if active_run["team"] == "home" else (home_delta > 0)
+        if opponent_scored:
+            finalize_run(active_run)
+            active_run = None
+
+            if scoring_team is None:
+                continue
+
+            active_run = {
+                "team": scoring_team,
+                "points": scored_points,
+                "start_possession_id": possession_id,
+                "end_possession_id": possession_id,
+                "possession_count": 1,
+                "scoring_possessions": 1,
+                "duration_seconds": _compute_possession_duration_seconds(possession),
+                "start_period": possession.get("period"),
+                "start_time": possession.get("start_time"),
+                "end_period": possession.get("period"),
+                "end_time": possession.get("end_time"),
+                "start_home_score": home_score - home_delta,
+                "start_away_score": away_score - away_delta,
+                "end_home_score": home_score,
+                "end_away_score": away_score,
+                "score_diff_start": (home_score - home_delta) - (away_score - away_delta),
+                "score_diff_end": home_score - away_score,
+                "threshold_possession_id": possession_id if scored_points >= min_unanswered_points else None,
+                "threshold_possession_count": 1 if scored_points >= min_unanswered_points else None,
+                "threshold_duration_seconds": _compute_possession_duration_seconds(possession) if scored_points >= min_unanswered_points else None,
+                "threshold_end_period": possession.get("period") if scored_points >= min_unanswered_points else None,
+                "threshold_end_time": possession.get("end_time") if scored_points >= min_unanswered_points else None,
+                "threshold_score_diff_end": (home_score - away_score) if scored_points >= min_unanswered_points else None,
+            }
+            continue
+
+        active_run["end_possession_id"] = possession_id
+        active_run["possession_count"] += 1
+        active_run["duration_seconds"] += _compute_possession_duration_seconds(possession)
+        active_run["end_period"] = possession.get("period")
+        active_run["end_time"] = possession.get("end_time")
+        active_run["end_home_score"] = home_score
+        active_run["end_away_score"] = away_score
+        active_run["score_diff_end"] = home_score - away_score
+
+        if scoring_team == active_run["team"]:
+            active_run["points"] += scored_points
+            active_run["scoring_possessions"] += 1
+            if active_run["threshold_possession_id"] is None and active_run["points"] >= min_unanswered_points:
+                active_run["threshold_possession_id"] = possession_id
+                active_run["threshold_possession_count"] = active_run["possession_count"]
+                active_run["threshold_duration_seconds"] = active_run["duration_seconds"]
+                active_run["threshold_end_period"] = possession.get("period")
+                active_run["threshold_end_time"] = possession.get("end_time")
+                active_run["threshold_score_diff_end"] = home_score - away_score
+
+    if active_run is not None:
+        finalize_run(active_run)
+
+    qualifying_runs = [run for run in runs if run["qualifies"]]
+    possession_run_lookup: dict[str, str] = {}
+    for run in qualifying_runs:
+        highlight_end = run.get("highlight_end_possession_id")
+        if highlight_end is None:
+            continue
+        for possession_id in range(run["start_possession_id"], highlight_end + 1):
+            possession_run_lookup[str(possession_id)] = run["run_id"]
+
+    return {
+        "source": "pbp_data.json",
+        "thresholds": {"min_unanswered_points": min_unanswered_points},
+        "runs": runs,
+        "qualified_run_ids": [run["run_id"] for run in qualifying_runs],
+        "possession_run_lookup": possession_run_lookup,
+    }
+
+
 def scrape_pbp(url: str) -> list[dict]:
     """
     Scrape the play-by-play table and build possessions.
@@ -456,6 +662,12 @@ def save_json(possessions: list[dict], path: str = "pbp_data.json") -> None:
     print(f"Saved {len(possessions)} possessions → {path}")
 
 
+def save_run_data(run_data: dict, path: str = "run_data.json") -> None:
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(run_data, f, indent=2, ensure_ascii=False)
+    print(f"Saved run analysis ({len(run_data.get('runs', []))} runs) → {path}")
+
+
 if __name__ == "__main__":
     url = input("Enter the URL of the game: ")
     if not url:
@@ -472,3 +684,5 @@ if __name__ == "__main__":
         print(" ", p)
 
     save_json(possessions, "pbp_data.json")
+    run_data = analyze_unanswered_runs(possessions, min_unanswered_points=8)
+    save_run_data(run_data, "run_data.json")

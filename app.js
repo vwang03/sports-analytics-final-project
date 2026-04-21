@@ -1,18 +1,21 @@
 const TICK_COLORS = {
   made_shot: "#166534",
-  missed_shot: "#9ca3af",
-  def_rebound: "#374151",
+  missed_shot: "#6A6362",
+  def_rebound: "#46029C",
   off_rebound: "#1d4ed8",
-  turnover: "#dc2626",
+  turnover: "#DB242F",
   foul: "#FF7518",
-  steal: "#dc2626",
-  block: "#dc2626",
+  steal: "#AF1D26",
+  block: "#E25059",
   assist: "#A6C3A8",
   timeout: "#704214",
   other: "#704214",
 };
 
 const HALF_SECONDS = 20 * 60;
+const RUN_TEAM_FILL = "#dffcdf";
+const RUN_OPPONENT_FILL = "#fecaca";
+const DATA_VERSION = "run-highlight-2";
 
 function parseClockToRemainingSeconds(clock) {
   if (!clock || clock === "--") return null;
@@ -58,11 +61,16 @@ function computeDurationSeconds(possession) {
   return Math.max(1, startRemaining - endRemaining);
 }
 
-function normalizePossessions(rawPossessions) {
+function normalizePossessions(rawPossessions, runData = null) {
   const teams = [...new Set(rawPossessions.map((d) => d.team).filter(Boolean))];
   const [teamA = "home", teamB = "away"] = teams;
+  const possessionRunLookup = runData?.possession_run_lookup || {};
+  const runsById = new Map((runData?.runs || []).map((run) => [run.run_id, run]));
 
   const possessions = rawPossessions.map((p, index) => {
+    const possessionId = index + 1;
+    const runId = possessionRunLookup[String(possessionId)] || null;
+    const runMeta = runId ? runsById.get(runId) : null;
     const startAbs = toAbsoluteElapsed(p.period, p.start_time);
     const endAbs = toAbsoluteElapsed(p.period, p.end_time);
     const duration = computeDurationSeconds(p);
@@ -90,7 +98,7 @@ function normalizePossessions(rawPossessions) {
     });
 
     return {
-      id: index + 1,
+      id: possessionId,
       team: p.team,
       period: p.period,
       startTime: p.start_time,
@@ -99,6 +107,9 @@ function normalizePossessions(rawPossessions) {
       endAbs: endAbs ?? (startAbs ?? 0) + duration,
       duration,
       tickEvents,
+      runId,
+      runTeam: runMeta?.team || null,
+      inRun: Boolean(runId),
     };
   });
 
@@ -140,7 +151,8 @@ function drawChart({ teams, pairs }) {
     ],
   ];
   const legendRows = tickLegendRows.length;
-  const legendH = 16 + legendRows * 20;
+  const runLegendHeight = 22;
+  const legendH = 16 + legendRows * 20 + runLegendHeight;
   const legendY = 20;
   const teamLabelY = legendY + legendH + 30;
   const topMargin = teamLabelY + 60;
@@ -196,6 +208,32 @@ function drawChart({ teams, pairs }) {
     });
   });
 
+  const runLegendY = legendY + 18 + legendRows * 20 + 2;
+  svg.append("rect")
+    .attr("x", metaX + 96)
+    .attr("y", runLegendY - 10)
+    .attr("width", 22)
+    .attr("height", 12)
+    .attr("rx", 2)
+    .attr("fill", RUN_TEAM_FILL)
+    .attr("stroke", "#8aa56a")
+    .attr("stroke-width", 1);
+  svg.append("text").attr("class", "legend-label")
+    .attr("x", metaX + 126).attr("y", runLegendY)
+    .text("team on a run");
+  svg.append("rect")
+    .attr("x", metaX + 240)
+    .attr("y", runLegendY - 10)
+    .attr("width", 22)
+    .attr("height", 12)
+    .attr("rx", 2)
+    .attr("fill", RUN_OPPONENT_FILL)
+    .attr("stroke", "#c88787")
+    .attr("stroke-width", 1);
+  svg.append("text").attr("class", "legend-label")
+    .attr("x", metaX + 270).attr("y", runLegendY)
+    .text("team on a slump");
+
   svg.append("line").attr("class", "section-rule")
     .attr("x1", metaX).attr("x2", width - metaX)
     .attr("y1", legendY + legendH - 2).attr("y2", legendY + legendH - 2);
@@ -229,10 +267,13 @@ function drawChart({ teams, pairs }) {
 
       const barWidth = barWidthScale(possession.duration);
       const x = side === "left" ? leftAnchorX - barWidth : rightAnchorX;
+      const laneClass = possession.inRun
+        ? (possession.team === possession.runTeam ? "lane-bg lane-bg-run-team" : "lane-bg lane-bg-run-opponent")
+        : "lane-bg";
 
       pairsGroup
         .append("rect")
-        .attr("class", "lane-bg")
+        .attr("class", laneClass)
         .attr("x", x)
         .attr("y", y - laneHeight / 2)
         .attr("width", barWidth)
@@ -275,9 +316,12 @@ function drawChart({ teams, pairs }) {
 
 async function init() {
   try {
-    const raw = await d3.json("./pbp_data.json");
+    const [raw, runData] = await Promise.all([
+      d3.json(`./pbp_data.json?v=${DATA_VERSION}`),
+      d3.json(`./run_data.json?v=${DATA_VERSION}`).catch(() => null),
+    ]);
     if (!Array.isArray(raw)) throw new Error("pbp_data.json must be an array of possessions");
-    const normalized = normalizePossessions(raw);
+    const normalized = normalizePossessions(raw, runData);
     drawChart(normalized);
   } catch (error) {
     const container = document.querySelector(".chart-wrap");
