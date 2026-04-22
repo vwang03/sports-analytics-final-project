@@ -1352,24 +1352,87 @@ function renderAnalyticsDashboard(analytics) {
   renderQuickFacts(analytics);
 }
 
-async function init() {
+function setLoadStatus(message, { isError = false } = {}) {
+  const statusEl = document.querySelector("#game-load-status");
+  if (!statusEl) return;
+  statusEl.textContent = message;
+  statusEl.classList.toggle("is-error", isError);
+}
+
+function setVisualizationVisibility(isVisible) {
+  const sectionIds = ["#chart-section", "#analytics-section", "#quick-facts-section", "#disclaimer"];
+  sectionIds.forEach((selector) => {
+    const node = document.querySelector(selector);
+    if (!node) return;
+    node.classList.toggle("is-hidden", !isVisible);
+  });
+}
+
+function renderFromRawData(raw, runData = null) {
+  if (!Array.isArray(raw)) throw new Error("possession data must be an array");
+  const normalized = normalizePossessions(raw, runData);
+  drawChart(normalized);
+  const analytics = deriveAnalytics(normalized);
+  runAnalyticsValidation(analytics);
+  renderAnalyticsDashboard(analytics);
+  setVisualizationVisibility(true);
+}
+
+async function scrapeGameFromUrl(gameUrl) {
+  const response = await fetch("./api/scrape", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ url: gameUrl }),
+  });
+  let payload = null;
   try {
-    const [raw, runData] = await Promise.all([
-      d3.json(`./pbp_data.json?v=${DATA_VERSION}`),
-      d3.json(`./run_data.json?v=${DATA_VERSION}`).catch(() => null),
-    ]);
-    if (!Array.isArray(raw)) throw new Error("pbp_data.json must be an array of possessions");
-    const normalized = normalizePossessions(raw, runData);
-    drawChart(normalized);
-    const analytics = deriveAnalytics(normalized);
-    runAnalyticsValidation(analytics);
-    renderAnalyticsDashboard(analytics);
-  } catch (error) {
-    const container = document.querySelector(".chart-wrap");
-    if (!container) return;
-    container.innerHTML = `<p>Could not load possession data: ${error.message}</p>`;
-    console.error(error);
+    payload = await response.json();
+  } catch {
+    payload = null;
   }
+  if (!response.ok) {
+    const msg = payload?.error || `Scrape request failed (${response.status})`;
+    throw new Error(msg);
+  }
+  if (!payload || !Array.isArray(payload.possessions)) {
+    throw new Error("Scraper response did not include possession data");
+  }
+  return payload;
+}
+
+function wireGameUrlForm() {
+  const form = document.querySelector("#game-url-form");
+  const input = document.querySelector("#game-url-input");
+  const button = document.querySelector("#game-url-submit");
+  if (!form || !input || !button) return;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const gameUrl = String(input.value || "").trim();
+    if (!gameUrl) {
+      setLoadStatus("Please paste a game URL.", { isError: true });
+      return;
+    }
+
+    button.disabled = true;
+    setLoadStatus("Running scraper and rebuilding visualizations...");
+    try {
+      const payload = await scrapeGameFromUrl(gameUrl);
+      renderFromRawData(payload.possessions, payload.run_data || null);
+      setLoadStatus(`Loaded ${payload.possessions.length} possessions from ${payload.source_url}.`);
+    } catch (error) {
+      setLoadStatus(error.message, { isError: true });
+      console.error(error);
+    } finally {
+      button.disabled = false;
+    }
+  });
+}
+
+async function init() {
+  wireGameUrlForm();
+  setVisualizationVisibility(false);
+  setLoadStatus("Paste a game URL to load the visualizations.");
 }
 
 init();

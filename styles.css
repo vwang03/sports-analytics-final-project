@@ -11,6 +11,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.is-hidden {
+  display: none;
+}
+
 .page {
   max-width: 1100px;
   margin: 0 auto;
@@ -57,6 +61,61 @@ h1 {
   font-size: 0.85rem;
   margin-top: 1rem;
   font-style: italic;
+}
+
+.controls-wrap {
+  margin-bottom: 1.1rem;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-top: 6px solid #002E6D;
+  padding: 0.9rem 1rem;
+}
+
+.game-url-form label {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 0.45rem;
+}
+
+.game-url-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.55rem;
+}
+
+#game-url-input {
+  width: 100%;
+  border: 1px solid #94a3b8;
+  padding: 0.52rem 0.65rem;
+  font-size: 0.88rem;
+}
+
+#game-url-submit {
+  border: 1px solid #1e3a8a;
+  background: #002E6D;
+  color: #fff;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#game-url-submit:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.game-load-status {
+  margin-top: 0.45rem;
+  min-height: 1.2rem;
+  font-size: 0.8rem;
+  color: #475569;
+}
+
+.game-load-status.is-error {
+  color: #b91c1c;
 }
 
 .chart-wrap {
@@ -491,6 +550,10 @@ h1 {
 }
 
 @media (max-width: 640px) {
+  .game-url-row {
+    grid-template-columns: 1fr;
+  }
+
   .quick-facts-grid {
     grid-template-columns: 1fr;
   }

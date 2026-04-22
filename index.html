@@ -14,11 +14,28 @@
           <img src="./images/tufts-athletics-wordmark.png" alt="Tufts Athletics Wordmark" class="tufts-logo wordmark" />
         </div>
       </header>
+      <section class="controls-wrap" aria-label="Game loader">
+        <form id="game-url-form" class="game-url-form">
+          <label for="game-url-input">Game URL</label>
+          <div class="game-url-row">
+            <input
+              id="game-url-input"
+              name="game_url"
+              type="url"
+              required
+              placeholder="Paste a game boxscore URL with play-by-play"
+              inputmode="url"
+            />
+            <button id="game-url-submit" type="submit">Load game</button>
+          </div>
+        </form>
+        <p id="game-load-status" class="game-load-status" role="status" aria-live="polite"></p>
+      </section>
 
-      <section class="chart-wrap">
+      <section id="chart-section" class="chart-wrap is-hidden">
         <svg id="possession-chart" role="img" aria-label="Possession pair anatomy chart"></svg>
       </section>
-      <section class="analytics-wrap" aria-label="Possession analytics details">
+      <section id="analytics-section" class="analytics-wrap is-hidden" aria-label="Possession analytics details">
         <h2 class="analytics-title">Possession Analytics</h2>
         <div class="analytics-grid">
           <article class="analytics-card">
@@ -44,11 +61,11 @@
           </article>
         </div>
       </section>
-      <section class="quick-facts-wrap" aria-label="Quick facts">
+      <section id="quick-facts-section" class="quick-facts-wrap is-hidden" aria-label="Quick facts">
         <h2 class="analytics-title">Quick Facts</h2>
         <div id="quick-facts-grid" class="quick-facts-grid"></div>
       </section>
-      <p class="disclaimer">
+      <p id="disclaimer" class="disclaimer is-hidden">
         *Note: Each row represents a pair of alternating possessions, bar width encodes duration, and the cumulative differential line updates after each pair.
       </p>
     </main>
