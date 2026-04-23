@@ -19,7 +19,7 @@ const OT_SECONDS = 5 * 60;
 const REGULATION_END_SECONDS = 40 * 60;
 const RUN_TEAM_FILL = "#dffcdf";
 const RUN_OPPONENT_FILL = "#fecaca";
-const DATA_VERSION = "run-highlight-7";
+const DATA_VERSION = "run-highlight-9";
 const DIFF_LANE_GAP = 18;
 const DIFF_LANE_WIDTH = 128;
 
@@ -121,28 +121,33 @@ function formatEventDescription(event) {
 }
 
 const OUTCOME_COLORS = {
-  free_throw: "#f97316",
-  three_pointer: "#2563eb",
-  layup_dunk: "#16a34a",
-  two_pointer: "#14b8a6",
+  free_throw: TICK_COLORS.foul,
+  three_pointer: "#14532d",
+  layup_dunk: "#22c55e",
+  two_pointer: "#86efac",
   turnover: "#dc2626",
-  missed_shot: "#6b7280",
-  other: "#8b5cf6",
+  other: "#6b7280",
 };
 
 const OUTCOME_LABELS = {
-  free_throw: "Free throw",
-  three_pointer: "3-pointer",
-  layup_dunk: "Layup/Dunk",
-  two_pointer: "2-pointer",
+  free_throw_made: "Free throw made",
+  free_throw_missed: "Free throw missed",
+  three_pointer_made: "3-pointer made",
+  three_pointer_missed: "3-pointer missed",
+  layup_dunk_made: "Layup/Dunk made",
+  layup_dunk_missed: "Layup/Dunk missed",
+  two_pointer_made: "2-pointer made",
+  two_pointer_missed: "2-pointer missed",
   turnover: "Turnover",
-  missed_shot: "Missed shot",
   other: "Other",
 };
 
+const TUFTS_BLUE = "#002E6D";
+const TUFTS_BROWN = "#6F4E37";
+
 const TEAM_COLORS = {
-  home: "#002E6D",
-  away: "#3172AE",
+  home: TUFTS_BLUE,
+  away: TUFTS_BROWN,
 };
 
 const SHOT_TYPE_LABELS = {
@@ -187,14 +192,14 @@ function findTerminalDecisiveEvent(events) {
 function classifyPossessionOutcome(possession) {
   const terminalEvent = findTerminalDecisiveEvent(possession.detailEvents || []);
   if (!terminalEvent) {
-    return possession.pointsScored > 0 ? "two_pointer" : "other";
+    return "other";
   }
   const eventTypeUpper = String(terminalEvent.type || "").toUpperCase();
   if (eventTypeUpper.includes("TURNOVER")) return "turnover";
   if (isShotAttemptEvent(eventTypeUpper)) {
-    if (!isMadeShotEvent(eventTypeUpper)) return "missed_shot";
     const shotType = classifyShotType(eventTypeUpper);
-    return shotType || "other";
+    if (!shotType) return "other";
+    return isMadeShotEvent(eventTypeUpper) ? `${shotType}_made` : `${shotType}_missed`;
   }
   return "other";
 }
@@ -226,6 +231,26 @@ function createTeamAggregate(teamKey) {
     fastBreakPossessions: 0,
     histogramBuckets: [],
   };
+}
+
+function isMadeOutcome(outcome) {
+  return String(outcome || "").endsWith("_made");
+}
+
+function isMissedOutcome(outcome) {
+  return String(outcome || "").endsWith("_missed");
+}
+
+function isBadOutcome(outcome) {
+  const value = String(outcome || "");
+  return value === "turnover" || isMissedOutcome(value);
+}
+
+function getOutcomeBaseKey(outcome) {
+  const value = String(outcome || "");
+  if (value.endsWith("_made")) return value.slice(0, -5);
+  if (value.endsWith("_missed")) return value.slice(0, -7);
+  return value;
 }
 
 function formatPercent(numerator, denominator, decimals = 1) {
@@ -291,14 +316,9 @@ function deriveAnalytics({ teams, possessions }) {
     if (outcome === "turnover" || hasTurnover) {
       teamData.turnoverPossessions += 1;
       teamData.durationByOutcomeSamples.turnover.push(possession.duration);
-    } else if (outcome === "missed_shot") {
+    } else if (isMissedOutcome(outcome)) {
       teamData.durationByOutcomeSamples.missed_shot.push(possession.duration);
-    } else if (
-      outcome === "free_throw" ||
-      outcome === "three_pointer" ||
-      outcome === "layup_dunk" ||
-      outcome === "two_pointer"
-    ) {
+    } else if (isMadeOutcome(outcome)) {
       teamData.durationByOutcomeSamples.made_shot.push(possession.duration);
     }
 
@@ -471,10 +491,38 @@ function normalizePossessions(rawPossessions, runData = null) {
   return { teams: [teamA, teamB], pairs, possessions };
 }
 
+function positionChartDisclaimer() {
+  const wrap = document.querySelector("#chart-section");
+  const svg = document.querySelector("#possession-chart");
+  const disc = document.querySelector("#disclaimer");
+  if (!wrap || !svg || !disc) return;
+  if (wrap.classList.contains("is-hidden")) return;
+  const bottomYStr = svg.getAttribute("data-disclaimer-bottom-y");
+  if (bottomYStr == null) return;
+  const legendNoteBottomY = Number(bottomYStr);
+  const vb = svg.viewBox.baseVal;
+  if (!vb?.height) return;
+  const scale = svg.getBoundingClientRect().height / vb.height;
+  if (!Number.isFinite(scale) || scale <= 0) return;
+  const topPx = svg.offsetTop + legendNoteBottomY * scale - disc.offsetHeight;
+  disc.style.top = `${topPx}px`;
+}
+
+function wireChartDisclaimerLayout() {
+  const wrap = document.querySelector("#chart-section");
+  if (!wrap || wrap.dataset.disclaimerLayoutWired) return;
+  wrap.dataset.disclaimerLayoutWired = "1";
+  const ro = new ResizeObserver(() => {
+    positionChartDisclaimer();
+  });
+  ro.observe(wrap);
+  const svg = document.querySelector("#possession-chart");
+  if (svg) ro.observe(svg);
+}
+
 function drawChart({ teams, pairs }) {
   const svg = d3.select("#possession-chart");
   const chartWrap = d3.select(".chart-wrap");
-  chartWrap.style("position", "relative");
   chartWrap.selectAll(".possession-tooltip").remove();
   const tooltip = chartWrap.append("div").attr("class", "possession-tooltip");
   const baseWidth = 980;
@@ -500,7 +548,8 @@ function drawChart({ teams, pairs }) {
   ];
   const legendRows = tickLegendRows.length;
   const runLegendHeight = 22;
-  const legendH = 16 + legendRows * 20 + runLegendHeight;
+  const legendNoteHeight = 46;
+  const legendH = 16 + legendRows * 20 + runLegendHeight + legendNoteHeight;
   const legendY = 20;
   const teamLabelY = legendY + legendH + 30;
   const topMargin = teamLabelY + 60;
@@ -613,8 +662,22 @@ function drawChart({ teams, pairs }) {
   }
 
   // Team labels (placed below the legend)
-  svg.append("text").attr("x", leftTeamCx).attr("y", teamLabelY).attr("text-anchor", "middle").attr("class", "team-label").text(teams[0]);
-  svg.append("text").attr("x", rightTeamCx).attr("y", teamLabelY).attr("text-anchor", "middle").attr("class", "team-label").text(teams[1]);
+  svg
+    .append("text")
+    .attr("x", leftTeamCx)
+    .attr("y", teamLabelY)
+    .attr("text-anchor", "middle")
+    .attr("class", "team-label")
+    .attr("fill", getTeamColor(normalizeTeamKey(teams[0]), 0))
+    .text(teams[0]);
+  svg
+    .append("text")
+    .attr("x", rightTeamCx)
+    .attr("y", teamLabelY)
+    .attr("text-anchor", "middle")
+    .attr("class", "team-label")
+    .attr("fill", getTeamColor(normalizeTeamKey(teams[1]), 1))
+    .text(teams[1]);
 
   // Center divider
   svg.append("line").attr("class", "mid-divider")
@@ -893,6 +956,10 @@ function drawChart({ teams, pairs }) {
     .text((point) => point.cumulativeDiff);
 
   svg.on("mouseleave", hideTooltip);
+
+  const legendNoteBottomY = legendY + legendH - 8;
+  svg.node().setAttribute("data-disclaimer-bottom-y", String(legendNoteBottomY));
+  positionChartDisclaimer();
 }
 
 /** Display label for the team in the paired chart lane at index 0 (left) or 1 (right). */
@@ -972,6 +1039,41 @@ function drawOutcomePie(svgId, teamData, teamColor) {
   const pie = d3.pie().value((d) => d.count).sort(null);
   const arc = d3.arc().innerRadius(innerRadius).outerRadius(outerRadius);
 
+  const defs = svg.append("defs");
+  const patternIds = new Map();
+  fallbackEntries.forEach((entry) => {
+    if (!isBadOutcome(entry.key) || patternIds.has(entry.key)) return;
+    const baseKey = getOutcomeBaseKey(entry.key);
+    const color = OUTCOME_COLORS[baseKey] || teamColor;
+    const patternId = `${svgId}-${entry.key}-hatch`.replace(/[^a-zA-Z0-9_-]/g, "-");
+    const pattern = defs
+      .append("pattern")
+      .attr("id", patternId)
+      .attr("patternUnits", "userSpaceOnUse")
+      .attr("width", 8)
+      .attr("height", 8)
+      .attr("patternTransform", "rotate(45)");
+    pattern.append("rect").attr("width", 8).attr("height", 8).attr("fill", color).attr("opacity", 0.16);
+    pattern
+      .append("line")
+      .attr("x1", 0)
+      .attr("y1", 0)
+      .attr("x2", 0)
+      .attr("y2", 8)
+      .attr("stroke", color)
+      .attr("stroke-width", 2.4)
+      .attr("opacity", 0.95);
+    patternIds.set(entry.key, patternId);
+  });
+
+  function getOutcomeFill(key) {
+    const baseKey = getOutcomeBaseKey(key);
+    const color = OUTCOME_COLORS[baseKey] || teamColor;
+    if (!isBadOutcome(key)) return color;
+    const patternId = patternIds.get(key);
+    return patternId ? `url(#${patternId})` : color;
+  }
+
   const group = svg.append("g").attr("transform", `translate(${cx}, ${cy})`);
 
   function allSlices() {
@@ -989,7 +1091,7 @@ function drawOutcomePie(svgId, teamData, teamColor) {
     .append("path")
     .attr("class", "outcome-slice")
     .attr("d", arc)
-    .attr("fill", (d) => OUTCOME_COLORS[d.data.key] || teamColor)
+    .attr("fill", (d) => getOutcomeFill(d.data.key))
     .attr("stroke", "#ffffff")
     .attr("stroke-width", 1.2)
     .attr("cursor", "pointer")
@@ -1012,12 +1114,20 @@ function drawOutcomePie(svgId, teamData, teamColor) {
   });
 
   group
+    .append("circle")
+    .attr("r", innerRadius - 1)
+    .attr("fill", teamColor)
+    .attr("opacity", 0.22)
+    .attr("stroke", teamColor)
+    .attr("stroke-width", 1);
+
+  group
     .append("text")
     .attr("text-anchor", "middle")
     .attr("dy", "-0.1em")
     .style("font-size", "0.95rem")
     .style("font-weight", "700")
-    .style("fill", "#0f172a")
+    .style("fill", teamColor)
     .text(teamData.totalPossessions);
 
   group
@@ -1029,7 +1139,7 @@ function drawOutcomePie(svgId, teamData, teamColor) {
     .text("possessions");
 
   const legend = svg.append("g").attr("transform", "translate(248, 20)");
-  fallbackEntries.slice(0, 7).forEach((entry, index) => {
+  fallbackEntries.forEach((entry, index) => {
     const y = index * 26;
     legend
       .append("rect")
@@ -1037,7 +1147,7 @@ function drawOutcomePie(svgId, teamData, teamColor) {
       .attr("y", y)
       .attr("width", 11)
       .attr("height", 11)
-      .attr("fill", OUTCOME_COLORS[entry.key] || teamColor);
+      .attr("fill", getOutcomeFill(entry.key));
     legend
       .append("text")
       .attr("x", 18)
@@ -1055,8 +1165,14 @@ function renderOutcomePieCharts(analytics) {
 
   const leftCap = document.querySelector("#outcome-pie-home")?.closest("figure")?.querySelector("figcaption");
   const rightCap = document.querySelector("#outcome-pie-away")?.closest("figure")?.querySelector("figcaption");
-  if (leftCap) leftCap.textContent = leftLabel;
-  if (rightCap) rightCap.textContent = rightLabel;
+  if (leftCap) {
+    leftCap.textContent = leftLabel;
+    leftCap.style.color = getTeamColor(leftKey, 0);
+  }
+  if (rightCap) {
+    rightCap.textContent = rightLabel;
+    rightCap.style.color = getTeamColor(rightKey, 1);
+  }
 
   d3.select("#outcome-pie-home").attr("aria-label", `${leftLabel} possession outcome distribution`);
   d3.select("#outcome-pie-away").attr("aria-label", `${rightLabel} possession outcome distribution`);
@@ -1127,21 +1243,21 @@ function renderDurationByOutcome(analytics) {
     .attr("fill", (d) => getTeamColor(d.teamKey, d.teamIndex))
     .attr("opacity", 0.82);
 
-  svg
-    .append("text")
-    .attr("x", margin.left)
-    .attr("y", 14)
-    .attr("class", "analytics-legend")
-    .text("Average possession duration (seconds)");
-
   chartTeams.forEach((teamKey, index) => {
-    const x = width - margin.right - 140 + index * 68;
-    svg.append("rect").attr("x", x).attr("y", 8).attr("width", 10).attr("height", 10).attr("fill", getTeamColor(teamKey, index));
+    const x = width - margin.right - 170 + index * 86;
+    svg
+      .append("rect")
+      .attr("x", x)
+      .attr("y", 6)
+      .attr("width", 14)
+      .attr("height", 14)
+      .attr("fill", getTeamColor(teamKey, index));
     svg
       .append("text")
-      .attr("x", x + 14)
-      .attr("y", 17)
-      .attr("class", "analytics-legend")
+      .attr("x", x + 20)
+      .attr("y", 18)
+      .attr("class", "analytics-team-legend")
+      .attr("fill", getTeamColor(teamKey, index))
       .text(pairChartTeamLabel(analytics, index));
   });
 }
@@ -1214,31 +1330,54 @@ function renderPossessionLengthHistogram(analytics) {
     .attr("fill", (d) => getTeamColor(d.teamKey, d.teamIndex))
     .attr("opacity", 0.75);
 
-  svg
-    .append("text")
-    .attr("x", margin.left)
-    .attr("y", 16)
-    .attr("class", "analytics-legend")
-    .text("Possession count by duration bucket");
+  chartTeams.forEach((teamKey, index) => {
+    const x = width - margin.right - 170 + index * 86;
+    svg
+      .append("rect")
+      .attr("x", x)
+      .attr("y", 6)
+      .attr("width", 14)
+      .attr("height", 14)
+      .attr("fill", getTeamColor(teamKey, index));
+    svg
+      .append("text")
+      .attr("x", x + 20)
+      .attr("y", 18)
+      .attr("class", "analytics-team-legend")
+      .attr("fill", getTeamColor(teamKey, index))
+      .text(pairChartTeamLabel(analytics, index));
+  });
 }
 
-function buildFactCard(title, leftValue, leftSubValue, rightValue, rightSubValue, leftLabel, rightLabel) {
+function buildFactCard(
+  title,
+  leftValue,
+  leftSubValue,
+  rightValue,
+  rightSubValue,
+  leftLabel,
+  rightLabel,
+  leftTeamKey,
+  rightTeamKey,
+) {
+  const leftSubValueHtml = leftSubValue ? `<p class="fact-subvalue">${escapeHtml(leftSubValue)}</p>` : "";
+  const rightSubValueHtml = rightSubValue ? `<p class="fact-subvalue">${escapeHtml(rightSubValue)}</p>` : "";
   const card = document.createElement("article");
   card.className = "fact-card";
   card.innerHTML = `
     <p class="fact-title">${escapeHtml(title)}</p>
-    <div class="fact-team-row">
+    <div class="fact-team-row team-signal-${escapeHtml(leftTeamKey)}">
       <p class="fact-team-label">${escapeHtml(leftLabel)}</p>
       <div>
         <p class="fact-value">${escapeHtml(leftValue)}</p>
-        <p class="fact-subvalue">${escapeHtml(leftSubValue)}</p>
+        ${leftSubValueHtml}
       </div>
     </div>
-    <div class="fact-team-row">
+    <div class="fact-team-row team-signal-${escapeHtml(rightTeamKey)}">
       <p class="fact-team-label">${escapeHtml(rightLabel)}</p>
       <div>
         <p class="fact-value">${escapeHtml(rightValue)}</p>
-        <p class="fact-subvalue">${escapeHtml(rightSubValue)}</p>
+        ${rightSubValueHtml}
       </div>
     </div>
   `;
@@ -1270,6 +1409,8 @@ function renderQuickFacts(analytics) {
       `${getFgMakes(away)}/${getFgAttempts(away)} FG attempts`,
       leftLabel,
       rightLabel,
+      leftKey,
+      rightKey,
     ),
     ...Object.entries(SHOT_TYPE_LABELS).map(([shotType, label]) =>
       buildFactCard(
@@ -1280,6 +1421,8 @@ function renderQuickFacts(analytics) {
         `${away.shotStats[shotType].makes}/${away.shotStats[shotType].attempts} made`,
         leftLabel,
         rightLabel,
+        leftKey,
+        rightKey,
       )),
     buildFactCard(
       "Turnover rate",
@@ -1289,6 +1432,8 @@ function renderQuickFacts(analytics) {
       `${away.turnoverPossessions}/${away.totalPossessions} possessions`,
       leftLabel,
       rightLabel,
+      leftKey,
+      rightKey,
     ),
     buildFactCard(
       "Points per possession",
@@ -1298,15 +1443,19 @@ function renderQuickFacts(analytics) {
       `${away.totalPoints} points / ${away.totalPossessions} possessions`,
       leftLabel,
       rightLabel,
+      leftKey,
+      rightKey,
     ),
     buildFactCard(
       "Second-chance points",
       `${home.secondChanceWithOrebPoints} pts`,
-      `With OREB: ${home.secondChanceWithOrebPoints} (${home.secondChanceWithOrebPossessions} possessions), without: ${home.secondChanceWithoutOrebPoints}`,
+      "",
       `${away.secondChanceWithOrebPoints} pts`,
-      `With OREB: ${away.secondChanceWithOrebPoints} (${away.secondChanceWithOrebPossessions} possessions), without: ${away.secondChanceWithoutOrebPoints}`,
+      "",
       leftLabel,
       rightLabel,
+      leftKey,
+      rightKey,
     ),
     buildFactCard(
       "Fast-break points (<5s)",
@@ -1316,6 +1465,8 @@ function renderQuickFacts(analytics) {
       `${away.fastBreakPossessions} fast-break possessions`,
       leftLabel,
       rightLabel,
+      leftKey,
+      rightKey,
     ),
   ];
 
@@ -1360,7 +1511,7 @@ function setLoadStatus(message, { isError = false } = {}) {
 }
 
 function setVisualizationVisibility(isVisible) {
-  const sectionIds = ["#chart-section", "#analytics-section", "#quick-facts-section", "#disclaimer"];
+  const sectionIds = ["#chart-section", "#analytics-section", "#quick-facts-section"];
   sectionIds.forEach((selector) => {
     const node = document.querySelector(selector);
     if (!node) return;
@@ -1431,6 +1582,7 @@ function wireGameUrlForm() {
 
 async function init() {
   wireGameUrlForm();
+  wireChartDisclaimerLayout();
   setVisualizationVisibility(false);
   setLoadStatus("Paste a game URL to load the visualizations.");
 }

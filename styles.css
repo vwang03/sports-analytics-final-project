@@ -11,6 +11,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+:root {
+  --tufts-blue: #002e6d;
+  --tufts-brown: #6f4e37;
+}
+
 .is-hidden {
   display: none;
 }
@@ -61,6 +66,15 @@ h1 {
   font-size: 0.85rem;
   margin-top: 1rem;
   font-style: italic;
+}
+
+.chart-legend-disclaimer {
+  position: absolute;
+  left: 1.5rem;
+  right: 1.5rem;
+  margin-top: 0;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .controls-wrap {
@@ -119,6 +133,7 @@ h1 {
 }
 
 .chart-wrap {
+  position: relative;
   background: #fff;
   border: 1px solid #d1d5db;
   border-top: 6px solid #002E6D;
@@ -140,7 +155,6 @@ h1 {
 .team-label {
   font-weight: 700;
   font-size: 18px;
-  fill: #002E6D;
   text-transform: uppercase;
   /* thought uppercase looked more uniform */
 }
@@ -476,23 +490,54 @@ h1 {
   min-height: 300px;
 }
 
+.outcome-disclaimer {
+  margin-top: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #475569;
+  font-size: 0.75rem;
+  line-height: 1.3;
+}
+
+.outcome-disclaimer-swatch {
+  width: 14px;
+  height: 14px;
+  border: 1px solid #94a3b8;
+  border-radius: 2px;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.65) 0px,
+      rgba(15, 23, 42, 0.65) 2px,
+      rgba(255, 255, 255, 0.95) 2px,
+      rgba(255, 255, 255, 0.95) 6px
+    );
+  flex: 0 0 auto;
+}
+
 .analytics-svg-wide {
   min-height: 220px;
 }
 
 .analytics-axis path,
 .analytics-axis line {
-  stroke: #cbd5e1;
+  stroke: #64748b;
 }
 
 .analytics-axis text {
-  fill: #475569;
-  font-size: 10px;
+  fill: #334155;
+  font-size: 20px;
 }
 
 .analytics-legend {
   font-size: 10px;
   fill: #334155;
+}
+
+.analytics-team-legend {
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .quick-facts-grid {
@@ -538,6 +583,18 @@ h1 {
 .fact-subvalue {
   color: #64748b;
   font-size: 0.75rem;
+}
+
+.team-signal-home .fact-team-label,
+.team-signal-home .fact-value,
+.team-signal-home .fact-subvalue {
+  color: var(--tufts-blue);
+}
+
+.team-signal-away .fact-team-label,
+.team-signal-away .fact-value,
+.team-signal-away .fact-subvalue {
+  color: var(--tufts-brown);
 }
 
 @media (max-width: 980px) {

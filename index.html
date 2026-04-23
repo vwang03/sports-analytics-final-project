@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Possession Pair Anatomy</title>
-    <link rel="stylesheet" href="./styles.css?v=run-highlight-7" />
+    <link rel="stylesheet" href="./styles.css?v=run-highlight-11" />
   </head>
   <body>
     <main class="page">
@@ -34,6 +34,9 @@
 
       <section id="chart-section" class="chart-wrap is-hidden">
         <svg id="possession-chart" role="img" aria-label="Possession pair anatomy chart"></svg>
+        <p id="disclaimer" class="disclaimer chart-legend-disclaimer">
+          *Note: Each row represents a pair of alternating possessions, bar width encodes duration, and the cumulative differential line updates after each pair.
+        </p>
       </section>
       <section id="analytics-section" class="analytics-wrap is-hidden" aria-label="Possession analytics details">
         <h2 class="analytics-title">Possession Analytics</h2>
@@ -50,13 +53,17 @@
                 <svg id="outcome-pie-away" class="analytics-svg outcome-pie-chart" role="img" aria-label="Away possession outcome distribution"></svg>
               </figure>
             </div>
+            <p class="outcome-disclaimer">
+              <span class="outcome-disclaimer-swatch" aria-hidden="true"></span>
+              <span>Shaded slices indicate unsuccessful possession outcomes (missed shots and turnovers).</span>
+            </p>
           </article>
           <article class="analytics-card">
-            <h3>Average possession duration by outcome</h3>
+            <h3>Average Possession Duration by Outcome</h3>
             <svg id="duration-by-outcome-chart" class="analytics-svg analytics-svg-wide" role="img" aria-label="Average possession duration by outcome for home and away"></svg>
           </article>
           <article class="analytics-card">
-            <h3>Possession length distribution</h3>
+            <h3>Possession Count by Duration Bucket</h3>
             <svg id="possession-length-histogram" class="analytics-svg analytics-svg-wide" role="img" aria-label="Possession length distribution for home and away"></svg>
           </article>
         </div>
@@ -65,12 +72,9 @@
         <h2 class="analytics-title">Quick Facts</h2>
         <div id="quick-facts-grid" class="quick-facts-grid"></div>
       </section>
-      <p id="disclaimer" class="disclaimer is-hidden">
-        *Note: Each row represents a pair of alternating possessions, bar width encodes duration, and the cumulative differential line updates after each pair.
-      </p>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-    <script src="./app.js?v=run-highlight-7"></script>
+    <script src="./app.js?v=run-highlight-11"></script>
   </body>
 </html>
