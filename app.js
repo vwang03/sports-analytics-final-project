@@ -367,7 +367,6 @@ function deriveAnalytics({ teams, possessions }) {
 }
 
 function normalizePossessions(rawPossessions, runData = null) {
-  // Scrapes before ordinal-quarter handling used 20:00 as period starts; WBB clocks never go above 10:00.
   const ordinalOnly = /^\d+(st|nd|rd|th)$/i;
   const possessionsIn = rawPossessions.map((p) => {
     const per = String(p.period || "").trim();

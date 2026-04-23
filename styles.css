@@ -57,7 +57,6 @@ h1 {
   letter-spacing: -0.02em;
   margin-bottom: 0.5rem;
   color: #002E6D;
-  /* Tufts Dark Blue */
 }
 
 .disclaimer {
@@ -137,13 +136,10 @@ h1 {
   background: #fff;
   border: 1px solid #d1d5db;
   border-top: 6px solid #002E6D;
-  /* Tufts Dark Blue accent, sharp flat border */
   border-radius: 0;
-  /* Sharp corners */
   padding: 1.5rem;
   overflow: auto;
   box-shadow: none;
-  /* Removed drop shadow for a flat look */
 }
 
 #possession-chart {
@@ -156,17 +152,14 @@ h1 {
   font-weight: 700;
   font-size: 18px;
   text-transform: uppercase;
-  /* thought uppercase looked more uniform */
 }
 
-/* Tufts Dark Blue */
 .pair-label {
   fill: #3172AE;
   font-size: 11px;
   font-weight: 600;
 }
 
-/* Tufts Digital Blue */
 .pair-meta {
   fill: #515b6a;
   font-size: 8.5px;
